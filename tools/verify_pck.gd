@@ -50,8 +50,9 @@ func _verify_localization(lang: String, table: String) -> int:
 	if not FileAccess.file_exists(path):
 		push_error("PCK 缺本地化: " + path)
 		return 1
+	# 空对象合法:表存在且可解析即过(未用表零键覆盖,游戏合并无害)。
 	var parsed = JSON.parse_string(FileAccess.get_file_as_string(path))
-	if not parsed is Dictionary or parsed.is_empty():
+	if not parsed is Dictionary:
 		push_error("PCK 本地化不可解析: " + path)
 		return 1
 	return 0

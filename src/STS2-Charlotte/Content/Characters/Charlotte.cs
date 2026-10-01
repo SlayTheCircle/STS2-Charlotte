@@ -54,7 +54,7 @@ public sealed class Charlotte : CharacterModel
         ModelDb.Card<CharlotteSayCheese>(),
     };
 
-    public override IReadOnlyList<RelicModel> StartingRelics => new RelicModel[] { ModelDb.Relic<CharlotteLocket>() };
+    public override IReadOnlyList<RelicModel> StartingRelics => new RelicModel[] { ModelDb.Relic<MonsieurVerite>() };
 
     public override float AttackAnimDelay => 0.15f;
 

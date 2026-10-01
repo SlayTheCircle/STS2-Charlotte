@@ -1,5 +1,23 @@
 {
-  "STS2_CHARLOTTE_RELIC_CHARLOTTE_LOCKET.title": "示例坠饰",
-  "STS2_CHARLOTTE_RELIC_CHARLOTTE_LOCKET.description": "结构演示件：暂无战斗效果。衍生仓在此替换为实际设计。",
-  "STS2_CHARLOTTE_RELIC_CHARLOTTE_LOCKET.flavor": "一枚朴素的小坠饰，等待着被赋予故事。"
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE.title": "温亨廷先生",
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE.description": "每回合你第一次[gold]留影[/gold]时，恢复2点生命。",
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE.flavor": "来自枫丹的老伙计，与夏洛蒂一同记录着世界的每个瞬间。",
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE_CHIORIYA_EDITION.title": "温亨廷先生——千织屋纪念版",
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE_CHIORIYA_EDITION.description": "每回合你第一次[gold]留影[/gold]时，恢复4点生命。",
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE_CHIORIYA_EDITION.flavor": "千织屋的手工定制款——精致、耐用，且价格不菲。",
+  "STS2_CHARLOTTE_RELIC_SPECIAL_ANALYSIS_ZOOM_LENS.title": "特殊分析变焦镜头",
+  "STS2_CHARLOTTE_RELIC_SPECIAL_ANALYSIS_ZOOM_LENS.description": "每回合你第一次[gold]留影[/gold]时，给予全体敌人2层[gold]聚焦[/gold]。",
+  "STS2_CHARLOTTE_RELIC_SPECIAL_ANALYSIS_ZOOM_LENS.flavor": "一次意外的投资中诞生的产物，后来在枫丹的记者中间广为流传，并受到一致好评。",
+  "STS2_CHARLOTTE_RELIC_LENS_CAP.title": "镜头盖",
+  "STS2_CHARLOTTE_RELIC_LENS_CAP.description": "每当[gold]留影纪念[/gold]被消耗，你获得2点格挡。",
+  "STS2_CHARLOTTE_RELIC_LENS_CAP.flavor": "相机是记者的第二双眼睛，必须时刻保护才行——况且它可比人娇贵多了。",
+  "STS2_CHARLOTTE_RELIC_INTERVIEW_NOTEBOOK.title": "采访稿记录本",
+  "STS2_CHARLOTTE_RELIC_INTERVIEW_NOTEBOOK.description": "每当你[gold]留影[/gold]时，消耗你抽牌堆中的1张随机状态牌或诅咒牌。",
+  "STS2_CHARLOTTE_RELIC_INTERVIEW_NOTEBOOK.flavor": "厚实的笔记本，许多精彩的报道在这里诞生。",
+  "STS2_CHARLOTTE_RELIC_LARGE_FISH_AND_CHIPS.title": "大份的炸鱼薯条",
+  "STS2_CHARLOTTE_RELIC_LARGE_FISH_AND_CHIPS.description": "拾起时，减少6点最大生命值并回复全部生命值。每次战斗结束时，获得1点最大生命值。",
+  "STS2_CHARLOTTE_RELIC_LARGE_FISH_AND_CHIPS.flavor": "枫丹不得不品的美食之一。不过要小心，吃的时候不要被烫到了哦。",
+  "STS2_CHARLOTTE_RELIC_REPAIR_TOOLS.title": "维修工具——温亨廷先生专用版",
+  "STS2_CHARLOTTE_RELIC_REPAIR_TOOLS.description": "你每累计花费300金币，就获得1件随机遗物。",
+  "STS2_CHARLOTTE_RELIC_REPAIR_TOOLS.flavor": "花费了夏洛蒂许多薪水的珍贵工具包。为了保持温亨廷先生能在任何时刻以最佳状态拍摄画片。"
 }

@@ -1,5 +1,23 @@
 {
-  "STS2_CHARLOTTE_RELIC_CHARLOTTE_LOCKET.title": "Charlotte Locket",
-  "STS2_CHARLOTTE_RELIC_CHARLOTTE_LOCKET.description": "Structure demo: no combat effect yet. Replace with your design.",
-  "STS2_CHARLOTTE_RELIC_CHARLOTTE_LOCKET.flavor": "A plain little locket, waiting for a story."
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE.title": "Monsieur Verite",
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE.description": "The first time you [gold]Snapshot[/gold] each turn, heal 2 HP.",
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE.flavor": "An old companion from Fontaine, recording every moment of the world alongside Charlotte.",
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE_CHIORIYA_EDITION.title": "Monsieur Verite: Chioriya Edition",
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE_CHIORIYA_EDITION.description": "The first time you [gold]Snapshot[/gold] each turn, heal 4 HP.",
+  "STS2_CHARLOTTE_RELIC_MONSIEUR_VERITE_CHIORIYA_EDITION.flavor": "A Chioriya Boutique custom job — exquisite, durable, and decidedly not cheap.",
+  "STS2_CHARLOTTE_RELIC_SPECIAL_ANALYSIS_ZOOM_LENS.title": "Special Analysis Zoom Lens",
+  "STS2_CHARLOTTE_RELIC_SPECIAL_ANALYSIS_ZOOM_LENS.description": "The first time you [gold]Snapshot[/gold] each turn, apply 2 [gold]Focus[/gold] to ALL enemies.",
+  "STS2_CHARLOTTE_RELIC_SPECIAL_ANALYSIS_ZOOM_LENS.flavor": "Born of an accidental investment, later beloved by Fontaine reporters everywhere.",
+  "STS2_CHARLOTTE_RELIC_LENS_CAP.title": "Lens Cap",
+  "STS2_CHARLOTTE_RELIC_LENS_CAP.description": "Whenever a [gold]Snapshot Souvenir[/gold] is Exhausted, gain 2 Block.",
+  "STS2_CHARLOTTE_RELIC_LENS_CAP.flavor": "The camera is a reporter's second pair of eyes — guard it well. It is far more delicate than you.",
+  "STS2_CHARLOTTE_RELIC_INTERVIEW_NOTEBOOK.title": "Interview Notebook",
+  "STS2_CHARLOTTE_RELIC_INTERVIEW_NOTEBOOK.description": "Whenever you [gold]Snapshot[/gold], Exhaust 1 random Status or Curse from your draw pile.",
+  "STS2_CHARLOTTE_RELIC_INTERVIEW_NOTEBOOK.flavor": "A thick notebook; many a brilliant story was born on its pages.",
+  "STS2_CHARLOTTE_RELIC_LARGE_FISH_AND_CHIPS.title": "Large Fish and Chips",
+  "STS2_CHARLOTTE_RELIC_LARGE_FISH_AND_CHIPS.description": "On pickup: lose 6 Max HP and restore all HP. At the end of each combat, gain 1 Max HP.",
+  "STS2_CHARLOTTE_RELIC_LARGE_FISH_AND_CHIPS.flavor": "A Fontaine classic. Careful — don't burn your tongue.",
+  "STS2_CHARLOTTE_RELIC_REPAIR_TOOLS.title": "Repair Tools: Monsieur Verite Special",
+  "STS2_CHARLOTTE_RELIC_REPAIR_TOOLS.description": "Every 300 gold you spend in total, gain 1 random relic.",
+  "STS2_CHARLOTTE_RELIC_REPAIR_TOOLS.flavor": "A precious toolkit that cost Charlotte a fair share of her salary — so Monsieur Verite is always in top form."
 }

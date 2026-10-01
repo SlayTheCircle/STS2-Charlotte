@@ -11,6 +11,12 @@ using CharlotteMod.Content.Afflictions;
 
 namespace CharlotteMod.Content.Mechanics;
 
+/// <summary>留影观察者:遗物/能力实现本接口,由 Snapshot 收口在每次留影(含状态/诅咒转化)后分发。</summary>
+public interface ISnapshotObserver
+{
+    Task OnSnapshot(PlayerChoiceContext ctx, CardModel snapped, Player player);
+}
+
 /// <summary>
 /// [留影]机制内核:选择一张手牌,将其消耗,并在抽牌堆放入一张效果/类型/费用完全相同、
 /// 带有消耗的克隆([留影纪念],以 <see cref="SnapshotMemento"/> 标记)。
@@ -47,6 +53,7 @@ public static class Snapshot
             await CardPileCmd.Draw(ctx, 1m, player);
             // 状态/诅咒的转化同样视为一次[留影]发生(聚焦照常结算;每回合首次留影计数亦然)。
             await TriggerFocus(target);
+            await NotifyObservers(ctx, target, player);
             return;
         }
 
@@ -59,6 +66,7 @@ public static class Snapshot
             await CardPileCmd.AddGeneratedCardToCombat(memento, PileType.Draw, player, CardPilePosition.Random),
             2.2f);
         await TriggerFocus(target);
+        await NotifyObservers(ctx, target, player);
     }
 
     private static async Task TriggerFocus(CardModel target)
@@ -66,6 +74,18 @@ public static class Snapshot
         if (target.CombatState is { } combatState)
         {
             await Focus.TriggerAll(combatState);
+        }
+    }
+
+    /// <summary>留影观察者分发(遗物面;能力面如温馨笔触后续同样在此查询)。在聚焦结算之后调用。</summary>
+    private static async Task NotifyObservers(PlayerChoiceContext ctx, CardModel snapped, Player player)
+    {
+        foreach (RelicModel relic in player.Relics)
+        {
+            if (relic is ISnapshotObserver observer)
+            {
+                await observer.OnSnapshot(ctx, snapped, player);
+            }
         }
     }
 }

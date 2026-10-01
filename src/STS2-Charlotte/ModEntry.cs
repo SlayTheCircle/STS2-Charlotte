@@ -35,7 +35,7 @@ public static class ModEntry
         ModContentRegistry.For(ModId).RegisterCharacterAssetReplacement(charlotteEntry, new CharacterAssetProfile(
             new CharacterSceneAssetSet(
                 "res://scenes/creature_visuals/ironclad.tscn",
-                "res://scenes/combat/energy_counters/ironclad_energy_counter.tscn",
+                "res://STS2-Charlotte/scenes/combat/charlotte_energy_counter.tscn",
                 "res://scenes/merchant/characters/ironclad_merchant.tscn",
                 "res://scenes/rest_site/characters/ironclad_rest_site.tscn"),
             new CharacterUiAssetSet(

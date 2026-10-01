@@ -2,12 +2,20 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
 using CharlotteMod.Content.Powers;
-using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Models;
 
 namespace CharlotteMod.Content.Mechanics;
+
+/// <summary>聚焦伤害观察者:能力实现本接口,由 Focus.TriggerAll 在每次聚焦造成伤害后分发(谨遵事实)。</summary>
+public interface IFocusDamageObserver
+{
+    Task OnFocusDamage(PlayerChoiceContext ctx, decimal amount);
+}
 
 /// <summary>施加[聚焦]的观察者:能力/遗物实现本接口,由 LensFocusPower.AfterApplied 分发。</summary>
 public interface IFocusApplyObserver
@@ -22,7 +30,7 @@ public interface IFocusApplyObserver
 /// </summary>
 public static class Focus
 {
-    public static async Task TriggerAll(ICombatState combatState)
+    public static async Task TriggerAll(ICombatState combatState, Player? acting = null)
     {
         foreach (Creature creature in combatState.Creatures)
         {
@@ -37,6 +45,16 @@ public static class Focus
             }
             await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), creature, amount,
                 ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+            if (acting != null)
+            {
+                foreach (PowerModel power in acting.Creature.Powers)
+                {
+                    if (power is IFocusDamageObserver observer)
+                    {
+                        await observer.OnFocusDamage(new ThrowingPlayerChoiceContext(), amount);
+                    }
+                }
+            }
         }
     }
 }

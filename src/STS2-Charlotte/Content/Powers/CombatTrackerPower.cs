@@ -32,6 +32,10 @@ public sealed class CombatTrackerPower : CharlottePowerBase
         public int cardsThisTurn;
 
         public int exhaustsThisTurn;
+
+        public int exhaustsThisCombat;
+
+        public int attacksThisCombat;
     }
 
     public override PowerType Type => PowerType.Buff;
@@ -54,7 +58,13 @@ public sealed class CombatTrackerPower : CharlottePowerBase
     /// <summary>本回合已消耗的牌数。</summary>
     public int ExhaustsThisTurn => GetInternalData<Data>().exhaustsThisTurn;
 
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    /// <summary>本场战斗累计消耗的牌数(追踪调查的费用折扣基准)。</summary>
+    public int ExhaustsThisCombat => GetInternalData<Data>().exhaustsThisCombat;
+
+    /// <summary>本场战斗累计打出的攻击牌数(单刀直入的加伤基准,本牌自身打完后才计入)。</summary>
+    public int AttacksThisCombat => GetInternalData<Data>().attacksThisCombat;
+
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (participants.Contains(base.Owner))
         {
@@ -62,8 +72,15 @@ public sealed class CombatTrackerPower : CharlottePowerBase
             data.attacksThisTurn = 0;
             data.cardsThisTurn = 0;
             data.exhaustsThisTurn = 0;
+            // 消耗堆回归扫描(唇枪舌剑:回合开始若在消耗堆,加伤并回手)。
+            foreach (CardModel card in PileType.Exhaust.GetPile(base.Owner.Player).Cards.ToList())
+            {
+                if (card is IExileReturner returner)
+                {
+                    await returner.OnTurnStartInExile(choiceContext);
+                }
+            }
         }
-        return Task.CompletedTask;
     }
 
     public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -75,6 +92,7 @@ public sealed class CombatTrackerPower : CharlottePowerBase
             if (cardPlay.Card.Type == CardType.Attack)
             {
                 data.attacksThisTurn++;
+                data.attacksThisCombat++;
             }
         }
         return Task.CompletedTask;
@@ -84,7 +102,9 @@ public sealed class CombatTrackerPower : CharlottePowerBase
     {
         if (card.Owner.Creature == base.Owner)
         {
-            GetInternalData<Data>().exhaustsThisTurn++;
+            Data data = GetInternalData<Data>();
+            data.exhaustsThisTurn++;
+            data.exhaustsThisCombat++;
         }
         return Task.CompletedTask;
     }

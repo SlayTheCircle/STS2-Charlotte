@@ -11,6 +11,12 @@ using CharlotteMod.Content.Afflictions;
 
 namespace CharlotteMod.Content.Mechanics;
 
+/// <summary>消耗堆回归者:回合开始时若在消耗堆,由 CombatTracker 扫描调用(唇枪舌剑)。</summary>
+public interface IExileReturner
+{
+    Task OnTurnStartInExile(PlayerChoiceContext ctx);
+}
+
 /// <summary>留影观察者:遗物/能力实现本接口,由 Snapshot 收口在每次留影(含状态/诅咒转化)后分发。</summary>
 public interface ISnapshotObserver
 {
@@ -84,7 +90,7 @@ public static class Snapshot
     {
         if (target.CombatState is { } combatState)
         {
-            await Focus.TriggerAll(combatState);
+            await Focus.TriggerAll(combatState, target.Owner);
         }
     }
 

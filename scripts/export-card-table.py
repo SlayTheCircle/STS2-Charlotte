@@ -17,7 +17,7 @@ TYPE_LABEL = {'Attack': '攻击', 'Skill': '技能', 'Power': '能力'}
 RARITY_LABEL = {'Basic': '初始', 'Common': '普通', 'Uncommon': '罕见', 'Rare': '稀有', 'Ancient': '先古', 'Token': '衍生'}
 RARITY_ORDER = {r: i for i, r in enumerate(['Basic', 'Common', 'Uncommon', 'Rare', 'Ancient', 'Token'])}
 SECTION_ORDER = [('Basic', '初始卡'), ('Attacks', '攻击'), ('Skills', '技能'), ('Powers', '能力'), ('Ancient', '先古强化'), ('Tokens', '衍生')]
-CTOR = re.compile(r':\s*base\((\d+)\s*,\s*CardType\.(\w+)\s*,\s*CardRarity\.(\w+)')
+CTOR = re.compile(r':\s*base\((-?\d+)\s*,\s*CardType\.(\w+)\s*,\s*CardRarity\.(\w+)')
 
 # 本地化:<LOC_PREFIX>CARD_<类名大写下划线>.title/.description
 import json

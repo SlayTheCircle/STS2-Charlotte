@@ -1,8 +1,6 @@
 {
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_STRIKE.title": "Charlotte Strike",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_STRIKE.title": "Strike",
   "STS2_CHARLOTTE_CARD_CHARLOTTE_STRIKE.description": "Deal {Damage:diff()} damage.",
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_DEFEND.title": "Charlotte Defend",
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_DEFEND.description": "Gain {Block:diff()} [gold]Block[/gold].",
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_VIGOR.title": "Charlotte Vigor",
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_VIGOR.description": "Increases damage you deal by {CharlotteVigorPower:diff()} for the rest of this combat."
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_DEFEND.title": "Defend",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_DEFEND.description": "Gain {Block:diff()} [gold]Block[/gold]."
 }

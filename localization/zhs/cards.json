@@ -1,8 +1,6 @@
 {
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_STRIKE.title": "示例打击",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_STRIKE.title": "打击",
   "STS2_CHARLOTTE_CARD_CHARLOTTE_STRIKE.description": "造成{Damage:diff()}点伤害。",
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_DEFEND.title": "示例防御",
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_DEFEND.description": "获得{Block:diff()}点[gold]格挡[/gold]。",
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_VIGOR.title": "示例昂扬",
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_VIGOR.description": "本场战斗中，你造成的伤害+{CharlotteVigorPower:diff()}。"
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_DEFEND.title": "防御",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_DEFEND.description": "获得{Block:diff()}点[gold]格挡[/gold]。"
 }

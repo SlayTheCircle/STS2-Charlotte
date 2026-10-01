@@ -15,20 +15,22 @@ using CharlotteMod.Content.Relics;
 namespace CharlotteMod.Content.Characters;
 
 /// <summary>
-/// 示例角色:模板骨架的可编译最小角色。资产档案尚未注册(见 ModEntry 的接线说明),
-/// 世界线等深层模块为可选代码(见 docs/dev/worldline.md)。
+/// 夏洛蒂:来自枫丹的蒸汽鸟报社记者,带着留影机前来尖塔考察新闻的踪迹。初始生命 70。
+/// 核心机制:留影/聚焦/新闻(见 docs/history/design/card-roster.txt 与设计案)。
+/// 资产档案尚未注册(见 ModEntry 的接线说明),世界线等深层模块为可选代码(见 docs/dev/worldline.md)。
 /// </summary>
 [RegisterCharacter]
 public sealed class Charlotte : CharacterModel
 {
-    public override Color NameColor => new Color("E8B23AFF");
+    // 主题色 #8CCEEA(Mirror 定稿);其余色值同相位派生,进游戏目视后微调。
+    public override Color NameColor => new Color("8CCEEAFF");
 
     public override CharacterGender Gender => CharacterGender.Feminine;
 
     // 角色不锁定——UnlocksAfterRunAs 维持 null。
     protected override CharacterModel? UnlocksAfterRunAs => null;
 
-    public override int StartingHp => 75;
+    public override int StartingHp => 70;
 
     public override int StartingGold => 99;
 
@@ -38,6 +40,8 @@ public sealed class Charlotte : CharacterModel
 
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<CharlottePotionPool>();
 
+    // 设计初始卡组为 10 张:打击×4 防御×4 咔嚓！×1 茄子！×1;
+    // 后两张依赖留影机制内核与选牌交互,随机制实装补齐(audit-roster 的 DEFERRED 同步清)。
     public override IEnumerable<CardModel> StartingDeck => new CardModel[]
     {
         ModelDb.Card<CharlotteStrike>(),
@@ -48,8 +52,6 @@ public sealed class Charlotte : CharacterModel
         ModelDb.Card<CharlotteDefend>(),
         ModelDb.Card<CharlotteDefend>(),
         ModelDb.Card<CharlotteDefend>(),
-        ModelDb.Card<CharlotteVigor>(),
-        ModelDb.Card<CharlotteVigor>(),
     };
 
     public override IReadOnlyList<RelicModel> StartingRelics => new RelicModel[] { ModelDb.Relic<CharlotteLocket>() };
@@ -58,15 +60,15 @@ public sealed class Charlotte : CharacterModel
 
     public override float CastAnimDelay => 0.4f;
 
-    public override Color EnergyLabelOutlineColor => new Color("8A6210");
+    public override Color EnergyLabelOutlineColor => new Color("356D85");
 
-    public override Color DialogueColor => new Color("9A7B2D");
+    public override Color DialogueColor => new Color("57899E");
 
-    public override Color MapDrawingColor => new Color("D4A017");
+    public override Color MapDrawingColor => new Color("5AA6C7");
 
-    public override Color RemoteTargetingLineColor => new Color("E8B23AFF");
+    public override Color RemoteTargetingLineColor => new Color("8CCEEAFF");
 
-    public override Color RemoteTargetingLineOutline => new Color("8A6210");
+    public override Color RemoteTargetingLineOutline => new Color("356D85");
 
     // 占位:复用铁甲的切场音效,待配音接入后替换。
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_ironclad";

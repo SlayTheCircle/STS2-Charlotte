@@ -21,7 +21,10 @@ public sealed class CharlotteCardPool : TypeListCardPoolModel
 
     public override Material? PoolFrameMaterial => _poolFrameMaterial;
 
-    // 能量图标:美术已交付 能量.png,待素材管线(prep-art/PCK)接入后覆写 Big/TextEnergyIconPath。
+    // 能量图标:图片/能量.png 派生(scripts/art/energy.sh),Navia 同规格双尺寸。
+    public override string? BigEnergyIconPath => $"res://{ModEntry.ModId}/images/energy/charlotte_energy_big.png";
+
+    public override string? TextEnergyIconPath => $"res://{ModEntry.ModId}/images/energy/charlotte_energy_text.png";
 
     public override Color DeckEntryCardColor => new Color("8CCEEA");
 

@@ -2,6 +2,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop;
+using STS2RitsuLib.Keywords;
 
 namespace CharlotteMod;
 
@@ -20,9 +21,12 @@ public static class ModEntry
         // 必须第一条;内容注册全部由各模型类上的特性完成,本入口不再手工登记内容清单。
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, typeof(ModEntry).Assembly);
 
-        // 机制关键词注册(有机制名词时启用;文本在 localization/{lang}/card_keywords.json):
-        //   ModKeywordRegistry.For(ModId).RegisterCardKeywordOwnedByLocNamespace("MYMECHANIC");
-        // 常量与悬停助手见 Content/Keywords/CharlotteKeywords.cs。
+        // 机制关键词注册(stem 必须与 CharlotteKeywords 常量的 KEYWORD_ 后缀一致;
+        // 文本在 localization/{lang}/card_keywords.json)。
+        ModKeywordRegistry keywords = ModKeywordRegistry.For(ModId);
+        keywords.RegisterCardKeywordOwnedByLocNamespace("SNAPSHOT"); // → 留影
+        keywords.RegisterCardKeywordOwnedByLocNamespace("FOCUS");    // → 聚焦
+        keywords.RegisterCardKeywordOwnedByLocNamespace("NEWS");     // → 新闻
 
         // 角色资产档案(自建场景/图像后启用;完整接线样例见源工程 STS2-Navia 的 ModEntry):
         //   string entry = ModContentRegistry.GetCompoundId(ModId, "character", nameof(Content.Characters.Charlotte)).ToLowerInvariant();

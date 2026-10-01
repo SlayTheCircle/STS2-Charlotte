@@ -45,6 +45,8 @@ public static class Snapshot
         if (target.Type == CardType.Status || target.Type == CardType.Curse)
         {
             await CardPileCmd.Draw(ctx, 1m, player);
+            // 状态/诅咒的转化同样视为一次[留影]发生(聚焦照常结算;每回合首次留影计数亦然)。
+            await TriggerFocus(target);
             return;
         }
 
@@ -56,5 +58,14 @@ public static class Snapshot
         CardCmd.PreviewCardPileAdd(
             await CardPileCmd.AddGeneratedCardToCombat(memento, PileType.Draw, player, CardPilePosition.Random),
             2.2f);
+        await TriggerFocus(target);
+    }
+
+    private static async Task TriggerFocus(CardModel target)
+    {
+        if (target.CombatState is { } combatState)
+        {
+            await Focus.TriggerAll(combatState);
+        }
     }
 }

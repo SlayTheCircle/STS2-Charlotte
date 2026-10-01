@@ -7,5 +7,20 @@
   "STS2_CHARLOTTE_CARD_CHARLOTTE_KACHA.description": "获得{Block:diff()}点[gold]格挡[/gold]。选择你的一张手牌[gold]留影[/gold]。",
   "STS2_CHARLOTTE_CARD_CHARLOTTE_KACHA.selectionScreenPrompt": "选择一张要留影的手牌",
   "STS2_CHARLOTTE_CARD_CHARLOTTE_SAY_CHEESE.title": "茄子！",
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_SAY_CHEESE.description": "造成{Damage:diff()}点伤害。你的消耗牌堆里每有1张牌，就额外造成{ExtraDamage:diff()}点伤害。{InCombat:\n（当前共造成{CalculatedDamage:diff()}点伤害）|}"
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_SAY_CHEESE.description": "造成{Damage:diff()}点伤害。你的消耗牌堆里每有1张牌，就额外造成{ExtraDamage:diff()}点伤害。{InCombat:\n（当前共造成{CalculatedDamage:diff()}点伤害）|}",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_GLEAM_BULLETIN.title": "沐芒公告",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_GLEAM_BULLETIN.description": "给予所有敌人{WeakPower:diff()}层虚弱。抽{Cards:diff()}张牌。",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_MISSING_PERSON_NOTICE.title": "寻人启事",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_MISSING_PERSON_NOTICE.description": "给予{FocusPower:diff()}层[gold]聚焦[/gold]。",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_HAZARD_WARNING.title": "灾害预警",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_HAZARD_WARNING.description": "获得{Block:diff()}点[gold]格挡[/gold]。",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_JUDGMENT_NEWS.title": "审判新闻",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_JUDGMENT_NEWS.description": "选择你的一张手牌[gold]留影[/gold]。",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_JUDGMENT_NEWS.selectionScreenPrompt": "选择一张要留影的手牌",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_STREET_INTERVIEW.title": "街头采访",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_STREET_INTERVIEW.description": "抽{Cards:diff()}张牌。",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_PAID_PROMOTION.title": "广告宣传",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_PAID_PROMOTION.description": "获得1点能量，然后丢弃1张牌。",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_EXCLUSIVE_REPORT.title": "独家报道",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_EXCLUSIVE_REPORT.description": "对所有敌人造成{Damage:diff()}点伤害。"
 }

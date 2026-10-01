@@ -7,5 +7,20 @@
   "STS2_CHARLOTTE_CARD_CHARLOTTE_KACHA.description": "Gain {Block:diff()} [gold]Block[/gold]. [gold]Snapshot[/gold] a card in your hand.",
   "STS2_CHARLOTTE_CARD_CHARLOTTE_KACHA.selectionScreenPrompt": "Choose a card to Snapshot",
   "STS2_CHARLOTTE_CARD_CHARLOTTE_SAY_CHEESE.title": "Say Cheese!",
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_SAY_CHEESE.description": "Deal {Damage:diff()} damage. Deals an additional {ExtraDamage:diff()} damage for each card in your Exhaust pile. {InCombat:\n(Currently dealing {CalculatedDamage:diff()} damage)|}"
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_SAY_CHEESE.description": "Deal {Damage:diff()} damage. Deals an additional {ExtraDamage:diff()} damage for each card in your Exhaust pile. {InCombat:\n(Currently dealing {CalculatedDamage:diff()} damage)|}",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_GLEAM_BULLETIN.title": "Gleam Bulletin",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_GLEAM_BULLETIN.description": "Apply {WeakPower:diff()} Weak to ALL enemies. Draw {Cards:diff()} cards.",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_MISSING_PERSON_NOTICE.title": "Missing Person Notice",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_MISSING_PERSON_NOTICE.description": "Apply {FocusPower:diff()} [gold]Focus[/gold].",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_HAZARD_WARNING.title": "Hazard Warning",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_HAZARD_WARNING.description": "Gain {Block:diff()} [gold]Block[/gold].",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_JUDGMENT_NEWS.title": "Judgment News",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_JUDGMENT_NEWS.description": "[gold]Snapshot[/gold] a card in your hand.",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_JUDGMENT_NEWS.selectionScreenPrompt": "Choose a card to Snapshot",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_STREET_INTERVIEW.title": "Street Interview",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_STREET_INTERVIEW.description": "Draw {Cards:diff()} cards.",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_PAID_PROMOTION.title": "Paid Promotion",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_PAID_PROMOTION.description": "Gain 1 Energy, then discard 1 card.",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_EXCLUSIVE_REPORT.title": "Exclusive Report",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_EXCLUSIVE_REPORT.description": "Deal {Damage:diff()} damage to ALL enemies."
 }

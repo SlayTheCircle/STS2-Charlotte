@@ -1,1 +1,5 @@
-{}
+{
+  "STS2_CHARLOTTE_POWER_FOCUS_POWER.title": "聚焦",
+  "STS2_CHARLOTTE_POWER_FOCUS_POWER.description": "每当你「留影」或打出「新闻」牌时，失去等同于层数的生命值。回合结束时，层数减少1。",
+  "STS2_CHARLOTTE_POWER_FOCUS_POWER.smartDescription": "「留影」或打出「新闻」时：失去[red]{Amount}[/red]生命。回合结束：层数-1。"
+}

@@ -73,7 +73,7 @@ public sealed class SpecialAnalysisZoomLens : CharlotteRelicBase, ISnapshotObser
             {
                 if (enemy.IsAlive)
                 {
-                    await PowerCmd.Apply<FocusPower>(ctx, enemy, FocusAmount, base.Owner.Creature, null);
+                    await PowerCmd.Apply<LensFocusPower>(ctx, enemy, FocusAmount, base.Owner.Creature, null);
                 }
             }
         }

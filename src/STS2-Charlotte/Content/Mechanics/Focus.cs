@@ -23,7 +23,7 @@ public static class Focus
             {
                 continue;
             }
-            int amount = creature.GetPowerAmount<FocusPower>();
+            int amount = creature.GetPowerAmount<LensFocusPower>();
             if (amount <= 0)
             {
                 continue;

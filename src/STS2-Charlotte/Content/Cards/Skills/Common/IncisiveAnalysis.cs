@@ -1,0 +1,52 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
+using STS2RitsuLib.Scaffolding.Content;
+using STS2RitsuLib.Interop.AutoRegistration;
+using CharlotteMod.Content.CardPools;
+
+namespace CharlotteMod.Content.Cards;
+
+/// <summary>
+/// 鞭辟入里(普通,0 费技能):去除敌人所有的格挡与人工制品,并给予 1 层虚弱。消耗。
+/// 升级:2 层虚弱。
+/// </summary>
+[RegisterCard(typeof(CharlotteCardPool))]
+public sealed class IncisiveAnalysis : CharlotteCardBase
+{
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new HashSet<CardKeyword> { CardKeyword.Exhaust };
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new PowerVar<WeakPower>(1m) };
+
+    public IncisiveAnalysis()
+        : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+    {
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (cardPlay.Target is not Creature target)
+        {
+            return;
+        }
+        if (target.Block > 0)
+        {
+            target.LoseBlockInternal(target.Block);
+        }
+        if (target.GetPower<ArtifactPower>() is { } artifact)
+        {
+            await PowerCmd.Remove(artifact);
+        }
+        await PowerCmd.Apply<WeakPower>(choiceContext, target, base.DynamicVars["WeakPower"].IntValue, base.Owner.Creature, this);
+    }
+
+    protected override void OnUpgrade()
+    {
+        base.DynamicVars["WeakPower"].UpgradeValueBy(1m);
+    }
+}

@@ -34,7 +34,7 @@ public sealed class RefreshingTea : CharlottePotionBase
     {
         if (target != null)
         {
-            await PowerCmd.Apply<FocusPower>(choiceContext, target, FocusAmount, base.Owner.Creature, null);
+            await PowerCmd.Apply<LensFocusPower>(choiceContext, target, FocusAmount, base.Owner.Creature, null);
         }
     }
 }

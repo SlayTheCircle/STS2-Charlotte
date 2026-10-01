@@ -57,10 +57,21 @@ public static class Snapshot
             return;
         }
 
+        await CardCmd.Exhaust(ctx, target);
+        // Memento 内部已含聚焦结算与观察者分发,勿重复。
+        await Memento(ctx, target, player);
+    }
+
+    /// <summary>
+    /// 只生成留影纪念并入抽牌堆,不消耗原牌——供「把自己留影」的卡(精彩纷呈)使用:
+    /// 打出中的牌在 Play 堆,立即 CardCmd.Exhaust 会与打出后的入堆路由打架,改由调用方
+    /// 设置 ExhaustOnNextPlay 让引擎自行送入消耗堆。
+    /// </summary>
+    public static async Task Memento(PlayerChoiceContext ctx, CardModel target, Player player)
+    {
         CardModel memento = target.CreateClone();
         await CardCmd.Afflict<SnapshotMemento>(memento, 1m);
         CardCmd.ApplyKeyword(memento, CardKeyword.Exhaust);
-        await CardCmd.Exhaust(ctx, target);
         // 抽牌堆入堆走 Random 位(FuneraryMask/Severance 等原版同型惯例)。
         CardCmd.PreviewCardPileAdd(
             await CardPileCmd.AddGeneratedCardToCombat(memento, PileType.Draw, player, CardPilePosition.Random),

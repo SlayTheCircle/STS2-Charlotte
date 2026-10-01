@@ -1,11 +1,17 @@
 {
-  "STS2_CHARLOTTE_POWER_FOCUS_POWER.title": "聚焦",
-  "STS2_CHARLOTTE_POWER_FOCUS_POWER.description": "每当你「留影」或打出「新闻」牌时，失去等同于层数的生命值。回合结束时，层数减少1。",
-  "STS2_CHARLOTTE_POWER_FOCUS_POWER.smartDescription": "「留影」或打出「新闻」时：失去[red]{Amount}[/red]生命。回合结束：层数-1。",
+  "STS2_CHARLOTTE_POWER_LENS_FOCUS_POWER.title": "聚焦",
+  "STS2_CHARLOTTE_POWER_LENS_FOCUS_POWER.description": "每当你「留影」或打出「新闻」牌时，失去等同于层数的生命值。回合结束时，层数减少1。",
+  "STS2_CHARLOTTE_POWER_LENS_FOCUS_POWER.smartDescription": "「留影」或打出「新闻」时：失去[red]{Amount}[/red]生命。回合结束：层数-1。",
   "STS2_CHARLOTTE_POWER_LENS_CLEANER_POWER.title": "镜头清洁",
   "STS2_CHARLOTTE_POWER_LENS_CLEANER_POWER.description": "你的下1张留影纪念可以免费打出。",
   "STS2_CHARLOTTE_POWER_LENS_CLEANER_POWER.smartDescription": "下张[留影纪念]：费用[b]0[/b]。",
   "STS2_CHARLOTTE_POWER_ONION_SOUP_POWER.title": "洋葱汤热气",
   "STS2_CHARLOTTE_POWER_ONION_SOUP_POWER.description": "本回合内，你的新闻可以免费打出。",
-  "STS2_CHARLOTTE_POWER_ONION_SOUP_POWER.smartDescription": "本回合[新闻]费用[b]0[/b]。"
+  "STS2_CHARLOTTE_POWER_ONION_SOUP_POWER.smartDescription": "本回合[新闻]费用[b]0[/b]。",
+  "STS2_CHARLOTTE_POWER_SHUTTER_PURSUIT_POWER.title": "快门追击",
+  "STS2_CHARLOTTE_POWER_SHUTTER_PURSUIT_POWER.description": "本回合内，每受到1次攻击牌的伤害，额外失去等同于层数的生命。回合结束时移除。",
+  "STS2_CHARLOTTE_POWER_SHUTTER_PURSUIT_POWER.smartDescription": "受攻击伤时：额外失去[red]{Amount}[/red]生命。回合结束移除。",
+  "STS2_CHARLOTTE_POWER_COMBAT_TRACKER_POWER.title": "新闻簿",
+  "STS2_CHARLOTTE_POWER_COMBAT_TRACKER_POWER.description": "（内部计数器，永不可见）",
+  "STS2_CHARLOTTE_POWER_COMBAT_TRACKER_POWER.smartDescription": "（内部计数器）"
 }

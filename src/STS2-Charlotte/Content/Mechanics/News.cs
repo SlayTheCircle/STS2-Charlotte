@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -36,5 +40,48 @@ public static class News
         {
             await Focus.TriggerAll(combatState);
         }
+    }
+
+    /// <summary>七种新闻的生成工厂(随机抽选走 CombatCardGeneration 通道,BigHat 同款)。</summary>
+    private static readonly Func<Player, ICombatState, CardModel>[] _newsFactories =
+    {
+        (p, cs) => cs.CreateCard<Cards.CharlotteGleamBulletin>(p),
+        (p, cs) => cs.CreateCard<Cards.CharlotteMissingPersonNotice>(p),
+        (p, cs) => cs.CreateCard<Cards.CharlotteHazardWarning>(p),
+        (p, cs) => cs.CreateCard<Cards.CharlotteJudgmentNews>(p),
+        (p, cs) => cs.CreateCard<Cards.CharlotteStreetInterview>(p),
+        (p, cs) => cs.CreateCard<Cards.CharlottePaidPromotion>(p),
+        (p, cs) => cs.CreateCard<Cards.CharlotteExclusiveReport>(p),
+    };
+
+    /// <summary>生成 1 张随机新闻(未入堆;调用方决定去向)。</summary>
+    public static CardModel CreateRandom(Player owner, ICombatState combatState)
+    {
+        Func<Player, ICombatState, CardModel> factory =
+            owner.RunState.Rng.CombatCardGeneration.NextItem(_newsFactories);
+        return factory(owner, combatState);
+    }
+
+    /// <summary>生成 n 张互不重复的新闻(不足 7 种时可能少于 n 张;早间特报三选一用)。</summary>
+    public static List<CardModel> CreateRandomDistinct(int count, Player owner, ICombatState combatState)
+    {
+        var pool = new List<Func<Player, ICombatState, CardModel>>(_newsFactories);
+        var result = new List<CardModel>();
+        while (result.Count < count && pool.Count > 0)
+        {
+            Func<Player, ICombatState, CardModel> factory =
+                owner.RunState.Rng.CombatCardGeneration.NextItem(pool);
+            pool.Remove(factory);
+            result.Add(factory(owner, combatState));
+        }
+        return result;
+    }
+
+    /// <summary>生成 1 张随机新闻并加入手牌(羽笔打击等「生成1张[新闻]」入口)。</summary>
+    public static async Task<CardModel> CreateRandomInHand(PlayerChoiceContext ctx, Player owner)
+    {
+        CardModel news = CreateRandom(owner, owner.Creature.CombatState!);
+        await CardPileCmd.AddGeneratedCardsToCombat(new[] { news }, PileType.Hand, owner);
+        return news;
     }
 }

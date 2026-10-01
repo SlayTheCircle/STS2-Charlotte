@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -41,6 +41,15 @@ public sealed class MonsieurVeriteChioriyaEdition : CharlotteRelicBase, ISnapsho
         {
             AssertMutable();
             _healedThisTurn = value;
+        }
+    }
+
+    public override async Task BeforeCombatStart()
+    {
+        // 战斗计数器宿主:初始遗物每局常驻(千织屋版换装后仍在),双变体幂等挂载。
+        if (base.Owner.Creature.GetPower<Powers.CombatTrackerPower>() == null)
+        {
+            await PowerCmd.Apply<Powers.CombatTrackerPower>(new ThrowingPlayerChoiceContext(), base.Owner.Creature, 0, base.Owner.Creature, null);
         }
     }
 

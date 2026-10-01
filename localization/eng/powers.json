@@ -1,11 +1,17 @@
 {
-  "STS2_CHARLOTTE_POWER_FOCUS_POWER.title": "Focus",
-  "STS2_CHARLOTTE_POWER_FOCUS_POWER.description": "Whenever you Snapshot or play a News card, lose HP equal to stacks. At the end of the turn, lose 1 stack.",
-  "STS2_CHARLOTTE_POWER_FOCUS_POWER.smartDescription": "On Snapshot or News played: lose [red]{Amount}[/red] HP. Turn end: -1 stack.",
+  "STS2_CHARLOTTE_POWER_LENS_FOCUS_POWER.title": "Focus",
+  "STS2_CHARLOTTE_POWER_LENS_FOCUS_POWER.description": "Whenever you Snapshot or play a News card, lose HP equal to stacks. At the end of the turn, lose 1 stack.",
+  "STS2_CHARLOTTE_POWER_LENS_FOCUS_POWER.smartDescription": "On Snapshot or News played: lose [red]{Amount}[/red] HP. Turn end: -1 stack.",
   "STS2_CHARLOTTE_POWER_LENS_CLEANER_POWER.title": "Clean Lens",
   "STS2_CHARLOTTE_POWER_LENS_CLEANER_POWER.description": "Your next Snapshot Souvenir costs 0.",
   "STS2_CHARLOTTE_POWER_LENS_CLEANER_POWER.smartDescription": "Next [Snapshot Souvenir]: costs [b]0[/b].",
   "STS2_CHARLOTTE_POWER_ONION_SOUP_POWER.title": "Onion Soup Steam",
   "STS2_CHARLOTTE_POWER_ONION_SOUP_POWER.description": "This turn, your News cards cost 0.",
-  "STS2_CHARLOTTE_POWER_ONION_SOUP_POWER.smartDescription": "This turn, [News] costs [b]0[/b]."
+  "STS2_CHARLOTTE_POWER_ONION_SOUP_POWER.smartDescription": "This turn, [News] costs [b]0[/b].",
+  "STS2_CHARLOTTE_POWER_SHUTTER_PURSUIT_POWER.title": "Shutter Pursuit",
+  "STS2_CHARLOTTE_POWER_SHUTTER_PURSUIT_POWER.description": "This turn: loses additional HP equal to stacks each time it takes Attack damage. Removed at end of turn.",
+  "STS2_CHARLOTTE_POWER_SHUTTER_PURSUIT_POWER.smartDescription": "On Attack damage taken: lose [red]{Amount}[/red] extra HP. Removed at turn end.",
+  "STS2_CHARLOTTE_POWER_COMBAT_TRACKER_POWER.title": "Press Tracker",
+  "STS2_CHARLOTTE_POWER_COMBAT_TRACKER_POWER.description": "(internal counter, never visible)",
+  "STS2_CHARLOTTE_POWER_COMBAT_TRACKER_POWER.smartDescription": "(internal counter)"
 }

@@ -8,7 +8,7 @@
 
 ## 示例内容用前缀式命名
 
-示例类命名 `TemplateStrike` 形态（前缀），而非源工程的 `StrikeNavia` 形态（后缀）：单一 `\bTemplate` 词边界规则即可全量改名，后缀式需要逐类显式令牌。`STS2-Template-art`／`STS2-Template.Loader` 等长令牌先于短令牌消解，`_` 不是词边界——令牌序是负载-bearing 的，调整顺序前先实测。
+示例类命名 `CharlotteStrike` 形态（前缀），而非源工程的 `StrikeNavia` 形态（后缀）：单一 `\bTemplate` 词边界规则即可全量改名，后缀式需要逐类显式令牌。`STS2-Charlotte-art`／`STS2-Charlotte.Loader` 等长令牌先于短令牌消解，`_` 不是词边界——令牌序是负载-bearing 的，调整顺序前先实测。
 
 ## 世界线不入骨架代码
 

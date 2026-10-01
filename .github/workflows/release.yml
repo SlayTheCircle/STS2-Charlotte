@@ -19,8 +19,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  MOD_ID: STS2-Template
-  ART_REPO: SlayTheCircle/STS2-Template-art
+  MOD_ID: STS2-Charlotte
+  ART_REPO: SlayTheCircle/STS2-Charlotte-art
 
 jobs:
   release-build:

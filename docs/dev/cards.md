@@ -1,6 +1,6 @@
 # 卡牌、Power 与支援
 
-当前状态见 [STATUS](../../STATUS.md)，环境与协作规则见[贡献指南](../../CONTRIBUTING.md)。本页维护当前写法。示例件以骨架自带的 `TemplateStrike`／`TemplateDefend` 等为参照。
+当前状态见 [STATUS](../../STATUS.md)，环境与协作规则见[贡献指南](../../CONTRIBUTING.md)。本页维护当前写法。示例件以骨架自带的 `CharlotteStrike`／`CharlotteDefend` 等为参照。
 
 ## 0. 修改范围
 
@@ -24,7 +24,7 @@
 
 ## 2. 支援系（附魔底盘，vanilla 原生）
 
-施加型支援卡 = 附魔类 + 施加卡两张东西；协同型卡只做查询。骨架样例：`TemplateVigorSupport`。
+施加型支援卡 = 附魔类 + 施加卡两张东西；协同型卡只做查询。骨架样例：`CharlotteVigorSupport`。
 
 | 调用/成员 | 用途 |
 |---|---|

@@ -1,52 +1,34 @@
-# STS2-Template · 杀戮尖塔 2 Mod 模板
+# STS2-Charlotte · 夏洛蒂
 
 [English](README.en.md)
 
-SlayTheCircle 组织的《杀戮尖塔 2》Mod 模板：从可玩角色 Mod 的完整工程蒸馏而来，自带双游戏分支（0.107.1 稳定版／0.111.0 测试版）的编译、打包、发布管线与变体 Loader，以及文档三分体系与源码审计套件。本仓库不是可游玩的 Mod——它是新 Mod 的起点。
+《杀戮尖塔 2》的夏洛蒂角色模组:夏洛蒂角色模组。支持游戏 0.107.1(稳定版)与 0.111.0(测试版)双分支。当前实现与限制见 [STATUS.md](STATUS.md)。
 
-## 用法
+## 获取与安装
 
-在 GitHub 上点 **Use this template**（或 `gh repo create SlayTheCircle/<新Mod> --template SlayTheCircle/STS2-Template`）得到新仓库，然后：
-
-```bash
-git clone <你的新仓库> && cd <你的新仓库>
-git config core.hookspath .githooks    # 激活提交前审计（每次克隆后都要做）
-scripts/init-mod.sh STS2-<Mod> <PascalName> --cn-name "<中文名>"
-```
-
-`init-mod.sh` 完成全部改名（清单、源码目录、命名空间、Base 家族、本地化键、脚本与工作流引用），自验源码检查，并拷贝私有侧脚手架。仓库建设与凭据配置见[新仓上手](docs/dev/onboarding.md)。
-
-## 模板提供什么
-
-- **编译骨架**：角色 + 示例卡／遗物／能力／药水／附魔各一，双目标条件编译（0.107.1 垫片内建），`build.sh --dll-only` 直接可过。
-- **分发基建**：变体 Loader（工坊物品按当前游戏版本自动选内容，含游戏程序集登记修复）、双目标打包、tag 触发的草稿 Release 工作流（CHANGELOG 段落提取发行说明）。
-- **审计套件**：仓库边界、文档链接、本地化覆盖、占位符、花名册、卡表生成七件，pre-commit 与 CI 双重执行。
-- **文档体系**：架构／工程规范／验证纪律／工作流等契约文档 + 事故账本与决策记录骨架。
-
-## 不提供什么
-
-美术与音频母版（媒体不入公开仓；完整构建需自备组织私有美术仓并配置 `ART_SOURCE_DIR`）、游戏与 RitsuLib 二进制（编译引用来自你自己的游戏安装）、世界线／先古对话等角色 Mod 深层模块的代码（对应文档以「可选模块」形式提供接线指南）。
+当前仓库提供源码、双语本地化、文本资源配置及整理后的公开设计资料。推荐经 Steam 工坊订阅安装(物品链接待首发后补充),并一并订阅 [RitsuLib](https://steamcommunity.com/sharedfiles/filedetails/?id=3747602295)——工坊物品按当前游戏版本自动选择内容,切换分支无需换装;也可从 [GitHub Releases](https://github.com/SlayTheCircle/STS2-Charlotte/releases) 下载对应游戏目标的安装包,将其中 `STS2-Charlotte/` 目录放入游戏 `mods/`。安装或覆盖前关闭游戏(游戏会递归扫描 `mods/` 下一切含清单的目录,备份移出 `mods/`);保存原版本包便于回退。依赖最低版本以[模组清单](STS2-Charlotte.json)为准。源码检出中不包含多媒体,单独编译 DLL 不构成可安装的完整包。
 
 ## 开发
 
-前置：Bash、Python 3.11+、由 `global.json` 选择的 .NET SDK；完整素材构建另需 Godot 4.5.1 标准版与本地美术。
+前置:Bash、Python 3.11+、由 `global.json` 选择的 .NET SDK。完整素材构建还需要 Godot 4.5.1 标准版及本地美术。游戏引用来自贡献者自己安装的对应游戏分支;RitsuLib 需要完整的 `compat/`、`shared/` 和 `RitsuLib.References.props`。
 
 ```bash
-cp .local-dev.env.example .local-dev.env   # 填写本机依赖与工具位置
-./scripts/check.sh --source-only           # 源码检查，不要求游戏 DLL 或美术
-./scripts/restore-refs.sh                  # 从 GAME_DIR 复制编译引用
-./scripts/build.sh --dll-only              # 只编译 DLL
+cp .local-dev.env.example .local-dev.env   # 在本机配置中填写依赖和工具位置
+./scripts/check.sh                 # 源码检查,不要求游戏 DLL 或美术
+./scripts/restore-refs.sh          # 从 GAME_DIR 复制对应分支编译引用
+./scripts/build.sh --dll-only      # 只编译 DLL
+./scripts/check.sh --full          # 完整素材、编译、PCK 检查
 ```
 
-详细配置与构建步骤见[贡献指南](CONTRIBUTING.md)及[构建管线](docs/dev/pipeline.md)。本机开发工作区存在时，先阅读私有入口 `local_dev/README.md`。
+详细配置、平台范围和构建步骤见[贡献指南](CONTRIBUTING.md)及[构建管线](docs/dev/pipeline.md)。本地开发工作区存在时,先阅读私有入口 `local_dev/README.md`。
 
 ## 文档
 
-- [文档导航](docs/README.md) · [开发规范](docs/dev/README.md) · [设计资料](docs/design/README.md) · [技术历史](docs/history/README.md)
-- [新仓上手](docs/dev/onboarding.md)：从本模板派生一个新 Mod 的完整清单。
-- [内容开发 SOP](docs/dev/content-sop.md)：从设计稿到可玩 Mod 的推荐路径（指导性质）。
-- [变更记录](CHANGELOG.md) · 社区文件：[行为准则](CODE_OF_CONDUCT.md)、[安全策略](SECURITY.md)、[获取帮助](SUPPORT.md)、[贡献署名](CREDITS.md)。
+- [文档导航](docs/README.md) · [开发规范](docs/dev/README.md) · [设计资料](docs/design/README.md) · [技术历史](docs/history/README.md) · [变更记录](CHANGELOG.md) · [路线图](docs/roadmap.md)
+- 社区文件:[行为准则](CODE_OF_CONDUCT.md)、[安全策略](SECURITY.md)、[获取帮助](SUPPORT.md)、[贡献署名](CREDITS.md)。
 
-## 许可
+## 许可与素材
 
-原创软件采用 [MIT](LICENSE)，范围见[许可说明](LICENSING.md)和[第三方说明](THIRD_PARTY_NOTICES.md)。变体 Loader 的实现源自 [RitsuLib](https://github.com/BAKAOLC/STS2-RitsuLib) 生态的加载方案，衍生说明见第三方文档。
+原创软件采用 [MIT](LICENSE),具体范围见[许可说明](LICENSING.md)和[第三方说明](THIRD_PARTY_NOTICES.md)。美术母版存放于组织私有美术仓(限定授权,仅限本模组构建、测试与 Steam 工坊分发),不随源码仓公开,也不使用 Git LFS。
+
+本仓库由 [STS2-Template](https://github.com/SlayTheCircle/STS2-Template) 派生。

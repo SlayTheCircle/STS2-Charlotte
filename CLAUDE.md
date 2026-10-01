@@ -1,4 +1,4 @@
-# STS2-Template · 协作导航
+# STS2-Charlotte · 协作导航
 
 通用 AI 协作规范以 [AGENTS.md](AGENTS.md) 为准。先读 [STATUS.md](STATUS.md)、[开发文档索引](docs/dev/README.md)及[贡献指南](CONTRIBUTING.md)。
 

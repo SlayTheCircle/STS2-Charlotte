@@ -22,13 +22,13 @@ string bundle = Path.Combine(Path.GetTempPath(), "template-loader-probe-" + Guid
 Directory.CreateDirectory(bundle);
 try
 {
-    File.Copy(inputs[3], Path.Combine(bundle, "STS2-Template.dll"));
+    File.Copy(inputs[3], Path.Combine(bundle, "STS2-Charlotte.dll"));
     string[] targets = ["0.107.1", "0.111.0"];
     for (int i = 0; i < targets.Length; i++)
     {
         string directory = Path.Combine(bundle, "lib", "game-" + targets[i]);
         Directory.CreateDirectory(directory);
-        File.Copy(inputs[i + 4], Path.Combine(directory, "STS2-Template.dll"));
+        File.Copy(inputs[i + 4], Path.Combine(directory, "STS2-Charlotte.dll"));
     }
     File.WriteAllText(Path.Combine(bundle, "mod-variants.manifest"), JsonSerializer.Serialize(new
     {
@@ -41,35 +41,35 @@ try
     }));
     Assembly game = Assembly.LoadFrom(Path.Combine(inputs[0], "sts2.dll"));
     Assembly godot = Assembly.LoadFrom(Path.Combine(inputs[0], "GodotSharp.dll"));
-    Assembly loader = Assembly.LoadFrom(Path.Combine(bundle, "STS2-Template.dll"));
+    Assembly loader = Assembly.LoadFrom(Path.Combine(bundle, "STS2-Charlotte.dll"));
     ProbeBoundaries.Install(game, godot, loader);
     var host = new GameProbeHost(game, target);
-    MethodInfo initialize = loader.GetType("TemplateMod.Loader.WorkshopBootstrap")!.GetMethod("Initialize")!;
+    MethodInfo initialize = loader.GetType("CharlotteMod.Loader.WorkshopBootstrap")!.GetMethod("Initialize")!;
 
-    object owner = host.NewMod("STS2-Template", bundle, "0.1.5", "None");
+    object owner = host.NewMod("STS2-Charlotte", bundle, "0.1.5", "None");
     host.NewMod("STS2-RitsuLib", bundle, "0.6.2", "Loaded");
     initialize.Invoke(null, null);
     Assembly content = ProbeBoundaries.DispatchedAssembly
         ?? throw new InvalidOperationException("Loader did not dispatch a content initializer");
-    Require(content.Location == Path.Combine(bundle, "lib", "game-" + target, "STS2-Template.dll"),
+    Require(content.Location == Path.Combine(bundle, "lib", "game-" + target, "STS2-Charlotte.dll"),
         "Loader selected the wrong game target");
     host.CompleteLoad(owner, loader);
     Type[] discovered = host.ScanModels();
-    foreach (string model in new[] { "TemplateMod.Content.Characters.Template", "TemplateMod.Content.Cards.StrikeTemplate", "TemplateMod.Content.CardPools.TemplateCardPool" })
+    foreach (string model in new[] { "CharlotteMod.Content.Characters.Charlotte", "CharlotteMod.Content.Cards.StrikeTemplate", "CharlotteMod.Content.CardPools.CharlotteCardPool" })
     {
         Require(discovered.Any(type => type.FullName == model), "Game model scanner missing " + model);
     }
-    Console.WriteLine($"PASS {target}: Loader selects the matching DLL; ModelDb sees {discovered.Count(type => type.Assembly == content)} Template models after game completion");
+    Console.WriteLine($"PASS {target}: Loader selects the matching DLL; ModelDb sees {discovered.Count(type => type.Assembly == content)} Charlotte models after game completion");
 
     // 对照：程序集存在于进程但游戏只登记壳时，ModelDb 仍完全看不到内容。
     host.Reset();
-    object baseline = host.NewMod("STS2-Template", bundle, "0.1.5", "None");
+    object baseline = host.NewMod("STS2-Charlotte", bundle, "0.1.5", "None");
     host.CompleteLoad(baseline, loader);
     Require(!host.ScanModels().Any(type => type.Assembly == content), "Loader-only baseline unexpectedly discovers content");
     Console.WriteLine($"PASS {target}: loader-only control reproduces missing content models");
 
     host.Reset();
-    object rejected = host.NewMod("STS2-Template", bundle, "0.1.5", "None");
+    object rejected = host.NewMod("STS2-Charlotte", bundle, "0.1.5", "None");
     host.NewMod("STS2-RitsuLib", bundle, "0.6.1", "Loaded");
     initialize.Invoke(null, null);
     Require(ProbeBoundaries.DispatchedAssembly is null, "Loader invoked content despite an unsupported dependency version");

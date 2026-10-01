@@ -5,7 +5,7 @@
 ## 1. 建仓与派生
 
 ```bash
-gh repo create SlayTheCircle/<新ModId> --template SlayTheCircle/STS2-Template --public
+gh repo create SlayTheCircle/<新ModId> --template SlayTheCircle/STS2-Charlotte --public
 git clone git@github.com:SlayTheCircle/<新ModId>.git && cd <新ModId>
 git config core.hookspath .githooks
 scripts/init-mod.sh <新ModId> <PascalName> --cn-name "<中文名>" [--name "<英文名>"]

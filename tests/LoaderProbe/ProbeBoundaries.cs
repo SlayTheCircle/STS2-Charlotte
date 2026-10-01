@@ -13,7 +13,7 @@ internal static class ProbeBoundaries
         Patch(godot.GetType("Godot.OS")!.GetMethod("GetCmdlineArgs")!, nameof(CommandLine));
         Patch(godot.GetType("Godot.OS")!.GetMethod("HasFeature")!, nameof(Feature));
         Patch(game.GetType("MegaCrit.Sts2.Core.Logging.ConsoleLogPrinter")!.GetMethod("Print")!, nameof(SkipPrint));
-        Patch(loader.GetType("TemplateMod.Loader.WorkshopBootstrap")!.GetMethod("InvokeModInitializers",
+        Patch(loader.GetType("CharlotteMod.Loader.WorkshopBootstrap")!.GetMethod("InvokeModInitializers",
             BindingFlags.Static | BindingFlags.NonPublic)!, nameof(RecordDispatch));
 
         void Patch(MethodInfo method, string prefix) =>

@@ -15,7 +15,7 @@ source scripts/dev-env.sh
 "$DOTNET_EXE" build tests/LoaderProbe/LoaderProbe.csproj -c Release
 "$DOTNET_EXE" tests/LoaderProbe/bin/Release/net9.0/LoaderProbe.dll \
   '<目标游戏引用目录>' '<同目标游戏运行时 DLL 目录>' "$RITSULIB_DIR" \
-  mods-dist/loader/STS2-Template.dll '<0.107.1 内容 DLL>' '<0.111.0 内容 DLL>'
+  mods-dist/loader/STS2-Charlotte.dll '<0.107.1 内容 DLL>' '<0.111.0 内容 DLL>'
 ```
 
 对 0.107.1、0.111.0 分别启动一个验证进程；使用同一份按 0.107.1 编译的 Loader。进程按 release_info.json 选目标，并断言实际转发的 DLL 路径。它核对角色、初始打击和卡池等真实模型，输出扫描到的模型数但不把固定数量作为断言。

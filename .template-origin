@@ -1,6 +1,6 @@
 {
   "template": "STS2-Template",
   "tag": "v1",
-  "derived": null,
-  "derivedAt": null
+  "derived": "STS2-Charlotte",
+  "derivedAt": "2026-10-02"
 }

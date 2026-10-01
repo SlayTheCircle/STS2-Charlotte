@@ -1,4 +1,4 @@
-# STS2-Template · AI 协作入口
+# STS2-Charlotte · AI 协作入口
 
 先读 [STATUS.md](STATUS.md)、[开发文档索引](docs/dev/README.md)、[贡献指南](CONTRIBUTING.md)。设计意图见[设计资料](docs/design/README.md)，文档与公开边界见[文档规范](docs/dev/documentation.md)。现有内容与限制由 STATUS 维护。
 

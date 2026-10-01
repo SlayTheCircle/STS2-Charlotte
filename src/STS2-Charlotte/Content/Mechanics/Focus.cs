@@ -5,8 +5,15 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
 using CharlotteMod.Content.Powers;
+using MegaCrit.Sts2.Core.Entities.Powers;
 
 namespace CharlotteMod.Content.Mechanics;
+
+/// <summary>施加[聚焦]的观察者:能力/遗物实现本接口,由 LensFocusPower.AfterApplied 分发。</summary>
+public interface IFocusApplyObserver
+{
+    Task OnFocusApplied(MegaCrit.Sts2.Core.Entities.Players.Player player);
+}
 
 /// <summary>
 /// [聚焦]结算引擎:[留影]与打出[新闻]两个触发口的共同出口。
@@ -24,7 +31,7 @@ public static class Focus
                 continue;
             }
             int amount = creature.GetPowerAmount<LensFocusPower>();
-            if (amount <= 0)
+            if (amount <= 0 || creature.HasPower<FocusShieldPower>())
             {
                 continue;
             }

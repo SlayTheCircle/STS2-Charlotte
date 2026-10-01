@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using CharlotteMod.Content.Mechanics;
+
+namespace CharlotteMod.Content.Powers;
+
+/// <summary>现场报道效果:下个回合开始时(玩家方),给予持有者 Amount 层[聚焦],随后移除(美术:「下回合聚焦」图标)。</summary>
+[RegisterPower]
+public sealed class DelayedFocusPower : CharlottePowerBase
+{
+    public override PowerType Type => PowerType.Debuff;
+
+    public override PowerStackType StackType => PowerStackType.Counter;
+
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    {
+        if (side != CombatSide.Player || !participants.Contains(base.Owner))
+        {
+            return;
+        }
+        await PowerCmd.Remove(this);
+        await PowerCmd.Apply<LensFocusPower>(choiceContext, base.Owner, base.Amount, base.Owner, null);
+    }
+}

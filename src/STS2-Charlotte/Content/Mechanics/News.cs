@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using CharlotteMod.Content.CardPools;
@@ -13,11 +13,17 @@ using CharlotteMod.Content.Keywords;
 
 namespace CharlotteMod.Content.Mechanics;
 
+/// <summary>新闻打出观察者:能力/遗物实现本接口,由 News.Play 在每次新闻打出后分发。</summary>
+public interface INewsObserver
+{
+    Task OnNewsPlayed(PlayerChoiceContext ctx, CardModel news, Player player);
+}
+
 /// <summary>
 /// [新闻]家族接线:七张虚无无色 token 卡(注册于 CharlotteNewsPool,Token 稀有度,不进奖励/商店池)。
 /// 不设共享基类——花名册审计按 Content/Cards 下非 Base 前缀类文件计数,多一个基类会被误计为卡;
-/// 统一从 <see cref="KeywordSet"/> 取关键词、从 <see cref="Play"/> 走「先效果、后[聚焦]结算」的固定顺序。
-/// 留影纪念克隆复用原牌的同一 OnPlay,新闻克隆打出同样触发聚焦。
+/// 统一从 <see cref="KeywordSet"/> 取关键词、从 <see cref="Play"/> 走「先效果、后[聚焦]结算、再观察者」的固定顺序。
+/// 留影纪念克隆复用原牌的同一 OnPlay,新闻克隆打出同样触发聚焦与观察者。
 /// </summary>
 public static class News
 {
@@ -32,13 +38,30 @@ public static class News
         return set;
     }
 
-    /// <summary>新闻牌打出统一入口:先执行卡牌效果,再结算[聚焦]。</summary>
+    /// <summary>新闻牌打出统一入口:先执行卡牌效果,再结算[聚焦],最后分发新闻观察者。</summary>
     public static async Task Play(PlayerChoiceContext ctx, CardModel card, Func<Task> effect)
     {
         await effect();
         if (card.CombatState is { } combatState)
         {
             await Focus.TriggerAll(combatState);
+        }
+        foreach (PowerModel? observer in card.Owner?.Creature?.Powers)
+        {
+            if (observer is INewsObserver o)
+            {
+                await o.OnNewsPlayed(ctx, card, card.Owner!);
+            }
+        }
+        if (card.Owner is { } owner)
+        {
+            foreach (RelicModel relic in owner.Relics)
+            {
+                if (relic is INewsObserver o)
+                {
+                    await o.OnNewsPlayed(ctx, card, owner);
+                }
+            }
         }
     }
 
@@ -57,8 +80,7 @@ public static class News
     /// <summary>生成 1 张随机新闻(未入堆;调用方决定去向)。</summary>
     public static CardModel CreateRandom(Player owner, ICombatState combatState)
     {
-        Func<Player, ICombatState, CardModel> factory =
-            owner.RunState.Rng.CombatCardGeneration.NextItem(_newsFactories);
+        Func<Player, ICombatState, CardModel> factory = owner.RunState.Rng.CombatCardGeneration.NextItem(_newsFactories);
         return factory(owner, combatState);
     }
 
@@ -69,8 +91,7 @@ public static class News
         var result = new List<CardModel>();
         while (result.Count < count && pool.Count > 0)
         {
-            Func<Player, ICombatState, CardModel> factory =
-                owner.RunState.Rng.CombatCardGeneration.NextItem(pool);
+            Func<Player, ICombatState, CardModel> factory = owner.RunState.Rng.CombatCardGeneration.NextItem(pool);
             pool.Remove(factory);
             result.Add(factory(owner, combatState));
         }

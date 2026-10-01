@@ -40,8 +40,6 @@ public sealed class Charlotte : CharacterModel
 
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<CharlottePotionPool>();
 
-    // 设计初始卡组为 10 张:打击×4 防御×4 咔嚓！×1 茄子！×1;
-    // 后两张依赖留影机制内核与选牌交互,随机制实装补齐(audit-roster 的 DEFERRED 同步清)。
     public override IEnumerable<CardModel> StartingDeck => new CardModel[]
     {
         ModelDb.Card<CharlotteStrike>(),
@@ -52,6 +50,8 @@ public sealed class Charlotte : CharacterModel
         ModelDb.Card<CharlotteDefend>(),
         ModelDb.Card<CharlotteDefend>(),
         ModelDb.Card<CharlotteDefend>(),
+        ModelDb.Card<CharlotteKacha>(),
+        ModelDb.Card<CharlotteSayCheese>(),
     };
 
     public override IReadOnlyList<RelicModel> StartingRelics => new RelicModel[] { ModelDb.Relic<CharlotteLocket>() };

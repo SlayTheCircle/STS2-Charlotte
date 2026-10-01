@@ -2,5 +2,10 @@
   "STS2_CHARLOTTE_CARD_CHARLOTTE_STRIKE.title": "Strike",
   "STS2_CHARLOTTE_CARD_CHARLOTTE_STRIKE.description": "Deal {Damage:diff()} damage.",
   "STS2_CHARLOTTE_CARD_CHARLOTTE_DEFEND.title": "Defend",
-  "STS2_CHARLOTTE_CARD_CHARLOTTE_DEFEND.description": "Gain {Block:diff()} [gold]Block[/gold]."
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_DEFEND.description": "Gain {Block:diff()} [gold]Block[/gold].",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_KACHA.title": "Snap!",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_KACHA.description": "Gain {Block:diff()} [gold]Block[/gold]. [gold]Snapshot[/gold] a card in your hand.",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_KACHA.selectionScreenPrompt": "Choose a card to Snapshot",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_SAY_CHEESE.title": "Say Cheese!",
+  "STS2_CHARLOTTE_CARD_CHARLOTTE_SAY_CHEESE.description": "Deal {Damage:diff()} damage. Deals an additional {ExtraDamage:diff()} damage for each card in your Exhaust pile. {InCombat:\n(Currently dealing {CalculatedDamage:diff()} damage)|}"
 }

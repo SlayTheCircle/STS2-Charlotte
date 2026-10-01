@@ -25,6 +25,7 @@ public sealed class ResoundingWords : CharlotteCardBase
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(4m, ValueProp.Move),
+        new CalculationBaseVar(4m),
         new ExtraDamageVar(6m),
     };
 

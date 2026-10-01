@@ -33,6 +33,7 @@ public sealed class TruthRevealed : CharlotteCardBase
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
+        new CalculationBaseVar(0m),
         new CalculationExtraVar(2m),
     };
 

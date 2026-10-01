@@ -24,6 +24,7 @@ public sealed class PenetratingProse : CharlotteCardBase
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(10m, ValueProp.Move),
+        new CalculationBaseVar(10m),
         new ExtraDamageVar(6m),
     };
 

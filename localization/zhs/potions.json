@@ -1,4 +1,10 @@
 {
-  "STS2_CHARLOTTE_POTION_CHARLOTTE_TONIC.title": "示例药剂",
-  "STS2_CHARLOTTE_POTION_CHARLOTTE_TONIC.description": "获得8点格挡。"
+  "STS2_CHARLOTTE_POTION_HOT_COFFEE.title": "香浓的热咖啡",
+  "STS2_CHARLOTTE_POTION_HOT_COFFEE.description": "恢复你已损失生命值的40%。",
+  "STS2_CHARLOTTE_POTION_LENS_CLEANER.title": "镜头清洁剂",
+  "STS2_CHARLOTTE_POTION_LENS_CLEANER.description": "你的下1张[gold]留影纪念[/gold]可以免费打出。",
+  "STS2_CHARLOTTE_POTION_FONTAINE_ONION_SOUP.title": "枫丹洋葱汤",
+  "STS2_CHARLOTTE_POTION_FONTAINE_ONION_SOUP.description": "本回合内，你的[gold]新闻[/gold]可以免费打出。",
+  "STS2_CHARLOTTE_POTION_REFRESHING_TEA.title": "提神醒脑茶",
+  "STS2_CHARLOTTE_POTION_REFRESHING_TEA.description": "给予敌人9层[gold]聚焦[/gold]。"
 }

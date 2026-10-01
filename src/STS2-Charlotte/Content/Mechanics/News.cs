@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Keywords;
 
 namespace CharlotteMod.Content.Mechanics;
@@ -16,6 +17,9 @@ namespace CharlotteMod.Content.Mechanics;
 /// </summary>
 public static class News
 {
+    /// <summary>[新闻]族判据:注册于 CharlotteNewsPool 的卡(留影纪念克隆与原牌同池同型,同样命中)。</summary>
+    public static bool IsNews(CardModel card) => card.Pool is CharlotteNewsPool;
+
     /// <summary>新闻牌关键词集(虚无 + [新闻]横幅);调用方在其上追加消耗/[留影]/[聚焦]等后返回。</summary>
     public static HashSet<CardKeyword> KeywordSet()
     {

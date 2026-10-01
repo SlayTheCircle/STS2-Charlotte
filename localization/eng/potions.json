@@ -1,4 +1,10 @@
 {
-  "STS2_CHARLOTTE_POTION_CHARLOTTE_TONIC.title": "Charlotte Tonic",
-  "STS2_CHARLOTTE_POTION_CHARLOTTE_TONIC.description": "Gain 8 Block."
+  "STS2_CHARLOTTE_POTION_HOT_COFFEE.title": "Rich Hot Coffee",
+  "STS2_CHARLOTTE_POTION_HOT_COFFEE.description": "Heal 40% of your missing HP.",
+  "STS2_CHARLOTTE_POTION_LENS_CLEANER.title": "Lens Cleaner",
+  "STS2_CHARLOTTE_POTION_LENS_CLEANER.description": "Your next [gold]Snapshot Souvenir[/gold] costs 0.",
+  "STS2_CHARLOTTE_POTION_FONTAINE_ONION_SOUP.title": "Fontaine Onion Soup",
+  "STS2_CHARLOTTE_POTION_FONTAINE_ONION_SOUP.description": "This turn, your [gold]News[/gold] cards cost 0.",
+  "STS2_CHARLOTTE_POTION_REFRESHING_TEA.title": "Refreshing Tea",
+  "STS2_CHARLOTTE_POTION_REFRESHING_TEA.description": "Apply 9 [gold]Focus[/gold] to an enemy."
 }

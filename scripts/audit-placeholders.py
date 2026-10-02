@@ -42,6 +42,18 @@ def card_vars(path):
         keys.add(m.group(1))  # 自定义键名 PowerVar<T>("Name", ...) → 运行时键为 Name(vanilla MadScience 同款)
     return keys
 
+# 计算三件套配对契约(2026-10-02 商店事故):CalculatedDamageVar.GetExtraVar 只认 ExtraDamage 键,
+# CalculatedBlockVar.GetExtraVar 只认 CalculationExtra 键,基类 Base 都读 CalculationBase——
+# 声明了 Calculated* 却缺对应 Extra/Base,打出或被奖励镜像(RandomForeseer 等)读取时 KeyNotFound。
+TRIO_REQUIRED = {
+    'CalculatedDamageVar': ('CalculationBase', 'ExtraDamage'),
+    'CalculatedBlockVar': ('CalculationBase', 'CalculationExtra'),
+}
+
+def card_ctor_set(path):
+    src = open(path).read()
+    return set(re.findall(r'new (\w+)\(', src))
+
 bad = []
 varmap = {}
 for path in sorted(glob.glob(f'{SRC_DIR}/Content/Cards/**/*.cs', recursive=True)):
@@ -54,6 +66,12 @@ for path in sorted(glob.glob(f'{SRC_DIR}/Content/Cards/**/*.cs', recursive=True)
         bad.append(f'重复卡牌类: {cls} ({path})')
         continue
     varmap[cls] = card_vars(path)
+    ctors = card_ctor_set(path)
+    for calc_var, required in TRIO_REQUIRED.items():
+        if calc_var in ctors:
+            missing = [k for k in required if k not in varmap[cls]]
+            if missing:
+                bad.append(f'{cls}: 声明 {calc_var} 但三件套缺 {missing}')
 for lang in ('zhs', 'eng'):
     cards = json.load(open(f'localization/{lang}/cards.json', encoding='utf-8'))
     for k, v in cards.items():

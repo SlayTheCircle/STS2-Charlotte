@@ -18,14 +18,16 @@ namespace CharlotteMod.Content.Cards;
 /// <summary>
 /// 单刀直入(稀有,0 费攻击):本场战斗中,你每打出过 1 张攻击牌,此卡就造成 3 点伤害。升级:4 点。
 /// 战斗累计攻击数由 CombatTracker.AttacksThisCombat 承载。
+/// 伤害三件套必须用 ExtraDamageVar(PerfectedStrike 同型):CalculatedDamageVar.GetExtraVar 只认 ExtraDamage 键,
+/// 误用格挡系 CalculationExtra 会在 Calculate/奖励镜像时 KeyNotFound(2026-10-02 商店事故)。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class SoloThrust : CharlotteCardBase
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(3m, ValueProp.Move),
-        new CalculationExtraVar(3m),
+        new CalculationBaseVar(0m),
+        new ExtraDamageVar(3m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(
             (CardModel card, Creature? _) => card.Owner.Creature.GetPower<CombatTrackerPower>()?.AttacksThisCombat ?? 0),
     };
@@ -45,6 +47,6 @@ public sealed class SoloThrust : CharlotteCardBase
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["CalculationExtra"].UpgradeValueBy(1m);
+        base.DynamicVars["ExtraDamage"].UpgradeValueBy(1m);
     }
 }

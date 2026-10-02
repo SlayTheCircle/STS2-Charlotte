@@ -156,7 +156,7 @@
   "STS2_CHARLOTTE_CARD_WAR_OF_WORDS.title": "War of Words",
   "STS2_CHARLOTTE_CARD_WAR_OF_WORDS.description": "Deal {Damage:diff()} damage. At turn start, if in your Exhaust pile: gain {ExtraDamage:diff()} damage this combat, then return to your hand.",
   "STS2_CHARLOTTE_CARD_SOLO_THRUST.title": "Solo Thrust",
-  "STS2_CHARLOTTE_CARD_SOLO_THRUST.description": "This combat, deals {CalculationExtra:diff()} damage for each Attack you have played.",
+  "STS2_CHARLOTTE_CARD_SOLO_THRUST.description": "This combat, deals {ExtraDamage:diff()} damage for each Attack you have played.",
   "STS2_CHARLOTTE_CARD_MASTERSTROKE.title": "Masterstroke",
   "STS2_CHARLOTTE_CARD_MASTERSTROKE.description": "Exhaust all [gold]News[/gold] in your draw pile. Deal {Damage:diff()} damage to a random enemy per card Exhausted.",
   "STS2_CHARLOTTE_CARD_DEBUNK_AND_DISPEL.title": "Debunk and Dispel",

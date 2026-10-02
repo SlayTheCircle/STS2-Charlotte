@@ -18,6 +18,8 @@ namespace CharlotteMod.Content.Cards;
 /// <summary>
 /// 有力物证(罕见,3 费攻击):造成 30 点伤害。本回合内每打出过 1 张其他牌,这张卡的伤害下降 6,同时耗能减少 1。
 /// 升级:36。「越早打越狠」的反协同设计;费用改写走卡牌自身的费用钩子(BrilliantScarf 同型)。
+/// 伤害三件套必须用 ExtraDamageVar(PerfectedStrike 同型):CalculatedDamageVar.GetExtraVar 只认 ExtraDamage 键,
+/// 误用格挡系 CalculationExtra 会在 Calculate/奖励镜像时 KeyNotFound(2026-10-02 商店事故)。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class SolidEvidence : CharlotteCardBase
@@ -28,9 +30,8 @@ public sealed class SolidEvidence : CharlotteCardBase
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(30m, ValueProp.Move),
         new CalculationBaseVar(30m),
-        new CalculationExtraVar(6m),
+        new ExtraDamageVar(6m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(
             (CardModel card, Creature? _) => -(card.Owner.Creature.GetPower<CombatTrackerPower>()?.CardsThisTurn ?? 0)),
     };
@@ -63,7 +64,6 @@ public sealed class SolidEvidence : CharlotteCardBase
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(6m);
         base.DynamicVars["CalculationBase"].UpgradeValueBy(6m);
     }
 }

@@ -57,7 +57,6 @@ internal static class CharlottePosePatch
                 Log.Error($"[STS2-Charlotte] pose 缺资源: {trigger} pose={(pose != null)} normal={(Normal != null)}");
                 return;
             }
-            Log.Info($"[STS2-Charlotte] pose 切换: {trigger}");
             if (__instance.Visuals.GetNodeOrNull<Sprite2D>("%Visuals") is not { } sprite)
             {
                 return;

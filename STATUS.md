@@ -20,7 +20,7 @@
 
 - 本地门禁：check.sh --source-only、双目标 build（0.111.0/0.107.1）、audit-assets 全模式（139→0 缺口清零）、export-card-table 全绿（2026-10-02）。
 - 端到端：package.sh 双变体打包 → 变体布局部署（Loader 壳 + lib/game-*/）→ 游戏内启动、开局、战斗、击杀后奖励屏、卡池掉落冒烟通过（2026-10-02，用户验收）。
-- 修复记录：① Harmony 透传 postfix 返回类型校验炸初始化（改 async void）；② 四张卡计算三件套残缺致奖励生成 KeyNotFound 软锁。
+- 修复记录：① Harmony 透传 postfix 返回类型校验炸初始化（改 async void）；② 四张卡计算三件套残缺致奖励生成 KeyNotFound 软锁；③ 单刀直入/有力物证误用格挡系 CalculationExtra 键喂 CalculatedDamageVar——战斗 Calculate 与奖励/商店预览镜像（RandomForeseer 的 Populate 族补丁）KeyNotFound('ExtraDamage')，表现为商店商品槽损坏连环 NRE 与战后奖励三缺一（2026-10-02，已修并对齐 PerfectedStrike 形态；三件套配对契约入 audit-placeholders 门禁）。
 
 ## 限制与已知事项
 

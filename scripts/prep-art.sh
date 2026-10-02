@@ -10,5 +10,6 @@ source "$(dirname "$0")/dev-env.sh"
 
 bash "$MOD_ROOT/scripts/art/stage-smoke.sh"
 bash "$MOD_ROOT/scripts/art/characters.sh"
+bash "$MOD_ROOT/scripts/art/energy.sh"
 bash "$MOD_ROOT/scripts/art/stories.sh"
-echo "prep-art: 全量派生完成(卡图/图标/能量/角色/事件/纪元)。"
+echo "prep-art: 全量派生完成(卡图/图标/能量计/角色/事件/纪元)。"

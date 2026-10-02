@@ -143,7 +143,7 @@
   "STS2_CHARLOTTE_CARD_BACKLIT_SHOT.selectionScreenPrompt": "Choose a card in your hand",
   "STS2_CHARLOTTE_CARD_CUT_TO_THE_CHASE.description": "Deal {Damage:diff()} damage and apply {LensFocusPower:diff()} [gold]Focus[/gold].",
   "STS2_CHARLOTTE_CARD_CUSTOM_LENS.description": "Whenever you play a [gold]Snapshot Souvenir[/gold], gain {CustomLensPower:diff()} [gold]Block[/gold].",
-  "STS2_CHARLOTTE_CARD_MOTION_CAPTURE.description": "Whenever you play a [gold]Snapshot Souvenir[/gold], draw 1 card and Exhaust 1 card in your hand.",
+  "STS2_CHARLOTTE_CARD_MOTION_CAPTURE.description": "Whenever you play a [gold]Snapshot Souvenir[/gold], draw {MotionCapturePower:diff()} cards and Exhaust {MotionCapturePower:diff()} cards in your hand.",
   "STS2_CHARLOTTE_CARD_MOTION_CAPTURE.selectionScreenPrompt": "Choose a card to Exhaust",
   "STS2_CHARLOTTE_CARD_PERFECT_ATTENDANCE.description": "At the start of each turn, gain {PerfectAttendancePower:diff()} Gold.",
   "STS2_CHARLOTTE_CARD_WARM_BRUSHSTROKE.description": "Whenever you [gold]Snapshot[/gold] or apply [gold]Focus[/gold], if your HP is below 50% of Max HP, restore {WarmBrushstrokePower:diff()} HP.",

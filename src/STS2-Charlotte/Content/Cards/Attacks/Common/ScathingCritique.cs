@@ -40,7 +40,8 @@ public sealed class ScathingCritique : CharlotteCardBase
             .Execute(choiceContext);
         IEnumerable<CardModel> drawn = await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
         CardModel? first = drawn.FirstOrDefault();
-        if (first != null && first.EnergyCost.GetResolved() == 0)
+        // X 费牌未结算时 GetResolved 默认 0,需显式排除(业主 2026-10-03 裁决 C3)。
+        if (first != null && first.EnergyCost.GetResolved() == 0 && !first.EnergyCost.CostsX)
         {
             await CardPileCmd.Draw(choiceContext, 1m, base.Owner);
         }

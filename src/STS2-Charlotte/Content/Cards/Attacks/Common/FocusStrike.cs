@@ -21,6 +21,10 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class FocusStrike : CharlotteCardBase
 {
+    // 名含「打击」→挂 CardTag.Strike:打击木偶加伤/完美打击计数/士兵炖菜等原版交互的判据
+    // (vanilla 按标签不按名字,mod 卡必须显式声明;2026-10-03 补齐,初始打击本就带)。
+    protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CardTag.Strike };
+
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
         get

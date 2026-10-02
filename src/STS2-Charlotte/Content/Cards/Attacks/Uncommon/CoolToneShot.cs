@@ -52,7 +52,8 @@ public sealed class CoolToneShot : CharlotteCardBase
         var prompt = new LocString("cards", base.Id.Entry + ".selectionScreenPrompt");
         IEnumerable<CardModel> chosen = await CardSelectCmd.FromCombatPile(
             choiceContext, PileType.Discard.GetPile(base.Owner), base.Owner,
-            new CardSelectorPrefs(prompt, 0, maxSnaps), null);
+            // 基数 1 张强制(裁决 B2),攻击牌加成的额外张数仍可选(文案「可以额外」)。
+            new CardSelectorPrefs(prompt, 1, maxSnaps), null);
         foreach (CardModel victim in chosen)
         {
             await Snapshot.Card(choiceContext, victim, base.Owner);

@@ -95,7 +95,7 @@
 | 卡牌 | 稀有度 | 费用 | 类型 | 效果 |
 |---|---|---|---|---|
 | 特制镜头 | 罕见 | 1 | 能力 | 每当你打出[gold]留影纪念[/gold]，获得{CustomLensPower:diff()}点[gold]格挡[/gold]。 |
-| 动作捕捉 | 罕见 | 1 | 能力 | 每当你打出1张[gold]留影纪念[/gold]，抽1张牌，消耗1张手牌。 |
+| 动作捕捉 | 罕见 | 1 | 能力 | 每当你打出1张[gold]留影纪念[/gold]，抽{MotionCapturePower:diff()}张牌，消耗{MotionCapturePower:diff()}张手牌。 |
 | 全勤奖金 | 罕见 | 1 | 能力 | 每回合开始时，获得{PerfectAttendancePower:diff()}金币。 |
 | 风雨满楼 | 罕见 | 0 | 能力 | 每回合你第一次失去生命时，将{StormBrewingPower:diff()}张随机[gold]新闻[/gold]添加到你的手牌。 |
 | 温馨笔触 | 罕见 | 2 | 能力 | 每当你[gold]留影[/gold]或给予[gold]聚焦[/gold]时，若生命值低于最大生命值的50%，则恢复{WarmBrushstrokePower:diff()}点生命。 |

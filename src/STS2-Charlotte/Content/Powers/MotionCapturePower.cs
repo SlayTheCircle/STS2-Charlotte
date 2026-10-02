@@ -31,10 +31,11 @@ public sealed class MotionCapturePower : CharlottePowerBase
         {
             return;
         }
-        await CardPileCmd.Draw(choiceContext, 1m, base.Owner.Player);
+        // 抽N耗N(业主 2026-10-03 裁决 C4):抽牌与消耗都随层数放大。
+        await CardPileCmd.Draw(choiceContext, base.Amount, base.Owner.Player);
         var prompt = new MegaCrit.Sts2.Core.Localization.LocString("cards", "STS2_CHARLOTTE_CARD_MOTION_CAPTURE.selectionScreenPrompt");
         CardModel? victim = (await CardSelectCmd.FromHand(
-            prefs: new CardSelectorPrefs(prompt, 0, 1),
+            prefs: new CardSelectorPrefs(prompt, base.Amount),
             context: choiceContext,
             player: base.Owner.Player,
             filter: null,

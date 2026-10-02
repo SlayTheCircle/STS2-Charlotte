@@ -48,7 +48,7 @@ public sealed class Brainstorm : CharlotteCardBase
     {
         var prompt = new LocString("cards", base.Id.Entry + ".selectionScreenPrompt");
         CardModel? news = (await CardSelectCmd.FromHand(
-            prefs: new CardSelectorPrefs(prompt, 0, 1),
+            prefs: new CardSelectorPrefs(prompt, 1),
             context: choiceContext,
             player: base.Owner,
             filter: News.IsNews,

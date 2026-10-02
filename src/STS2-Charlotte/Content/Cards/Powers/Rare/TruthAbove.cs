@@ -17,6 +17,10 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class TruthAbove : CharlotteCardBase
 {
+    // 能力实际获得格挡,补 GainsBlock(业主 2026-10-03 裁决 A7):格挡悬停 +
+    // 原版灵巧附魔(CanEnchant 按 GainsBlock 判定)自此可作用于本卡。
+    public override bool GainsBlock => true;
+
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new PowerVar<TruthAbovePower>(1m) };
 
     public TruthAbove()

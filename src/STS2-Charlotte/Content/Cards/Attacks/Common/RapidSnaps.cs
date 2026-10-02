@@ -42,15 +42,16 @@ public sealed class RapidSnaps : CharlotteCardBase
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
+        // 先影后伤(设计案语序,业主 2026-10-03 裁决):留影结算在前,聚焦时点随之前移。
         List<CardModel> hand = PileType.Hand.GetPile(base.Owner).Cards.ToList();
         if (hand.Count > 0)
         {
             CardModel victim = base.Owner.RunState.Rng.CombatCardSelection.NextItem(hand);
             await Snapshot.Card(choiceContext, victim, base.Owner);
         }
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(choiceContext);
     }
 
     protected override void OnUpgrade()

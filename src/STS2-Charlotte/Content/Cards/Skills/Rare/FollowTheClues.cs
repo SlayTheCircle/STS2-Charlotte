@@ -38,9 +38,9 @@ public sealed class FollowTheClues : CharlotteCardBase
         var drawPrompt = new LocString("cards", base.Id.Entry + ".selectionScreenPrompt");
         var discardPrompt = new LocString("cards", base.Id.Entry + ".selectionScreenPromptDiscard");
         IEnumerable<CardModel> fromDraw = await CardSelectCmd.FromCombatPile(
-            choiceContext, PileType.Draw.GetPile(base.Owner), base.Owner, new CardSelectorPrefs(drawPrompt, 0, take), null);
+            choiceContext, PileType.Draw.GetPile(base.Owner), base.Owner, new CardSelectorPrefs(drawPrompt, take), null);
         IEnumerable<CardModel> fromDiscard = await CardSelectCmd.FromCombatPile(
-            choiceContext, PileType.Discard.GetPile(base.Owner), base.Owner, new CardSelectorPrefs(discardPrompt, 0, take), null);
+            choiceContext, PileType.Discard.GetPile(base.Owner), base.Owner, new CardSelectorPrefs(discardPrompt, take), null);
         List<CardModel> taken = fromDraw.Concat(fromDiscard).ToList();
         if (taken.Count > 0)
         {

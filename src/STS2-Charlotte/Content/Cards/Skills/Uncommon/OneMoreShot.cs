@@ -49,7 +49,7 @@ public sealed class OneMoreShot : CharlotteCardBase
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
         var prompt = new LocString("cards", base.Id.Entry + ".selectionScreenPrompt");
         CardModel? memento = (await CardSelectCmd.FromHand(
-            prefs: new CardSelectorPrefs(prompt, 0, 1),
+            prefs: new CardSelectorPrefs(prompt, 1),
             context: choiceContext,
             player: base.Owner,
             filter: Snapshot.IsMemento,

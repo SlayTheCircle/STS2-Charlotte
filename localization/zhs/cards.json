@@ -143,7 +143,7 @@
   "STS2_CHARLOTTE_CARD_BACKLIT_SHOT.selectionScreenPrompt": "选择一张手牌",
   "STS2_CHARLOTTE_CARD_CUT_TO_THE_CHASE.description": "造成{Damage:diff()}点伤害，给予{LensFocusPower:diff()}层[gold]聚焦[/gold]。",
   "STS2_CHARLOTTE_CARD_CUSTOM_LENS.description": "每当你打出[gold]留影纪念[/gold]，获得{CustomLensPower:diff()}点[gold]格挡[/gold]。",
-  "STS2_CHARLOTTE_CARD_MOTION_CAPTURE.description": "每当你打出1张[gold]留影纪念[/gold]，抽1张牌，消耗1张手牌。",
+  "STS2_CHARLOTTE_CARD_MOTION_CAPTURE.description": "每当你打出1张[gold]留影纪念[/gold]，抽{MotionCapturePower:diff()}张牌，消耗{MotionCapturePower:diff()}张手牌。",
   "STS2_CHARLOTTE_CARD_MOTION_CAPTURE.selectionScreenPrompt": "选择一张要消耗的手牌",
   "STS2_CHARLOTTE_CARD_PERFECT_ATTENDANCE.description": "每回合开始时，获得{PerfectAttendancePower:diff()}金币。",
   "STS2_CHARLOTTE_CARD_WARM_BRUSHSTROKE.description": "每当你[gold]留影[/gold]或给予[gold]聚焦[/gold]时，若生命值低于最大生命值的50%，则恢复{WarmBrushstrokePower:diff()}点生命。",

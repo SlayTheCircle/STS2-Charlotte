@@ -19,6 +19,35 @@ extends SceneTree
 const TABLES := ["cards", "powers", "relics", "potions", "characters", "card_keywords",
 	"card_selection", "events", "enchantments", "epochs", "ancients"]
 
+# 衍生仓扩展点:角色场景(B10 正式管线)必须入包且可打开。
+const SCENES := [
+	"res://%s/scenes/characters/charlotte_character.tscn",
+	"res://%s/scenes/characters/charlotte_merchant.tscn",
+	"res://%s/scenes/characters/charlotte_rest_site.tscn",
+	"res://%s/scenes/characters/charlotte_char_select_bg.tscn",
+	"res://%s/scenes/characters/charlotte_icon.tscn",
+	"res://%s/scenes/combat/charlotte_energy_counter.tscn",
+]
+
+# 关键纹理的尺寸断言(宽x高);0 高表示仅查可加载。
+const TEXTURES := {
+	"res://%s/images/characters/charlotte_normal.png": Vector2i(1024, 1536),
+	"res://%s/images/characters/charlotte_merchant.png": Vector2i(1024, 1536),
+	"res://%s/images/characters/charlotte_rest_site.png": Vector2i(1024, 1536),
+	"res://%s/images/characters/charlotte_char_select_bg.png": Vector2i(1672, 941),
+	"res://%s/images/characters/charlotte_character_icon.png": Vector2i(128, 128),
+	"res://%s/images/energy/charlotte_energy_big.png": Vector2i(256, 256),
+	"res://%s/images/energy/charlotte_energy_text.png": Vector2i(24, 24),
+}
+
+# 必须带透明通道的纹理(实底图在透明槽会显示方框)。
+const TRANSPARENT_TEXTURES := [
+	"res://%s/images/characters/charlotte_select.png",
+	"res://%s/images/characters/charlotte_select_locked.png",
+	"res://%s/images/characters/charlotte_normal.png",
+	"res://%s/images/energy/charlotte_energy_big.png",
+]
+
 var _frame := 0
 var _mod_id := ""
 
@@ -40,8 +69,28 @@ func _process(_delta: float) -> bool:
 	for lang in ["zhs", "eng"]:
 		for table in TABLES:
 			failures += _verify_localization(lang, table)
+	for tpl in SCENES:
+		var p: String = tpl % _mod_id
+		if not FileAccess.file_exists(p):
+			push_error("PCK 缺场景: " + p)
+			failures += 1
+	for tpl in TEXTURES:
+		var p: String = tpl % _mod_id
+		var tex := load(p) as Texture2D
+		if tex == null:
+			push_error("PCK 纹理不可加载: " + p)
+			failures += 1
+		elif TEXTURES[tpl] != Vector2i(0, 0) and Vector2i(tex.get_size()) != TEXTURES[tpl]:
+			push_error("PCK 纹理尺寸不符: %s 期望 %s 实际 %s" % [p, TEXTURES[tpl], Vector2i(tex.get_size())])
+			failures += 1
+	for tpl in TRANSPARENT_TEXTURES:
+		var p: String = tpl % _mod_id
+		var img := (load(p) as Texture2D).get_image() if load(p) is Texture2D else null
+		if img == null or not img.detect_alpha():
+			push_error("PCK 纹理无透明通道: " + p)
+			failures += 1
 	if failures == 0:
-		print("PCK 本地化可解析；未验证纹理、游戏模型、场景或机制。")
+		print("PCK 本地化可解析;角色场景与关键纹理断言通过。")
 	quit(0 if failures == 0 else 1)
 	return true
 

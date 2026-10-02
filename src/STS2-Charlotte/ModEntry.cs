@@ -29,22 +29,23 @@ public static class ModEntry
         keywords.RegisterCardKeywordOwnedByLocNamespace("FOCUS");    // → 聚焦
         keywords.RegisterCardKeywordOwnedByLocNamespace("NEWS");     // → 新闻
 
-        // 角色资产档案(头像/地图标记/能量球已用自备素材;其余场景仍借原版铁甲,官方 PCK 实测路径)。
-        // 自建场景/立绘接入(B10 美术管线)后逐项替换;两处留空会炸的推导路径已按模板注释处理。
+        // 角色资产档案(B10 正式管线,无 Spine 路线,场景与图全部自备,与 Navia 同构):
+        // 战斗形象/商店/休息点/选人背景为自建场景(单 Sprite2D + 原版节点契约脚本);
+        // 立绘母版 1024×1536(倒下为横图);选人半身图由站立立绘人工校准裁剪(characters.sh)。
         string charlotteEntry = ModContentRegistry.GetCompoundId(ModId, "character", nameof(Content.Characters.Charlotte)).ToLowerInvariant();
         ModContentRegistry.For(ModId).RegisterCharacterAssetReplacement(charlotteEntry, new CharacterAssetProfile(
             new CharacterSceneAssetSet(
-                "res://scenes/creature_visuals/ironclad.tscn",
+                "res://STS2-Charlotte/scenes/characters/charlotte_character.tscn",
                 "res://STS2-Charlotte/scenes/combat/charlotte_energy_counter.tscn",
-                "res://scenes/merchant/characters/ironclad_merchant.tscn",
-                "res://scenes/rest_site/characters/ironclad_rest_site.tscn"),
+                "res://STS2-Charlotte/scenes/characters/charlotte_merchant.tscn",
+                "res://STS2-Charlotte/scenes/characters/charlotte_rest_site.tscn"),
             new CharacterUiAssetSet(
                 "res://STS2-Charlotte/images/characters/charlotte_character_icon.png",
                 "res://STS2-Charlotte/images/characters/charlotte_character_icon_outline.png",
                 "res://STS2-Charlotte/scenes/characters/charlotte_icon.tscn",
-                "res://scenes/screens/char_select/char_select_bg_ironclad.tscn",
-                "res://images/packed/character_select/char_select_ironclad.png",
-                "res://images/packed/character_select/char_select_ironclad_locked.png",
+                "res://STS2-Charlotte/scenes/characters/charlotte_char_select_bg.tscn",
+                "res://STS2-Charlotte/images/characters/charlotte_select.png",
+                "res://STS2-Charlotte/images/characters/charlotte_select_locked.png",
                 // 转场材质留空会按条目名推导 mod 条目下不存在的 .tres → AssetLoadException 炸开局;先借通用淡入淡出。
                 "res://materials/transitions/fade_transition_mat.tres",
                 "res://STS2-Charlotte/images/characters/charlotte_map_marker.png"),

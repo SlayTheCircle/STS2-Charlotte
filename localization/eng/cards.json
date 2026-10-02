@@ -160,7 +160,7 @@
   "STS2_CHARLOTTE_CARD_MASTERSTROKE.title": "Masterstroke",
   "STS2_CHARLOTTE_CARD_MASTERSTROKE.description": "Exhaust all [gold]News[/gold] in your draw pile. Deal {Damage:diff()} damage to a random enemy per card Exhausted.",
   "STS2_CHARLOTTE_CARD_DEBUNK_AND_DISPEL.title": "Debunk and Dispel",
-  "STS2_CHARLOTTE_CARD_DEBUNK_AND_DISPEL.description": "Deal {Damage:diff()} damage. This card costs 1 more and deals double damage (each play, this combat).",
+  "STS2_CHARLOTTE_CARD_DEBUNK_AND_DISPEL.description": "Deal {Damage:diff()} damage. This card costs 1 more and deals {IfUpgraded:show:triple|double} damage (each play, this combat).",
   "STS2_CHARLOTTE_CARD_TRACKING_INVESTIGATION.title": "Tracking Investigation",
   "STS2_CHARLOTTE_CARD_TRACKING_INVESTIGATION.description": "Deal {Damage:diff()} damage to ALL enemies. Costs 1 less per card you Exhaust this combat (resets after playing).",
   "STS2_CHARLOTTE_CARD_TRUTH_REVEALED.title": "Truth Revealed",

@@ -16,6 +16,8 @@ namespace CharlotteMod.Content.Cards;
 /// <summary>
 /// 辟谣祛魅(稀有,0 费攻击):造成 4 点伤害。这张卡的耗能增加 1,且造成的伤害翻倍(每次打出后永久累计,本场战斗)。升级:变为三倍。
 /// 递增为逐实例状态:基础 4 × 倍率^次数;费用 +次数。
+/// 倍率为指数公式,引擎计算三件套(线性)表达不了,不入面板变量——升级差异由 loc 的
+/// {IfUpgraded:show:变为三倍|翻倍} 呈现(私有属性升级不给面板反馈,玩家会以为升了个寂寞)。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class DebunkAndDispel : CharlotteCardBase

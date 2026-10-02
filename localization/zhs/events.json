@@ -1,1 +1,53 @@
-{}
+{
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.title": "美不胜收",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.description": "你在一个房间里发现了一处绝美的晚霞！你立刻意识到这道风景线能成为你相册里浓墨重彩的一笔，马上打开留影机。\n只不过，面前的景色光影交替，错综复杂……先对准哪里按下快门呢？",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.RIVER.title": "拍摄潺潺的河水",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.RIVER.description": "选择你的一张[gold]打击[/gold]或[gold]防御[/gold]，为其附魔：[purple]涡旋[/purple]1。",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.BIRDS.title": "拍摄群飞的鸟儿",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.BIRDS.description": "将1张[gold]异鸟扑击[/gold]加入你的手牌。",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.SUNSET.title": "拍摄美丽的晚霞",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.SUNSET.description": "获得1次升级过的卡牌奖励。",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.RIVER.description": "你将快门对准波光粼粼的小河。河面闪烁着与故乡枫丹完全不同的光景，你不禁被深深吸引……\n回过神来时，天色已经暗了下来。你简单修整，随后便继续前进了。",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.BIRDS.description": "你将镜头对准天空中的飞鸟。鸟儿们在天空的画布上铺开，像一副会动的风景画……\n回过神来时，天色已经暗了下来。你简单修整，随后便继续前进了。",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.SUNSET.description": "你将快门对准远方天际线的云朵与霞光。变换的色彩在天空中流动，令你每次按下快门都屏息凝神……\n回过神来时，天色已经暗了下来。你简单修整，随后便继续前进了。",
+
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.title": "商人的请求",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.INITIAL.description": "一位尖塔商人拦住了你的脚步。\n“嘿，朋友，你是一位记者吧？能否请你帮小店打个广告呢？”",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.INITIAL.options.AGREE.title": "欣然应允",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.INITIAL.options.AGREE.description": "获得1件随机遗物。",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.INITIAL.options.DECLINE.title": "委婉拒绝",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.INITIAL.options.DECLINE.description": "获得1瓶稀有药水。",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.AGREE.description": "“真是感谢！作为广告费，请收下这个吧！”商人递来一件小纪念品。\n你将纪念品收进行囊中，继续向更高层迈进。",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.DECLINE.description": "商人并不气恼，只是递来一个小瓶子。\n“这是咱自己家酿造的，尝尝看吧！要是觉得还行，下次再来照顾生意啊！”\n你谢过商人，将瓶子收进行囊中，继续向着更高层迈进。",
+
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.title": "激烈的辩论",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.description": "一进门，你就看见两个家伙吵得不可开交。你的到来吸引了他们的注意，“喂！你！快来给我们评评理！”\n原来是一高一矮两个厨师因为面前的鲜鱼该怎么烹饪而起了争执。你决定——",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.FRY.title": "煎制",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.FRY.description": "失去3点最大生命值，恢复22点生命。",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.STEAM.title": "清蒸",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.STEAM.description": "失去1瓶药水，获得50金币。",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.STEAM_LOCKED.title": "清蒸",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.STEAM_LOCKED.description": "你没有药水可以失去。",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.FRY.description": "高个子厨师十分满意，立刻将案板上的鲜鱼剖腹刮鳞，不多久就烹饪出一道香气四溢的黄油煎鱼。\n他们热情地邀请你分享美食，可惜刚吃上第一口，热腾腾的煎鱼就烫到了你的舌头。\n享用美味后，你向他们道别，继续前进了。",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.STEAM.description": "矮个子厨师连连点头，将鲜鱼撒上香料，清蒸出锅。\n不过清淡的食物与你的口味似乎有点差距，你索性掏出腰间的饮料喝了起来。\n享用美味后，你向他们道别，继续前进了。",
+
+  "DROWNING_BEACON.pages.INITIAL.options.CHARLOTTE_POLISH_LENS.title": "擦拭镜片",
+  "DROWNING_BEACON.pages.INITIAL.options.CHARLOTTE_POLISH_LENS.description": "失去你的初始遗物，获得[gold]菲涅耳透镜[/gold]。",
+  "DROWNING_BEACON.pages.CHARLOTTE_POLISH_LENS.description": "你仔细擦拭那块精致的透镜，发现它的尺寸好像与自己的镜头差不多。\n于是你尝试替换自己的旧镜头——成功了！\n不幸的是，旧镜头在拆卸的过程中掉入了高塔下深不见底的湖面。所幸这个崭新的镜头还挺好用的。",
+
+  "SELF_HELP_BOOK.pages.INITIAL.options.CHARLOTTE_RECORD_INFO.title": "记录有用的信息",
+  "SELF_HELP_BOOK.pages.INITIAL.options.CHARLOTTE_RECORD_INFO.description": "升级你卡组中的一张牌。",
+  "SELF_HELP_BOOK.pages.CHARLOTTE_RECORD_INFO.description": "你仔细将整本书从头到尾翻阅了一遍。整本书中堆积如山的错误与胡乱的排版让你的编辑雷达警铃大作。\n好在书中还算有些与尖塔有关的知识，让你还算有些收获。你索性撕下其中有用的几页，贴在你的记事本上，随后离开了这里。",
+
+  "ROUND_TEA_PARTY.pages.INITIAL.options.CHARLOTTE_INCISIVE_ANALYSIS.title": "鞭辟入里地分析",
+  "ROUND_TEA_PARTY.pages.INITIAL.options.CHARLOTTE_INCISIVE_ANALYSIS.description": "获得一瓶随机药水。",
+  "ROUND_TEA_PARTY.pages.CHARLOTTE_INCISIVE_ANALYSIS.description": "你直截了当地指出面前茶水的问题，同时声称要将它们的行为刊登在报纸上。\n一众骑士面面相觑，最终倒掉了你面前的毒茶，用他们最好的酒招待你。\n你并不想在此地逗留，只将其中一瓶装进背包就起身离席。",
+
+  "POTION_COURIER.pages.INITIAL.options.CHARLOTTE_WAKE_HIM.title": "试着唤醒他",
+  "POTION_COURIER.pages.INITIAL.options.CHARLOTTE_WAKE_HIM.description": "失去所有药水，获得[gold]会员卡[/gold]。",
+  "POTION_COURIER.pages.CHARLOTTE_WAKE_HIM.description": "你毫不犹豫地解下腰间的水壶，将里面的水喂给了面前的可怜人。\n过了好久，他终于渐渐醒转。为了报答你的救命之恩，他将自己身上唯一值钱的物件递到了你手里。",
+
+  "CRYSTAL_SPHERE.pages.INITIAL.options.CHARLOTTE_PAWN.title": "抵押",
+  "CRYSTAL_SPHERE.pages.INITIAL.options.CHARLOTTE_PAWN.description": "移除你卡组中的一张牌。将1张[red]疑虑[/red]加入你的手牌。占卜4次。",
+  "CRYSTAL_SPHERE.pages.CHARLOTTE_PAWN.description": "你解下自己的行囊，将里面的一些细软交给占卜师。\n占卜师虽然觉得有些寒酸，但是还是拉开了帘子。\n只不过，这样占卜真的能得到正确的结果吗？你带着疑惑离开了占卜摊。"
+}

@@ -1,1 +1,53 @@
-{}
+{
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.title": "A Sight to Behold",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.description": "In one room you discover an absolutely gorgeous sunset! You instantly realize this scenery deserves a prominent place in your album, and open your Kamera at once.\nBut the light and shadow before you shift and interweave... where should you aim first?",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.RIVER.title": "Photograph the Babbling River",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.RIVER.description": "Choose one of your [gold]Strikes[/gold] or [gold]Defends[/gold] and Enchant it with [purple]Spiral[/purple] 1.",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.BIRDS.title": "Photograph the Flocking Birds",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.BIRDS.description": "Add 1 [gold]Byrd Swoop[/gold] to your hand.",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.SUNSET.title": "Photograph the Beautiful Sunset",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.INITIAL.options.SUNSET.description": "Gain 1 card reward of upgraded cards.",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.RIVER.description": "You aim at the shimmering river. Its surface glitters with scenery utterly unlike your homeland of Fontaine, and you find yourself captivated...\nBy the time you come to, the sky has already darkened. You tidy up briefly and press onward.",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.BIRDS.description": "You aim your lens at the birds in the sky. They spread across the sky's canvas like a living painting...\nBy the time you come to, the sky has already darkened. You tidy up briefly and press onward.",
+  "STS2_CHARLOTTE_EVENT_BREATHTAKING_VIEW.pages.SUNSET.description": "You aim at the clouds and sunset glow along the distant horizon. Shifting colors stream across the sky, making you hold your breath with every press of the shutter...\nBy the time you come to, the sky has already darkened. You tidy up briefly and press onward.",
+
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.title": "The Merchant's Request",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.INITIAL.description": "A Spire merchant stops you in your tracks.\n\"Hey, friend — you're a journalist, right? Could you help advertise my little shop?\"",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.INITIAL.options.AGREE.title": "Gladly Accept",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.INITIAL.options.AGREE.description": "Gain 1 random relic.",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.INITIAL.options.DECLINE.title": "Politely Decline",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.INITIAL.options.DECLINE.description": "Gain 1 Rare potion.",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.AGREE.description": "\"Much appreciated! For your advertising fee, please take this!\" The merchant hands you a small keepsake.\nYou stow it in your pack and continue climbing.",
+  "STS2_CHARLOTTE_EVENT_MERCHANTS_REQUEST.pages.DECLINE.description": "The merchant isn't offended in the least — he simply hands you a small bottle.\n\"Brewed it myself. Give it a try! If you like it, come do business again sometime!\"\nYou thank the merchant, stow the bottle in your pack, and continue climbing.",
+
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.title": "A Heated Debate",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.description": "The moment you walk in, you see two fellows arguing furiously. Your arrival catches their attention: \"Hey! You! Come settle this for us!\"\nIt turns out a tall chef and a short chef are quarreling over how the fresh fish before them should be cooked. You decide to—",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.FRY.title": "Pan-Fry It",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.FRY.description": "Lose 3 Max HP. Recover 22 HP.",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.STEAM.title": "Steam It",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.STEAM.description": "Lose 1 potion. Gain 50 gold.",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.STEAM_LOCKED.title": "Steam It",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.INITIAL.options.STEAM_LOCKED.description": "You have no potions to lose.",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.FRY.description": "The tall chef is delighted. He guts and scales the fish at once, and before long produces a fragrant butter-fried fish.\nThey warmly invite you to share the meal — but the moment you take your first bite, the piping-hot fish scalds your tongue.\nAfter enjoying the meal, you bid them farewell and press onward.",
+  "STS2_CHARLOTTE_EVENT_HEATED_DEBATE.pages.STEAM.description": "The short chef nods repeatedly, seasons the fish with spices, and steams it to perfection.\nBut the light fare doesn't quite suit your tastes, so you simply pull out the drink at your waist and wash it down.\nAfter enjoying the meal, you bid them farewell and press onward.",
+
+  "DROWNING_BEACON.pages.INITIAL.options.CHARLOTTE_POLISH_LENS.title": "Polish the Lens",
+  "DROWNING_BEACON.pages.INITIAL.options.CHARLOTTE_POLISH_LENS.description": "Lose your starting relic. Gain the [gold]Fresnel Lens[/gold].",
+  "DROWNING_BEACON.pages.CHARLOTTE_POLISH_LENS.description": "You carefully polish the exquisite lens and realize it seems to be about the same size as your own.\nSo you try swapping out your old lens — success!\nUnfortunately, the old one slips from your hands during removal and falls into the bottomless lake far below the tower. Thankfully, this shiny new lens works quite well.",
+
+  "SELF_HELP_BOOK.pages.INITIAL.options.CHARLOTTE_RECORD_INFO.title": "Jot Down the Useful Bits",
+  "SELF_HELP_BOOK.pages.INITIAL.options.CHARLOTTE_RECORD_INFO.description": "Upgrade a card in your deck.",
+  "SELF_HELP_BOOK.pages.CHARLOTTE_RECORD_INFO.description": "You pore over the entire book from cover to cover. The mountains of errors and chaotic layout set your editorial radar ringing.\nStill, it contains some knowledge about the Spire, so the effort isn't a total loss. You tear out the useful pages, paste them into your notebook, and take your leave.",
+
+  "ROUND_TEA_PARTY.pages.INITIAL.options.CHARLOTTE_INCISIVE_ANALYSIS.title": "Analyze It Incisively",
+  "ROUND_TEA_PARTY.pages.INITIAL.options.CHARLOTTE_INCISIVE_ANALYSIS.description": "Gain a random potion.",
+  "ROUND_TEA_PARTY.pages.CHARLOTTE_INCISIVE_ANALYSIS.description": "You bluntly point out what's wrong with the tea before you, declaring that you'll publish their conduct in the paper.\nThe knights exchange glances, then dump the poisoned tea in front of you and serve their finest wine instead.\nYou have no wish to linger — you tuck one bottle into your pack and rise from the table.",
+
+  "POTION_COURIER.pages.INITIAL.options.CHARLOTTE_WAKE_HIM.title": "Try to Wake Him",
+  "POTION_COURIER.pages.INITIAL.options.CHARLOTTE_WAKE_HIM.description": "Lose all of your potions. Gain the [gold]Membership Card[/gold].",
+  "POTION_COURIER.pages.CHARLOTTE_WAKE_HIM.description": "Without hesitation, you unhook your canteen and feed its water to the poor soul sprawled before you.\nAfter a long while, he slowly comes around. To repay the debt of saving his life, he presses the only valuable thing on him into your hands.",
+
+  "CRYSTAL_SPHERE.pages.INITIAL.options.CHARLOTTE_PAWN.title": "Pawn Something",
+  "CRYSTAL_SPHERE.pages.INITIAL.options.CHARLOTTE_PAWN.description": "Remove a card from your deck. Add 1 [red]Doubt[/red] to your hand. Divine 4 times.",
+  "CRYSTAL_SPHERE.pages.CHARLOTTE_PAWN.description": "You take off your pack and hand over some of your valuables to the fortune-teller.\nShe finds the offering rather shabby, but draws back the curtain all the same.\nCan a divination paid for like this really tell your future true? You leave the stall with your doubts in tow."
+}

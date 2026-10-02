@@ -14,6 +14,8 @@ using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Mechanics;
+using MegaCrit.Sts2.Core.HoverTips;
+using CharlotteMod.Content.Keywords;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -23,6 +25,16 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class TimeLapse : CharlotteCardBase
 {
+    // 卡面提及[留影纪念],挂 Snapshot 词条(本卡自身非消耗,勿加 Exhaust 横幅)。
+    public override IEnumerable<CardKeyword> CanonicalKeywords
+    {
+        get { var set = new HashSet<CardKeyword>(); CharlotteKeywords.AddTo(set, CharlotteKeywords.Snapshot); return set; }
+    }
+
+    // 「消耗」为文案中的动作/牌堆引用(非本卡自身关键词),挂词条悬停而非 CanonicalKeywords 横幅(BurningPact 同款,悬浮扫描 2026-10-03)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        new IHoverTip[] { HoverTipFactory.FromKeyword(CardKeyword.Exhaust) };
+
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new DamageVar(12m, ValueProp.Move) };
 
     public TimeLapse()

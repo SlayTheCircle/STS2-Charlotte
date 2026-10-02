@@ -11,6 +11,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -20,6 +21,10 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class CustomLens : CharlotteCardBase
 {
+    // 文案提及的效果词/机制动词悬停(悬浮扫描 2026-10-03;ModCardTemplate 封死 ExtraHoverTips,扩展点 AdditionalHoverTips)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        new IHoverTip[] { HoverTipFactory.Static(StaticHoverTip.Block) };
+
     // 卡面提及[留影纪念],挂 Snapshot 关键词供悬停(剪贴相册/复制胶卷同款,2026-10-03 审阅 #35/#36)。
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {

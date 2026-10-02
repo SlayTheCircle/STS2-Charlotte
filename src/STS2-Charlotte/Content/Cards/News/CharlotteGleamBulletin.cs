@@ -11,6 +11,7 @@ using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Mechanics;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -20,6 +21,10 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteNewsPool))]
 public sealed class CharlotteGleamBulletin : CharlotteCardBase
 {
+    // 文案提及的效果词/机制动词悬停(悬浮扫描 2026-10-03;ModCardTemplate 封死 ExtraHoverTips,扩展点 AdditionalHoverTips)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        new IHoverTip[] { HoverTipFactory.FromPower<WeakPower>() };
+
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
         get

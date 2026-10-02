@@ -25,7 +25,9 @@ public sealed class InterviewNotebook : CharlotteRelicBase, ISnapshotObserver
 {
     public override RelicRarity Rarity => RelicRarity.Common;
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips => CharlotteKeywords.HoverTips(CharlotteKeywords.Snapshot);
+    // +「消耗」词条(悬浮扫描 2026-10-03)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => CharlotteKeywords.HoverTips(CharlotteKeywords.Snapshot)
+        .Concat(new IHoverTip[] { HoverTipFactory.FromKeyword(CardKeyword.Exhaust) });
 
     public async Task OnSnapshot(PlayerChoiceContext ctx, CardModel snapped, Player player)
     {

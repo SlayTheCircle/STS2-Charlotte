@@ -87,8 +87,8 @@
 | 爆炸新闻 | 稀有 | 3 | 技能 | 获得{Block:diff()}点[gold]格挡[/gold]。用随机的[gold]新闻[/gold]填满你的手牌。 |
 | 按图索骥 | 稀有 | 0 | 技能 | 从你的抽牌堆、弃牌堆各选择{Cards:diff()}张牌加入你的手牌。 |
 | 争分夺秒 | 稀有 | 1 | 技能 | 给予{LensFocusPower:diff()}层[gold]聚焦[/gold]。结束你的回合。 |
-| 真相大白 | 稀有 | 2 | 技能 | 消耗目标所有的[gold]聚焦[/gold]，然后对目标造成{CalculationExtra:diff()}倍于原有[gold]聚焦[/gold]层数的伤害。 |
-| 广角镜头 | 稀有 | 2 | 技能 | [gold]留影[/gold]你所有的手牌。这些牌的费用降低1。 |
+| 真相大白 | 稀有 | 2 | 技能 | 移除目标所有的[gold]聚焦[/gold]，然后对目标造成{CalculationExtra:diff()}倍于原有[gold]聚焦[/gold]层数的伤害。 |
+| 广角镜头 | 稀有 | 2 | 技能 | [gold]留影[/gold]你所有的手牌。这些[gold]留影纪念[/gold]的费用降低1。 |
 
 ## 能力（19）
 

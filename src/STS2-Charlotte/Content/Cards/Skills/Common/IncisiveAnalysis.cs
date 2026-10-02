@@ -25,7 +25,7 @@ public sealed class IncisiveAnalysis : CharlotteCardBase
     // 文案三要素悬停(vanilla Expose 同款,2026-10-03 审阅 #58;ExtraHoverTips 在 ModCardTemplate 已封死,走 AdditionalHoverTips)。
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => new IHoverTip[]
     {
-        HoverTipFactory.FromPower<VulnerablePower>(),
+        HoverTipFactory.FromPower<WeakPower>(),
         HoverTipFactory.FromPower<ArtifactPower>(),
         HoverTipFactory.Static(StaticHoverTip.Block),
     };

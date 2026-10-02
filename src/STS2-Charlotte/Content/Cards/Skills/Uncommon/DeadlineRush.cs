@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -21,6 +22,10 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class DeadlineRush : CharlotteCardBase
 {
+    // 文案提及的效果词/机制动词悬停(悬浮扫描 2026-10-03;ModCardTemplate 封死 ExtraHoverTips,扩展点 AdditionalHoverTips)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        new IHoverTip[] { HoverTipFactory.Static(StaticHoverTip.Block) };
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => new HashSet<CardKeyword> { CardKeyword.Exhaust };
 
     public DeadlineRush()

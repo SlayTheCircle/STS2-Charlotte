@@ -8,6 +8,10 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.Mechanics;
 using CharlotteMod.Content.RelicPools;
+using System.Collections.Generic;
+using MegaCrit.Sts2.Core.HoverTips;
+using CharlotteMod.Content.Keywords;
+using System.Linq;
 
 namespace CharlotteMod.Content.Relics;
 
@@ -18,6 +22,10 @@ namespace CharlotteMod.Content.Relics;
 [RegisterRelic(typeof(CharlotteRelicPool))]
 public sealed class LensCap : CharlotteRelicBase
 {
+    // 文案提及[留影纪念]/被消耗/格挡(悬浮扫描 2026-10-03,7 件遗物中唯一全缺悬停者)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => CharlotteKeywords.HoverTips(CharlotteKeywords.Snapshot)
+        .Concat(new IHoverTip[] { HoverTipFactory.FromKeyword(CardKeyword.Exhaust), HoverTipFactory.Static(StaticHoverTip.Block) });
+
     private const decimal BlockAmount = 2m;
 
     public override RelicRarity Rarity => RelicRarity.Common;

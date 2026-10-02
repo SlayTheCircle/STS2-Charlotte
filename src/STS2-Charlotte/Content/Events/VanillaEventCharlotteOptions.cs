@@ -67,7 +67,7 @@ internal static class VanillaEventCharlotteOptions
                 RoundTeaParty => new EventOption(__instance, () => AnalyzeTeaAsync(__instance),
                     "ROUND_TEA_PARTY.pages.INITIAL.options.CHARLOTTE_INCISIVE_ANALYSIS"),
                 PotionCourier => new EventOption(__instance, () => WakeHimAsync(__instance),
-                    "POTION_COURIER.pages.INITIAL.options.CHARLOTTE_WAKE_HIM"),
+                    "POTION_COURIER.pages.INITIAL.options.CHARLOTTE_WAKE_HIM", HoverTipFactory.FromRelic<MembershipCard>()),
                 CrystalSphere => new EventOption(__instance, () => PawnAsync(__instance),
                     "CRYSTAL_SPHERE.pages.INITIAL.options.CHARLOTTE_PAWN", HoverTipFactory.FromCardWithCardHoverTips<Doubt>()),
                 _ => null,

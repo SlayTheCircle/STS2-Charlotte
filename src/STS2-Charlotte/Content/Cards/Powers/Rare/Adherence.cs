@@ -9,6 +9,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.Powers;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -18,6 +19,10 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class Adherence : CharlotteCardBase
 {
+    // 文案提及的效果词/机制动词悬停(悬浮扫描 2026-10-03;ModCardTemplate 封死 ExtraHoverTips,扩展点 AdditionalHoverTips)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        new IHoverTip[] { HoverTipFactory.Static(StaticHoverTip.Block) };
+
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new PowerVar<AdherencePower>(1m) };
 
     public Adherence()

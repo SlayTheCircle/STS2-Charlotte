@@ -35,8 +35,13 @@ public sealed class BreathtakingView : CharlotteEventBase
     {
         return new List<EventOption>
         {
-            new EventOption(this, ShootRiver, InitialOptionKey("RIVER"), HoverTipFactory.FromEnchantment<Spiral>()),
-            new EventOption(this, ShootBirds, InitialOptionKey("BIRDS")),
+            // 选项文案点名打击/防御两张卡+涡旋附魔 →整卡悬浮(业主 2026-10-03 规则,ThisOrThat 同款)。
+            new EventOption(this, ShootRiver, InitialOptionKey("RIVER"),
+                HoverTipFactory.FromCardWithCardHoverTips<CharlotteStrike>()
+                    .Concat(HoverTipFactory.FromCardWithCardHoverTips<CharlotteDefend>())
+                    .Concat(HoverTipFactory.FromEnchantment<Spiral>())),
+            // 选项文案直接点名原版卡「异鸟扑击」→整卡悬浮(业主 2026-10-03 规则,ByrdonisNest 同款)。
+            new EventOption(this, ShootBirds, InitialOptionKey("BIRDS"), HoverTipFactory.FromCardWithCardHoverTips<ByrdSwoop>()),
             new EventOption(this, ShootSunset, InitialOptionKey("SUNSET")),
         };
     }

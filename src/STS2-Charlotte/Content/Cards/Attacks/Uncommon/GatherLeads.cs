@@ -14,6 +14,7 @@ using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Mechanics;
+using CharlotteMod.Content.Keywords;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -24,7 +25,11 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class GatherLeads : CharlotteCardBase
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new HashSet<CardKeyword> { CardKeyword.Exhaust };
+    // 卡面提及[留影纪念],补 Snapshot 词条悬停(悬浮扫描 2026-10-03)。
+    public override IEnumerable<CardKeyword> CanonicalKeywords
+    {
+        get { var set = new HashSet<CardKeyword> { CardKeyword.Exhaust }; CharlotteKeywords.AddTo(set, CharlotteKeywords.Snapshot); return set; }
+    }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new DamageVar(4m, ValueProp.Move) };
 

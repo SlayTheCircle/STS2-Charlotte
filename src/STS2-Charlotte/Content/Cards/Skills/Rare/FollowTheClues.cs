@@ -16,6 +16,9 @@ namespace CharlotteMod.Content.Cards;
 
 /// <summary>
 /// 按图索骥(稀有,0 费技能):从你的抽牌堆、弃牌堆各选择 1 张牌加入你的手牌。消耗。升级:各 2 张。
+/// 选出的牌已在战斗牌堆中,必须走通用 CardPileCmd.Add 移堆(vanilla Graveblast 同款)——
+/// AddGeneratedCardsToCombat 只接受无堆新卡,喂堆内卡抛 "not allowed to generate cards that
+/// already have a pile" 炸断出牌(2026-10-02 事故)。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class FollowTheClues : CharlotteCardBase
@@ -41,7 +44,7 @@ public sealed class FollowTheClues : CharlotteCardBase
         List<CardModel> taken = fromDraw.Concat(fromDiscard).ToList();
         if (taken.Count > 0)
         {
-            await CardPileCmd.AddGeneratedCardsToCombat(taken, PileType.Hand, base.Owner);
+            await CardPileCmd.Add(taken, PileType.Hand);
         }
     }
 

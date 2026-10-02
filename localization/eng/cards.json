@@ -205,5 +205,6 @@
   "STS2_CHARLOTTE_CARD_SMILE.selectionScreenPrompt": "Choose cards to Snapshot",
   "STS2_CHARLOTTE_CARD_LOOK_AT_CAMERA.title": "Look at the Camera!",
   "STS2_CHARLOTTE_CARD_LOOK_AT_CAMERA.description": "[gold]Snapshot[/gold] X cards in your hand. Over the next X turns, a random one of them is upgraded and returned to your hand each turn.",
-  "STS2_CHARLOTTE_CARD_LOOK_AT_CAMERA.selectionScreenPrompt": "Choose cards to Snapshot"
+  "STS2_CHARLOTTE_CARD_LOOK_AT_CAMERA.selectionScreenPrompt": "Choose cards to Snapshot",
+  "STS2_CHARLOTTE_CARD_FOLLOW_THE_CLUES.selectionScreenPromptDiscard": "Choose cards to retrieve from your discard pile"
 }

@@ -54,6 +54,23 @@ for f in glob.glob(f'{SRC_DIR}/Content/Enchantments/*.cs'):
     if m:
         need(m.group(1), 'enchantments', ['title', 'description', 'extraCardText'])
 
+
+# 代码侧 loc 键引用校验(2026-10-02 按图索骥事故:LocString 引用的键缺失会原文回显在界面):
+# ① 字面量 new LocString("表","键") → 键必须存在于对应表(双语);
+# ② 卡类源码出现 ".selectionScreenPromptDiscard" 字面 → 该卡在 cards 表必须有该后缀键。
+import glob as _glob
+for f in _glob.glob(f'{SRC_DIR}/**/*.cs', recursive=True):
+    src = open(f).read()
+    for table, key in re.findall(r'new LocString\("(\w+)",\s*"([^"]+)"\)', src):
+        if key.endswith('.title') or '+' in key:
+            continue  # 事件 Entry.title 之类动态拼接不动;纯字面量键才校验
+        for lang in ('zhs', 'eng'):
+            if key not in load(lang, table):
+                errors.append(f'[{lang}] 代码引用的键缺失: {table}/{key} ({f})')
+    m = re.search(r'class (\w+)\s*:\s*' + CARD_BASE, src)
+    if m and '.selectionScreenPromptDiscard' in src:
+        need(m.group(1), 'cards', ['selectionScreenPromptDiscard'])
+
 for w in warns:
     print('警告:', w)
 for e in errors:

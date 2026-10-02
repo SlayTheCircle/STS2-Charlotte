@@ -21,8 +21,6 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class BreakingNews : CharlotteCardBase
 {
-    private const int HandSizeLimit = 10;
-
     public override bool GainsBlock => true;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords
@@ -50,7 +48,7 @@ public sealed class BreakingNews : CharlotteCardBase
             return;
         }
         int current = PileType.Hand.GetPile(base.Owner).Cards.Count;
-        int toAdd = HandSizeLimit - current;
+        int toAdd = CardPile.MaxCardsInHand - current;
         for (int i = 0; i < toAdd; i++)
         {
             CardModel news = News.CreateRandom(base.Owner, combatState);

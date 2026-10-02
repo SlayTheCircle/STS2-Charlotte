@@ -23,6 +23,7 @@ public sealed class OnTheBeat : CharlotteCardBase
         {
             var set = new HashSet<CardKeyword>();
             CharlotteKeywords.AddTo(set, CharlotteKeywords.News);
+            CharlotteKeywords.AddTo(set, CharlotteKeywords.Snapshot); // 卡面提及[留影纪念](#63)
             return set;
         }
     }

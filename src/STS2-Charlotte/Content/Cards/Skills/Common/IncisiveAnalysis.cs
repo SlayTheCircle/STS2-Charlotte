@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -20,6 +21,14 @@ namespace CharlotteMod.Content.Cards;
 public sealed class IncisiveAnalysis : CharlotteCardBase
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => new HashSet<CardKeyword> { CardKeyword.Exhaust };
+
+    // 文案三要素悬停(vanilla Expose 同款,2026-10-03 审阅 #58;ExtraHoverTips 在 ModCardTemplate 已封死,走 AdditionalHoverTips)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new IHoverTip[]
+    {
+        HoverTipFactory.FromPower<VulnerablePower>(),
+        HoverTipFactory.FromPower<ArtifactPower>(),
+        HoverTipFactory.Static(StaticHoverTip.Block),
+    };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new PowerVar<WeakPower>(1m) };
 

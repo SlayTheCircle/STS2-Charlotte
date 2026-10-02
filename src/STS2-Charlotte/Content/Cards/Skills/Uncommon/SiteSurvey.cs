@@ -28,6 +28,7 @@ public sealed class SiteSurvey : CharlotteCardBase
         {
             var set = new HashSet<CardKeyword>();
             CharlotteKeywords.AddTo(set, CharlotteKeywords.Focus);
+            CharlotteKeywords.AddTo(set, CharlotteKeywords.Snapshot); // 卡面提及[留影纪念](#63)
             return set;
         }
     }

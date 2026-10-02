@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -20,6 +21,10 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class Overtime : CharlotteCardBase
 {
+    // 文案「消耗1张牌」的机制悬停(vanilla BurningPact 同款,2026-10-03 审阅 #62;ExtraHoverTips 在 ModCardTemplate 已封死,走 AdditionalHoverTips)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        new IHoverTip[] { HoverTipFactory.FromKeyword(CardKeyword.Exhaust) };
+
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new EnergyVar(2) };
 
     public Overtime()

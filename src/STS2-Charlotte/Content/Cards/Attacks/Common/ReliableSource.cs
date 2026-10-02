@@ -25,7 +25,6 @@ public sealed class ReliableSource : CharlotteCardBase
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(3m, ValueProp.Move),
         new CalculationBaseVar(3m),
         new ExtraDamageVar(3m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(

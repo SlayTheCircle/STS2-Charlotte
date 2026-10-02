@@ -26,8 +26,6 @@ public sealed class SolidEvidence : CharlotteCardBase
 {
     private const decimal PenaltyPerCard = 6m;
 
-    private const decimal BaseCost = 3m;
-
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new CalculationBaseVar(30m),
@@ -48,8 +46,9 @@ public sealed class SolidEvidence : CharlotteCardBase
         {
             return false;
         }
+        // 增量式:基于链式 originalCost 扣减,保留先序费用钩子的修正(2026-10-03 审阅 #48)。
         int others = PlayCount.CardsThisTurn(base.Owner);
-        modifiedCost = Math.Max(0m, BaseCost - others);
+        modifiedCost = Math.Max(0m, originalCost - others);
         return true;
     }
 

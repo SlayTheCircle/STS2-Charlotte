@@ -21,8 +21,6 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class ExposureFootage : CharlotteCardBase
 {
-    private const decimal BaseCost = 4m;
-
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new DamageVar(20m, ValueProp.Move) };
 
     public ExposureFootage()
@@ -37,7 +35,8 @@ public sealed class ExposureFootage : CharlotteCardBase
         {
             return false;
         }
-        modifiedCost = Math.Max(0m, BaseCost - PileType.Exhaust.GetPile(base.Owner).Cards.Count);
+        // 增量式:基于链式 originalCost 扣减(2026-10-03 审阅 #51)。
+        modifiedCost = Math.Max(0m, originalCost - PileType.Exhaust.GetPile(base.Owner).Cards.Count);
         return true;
     }
 

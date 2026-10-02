@@ -22,8 +22,6 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class TrackingInvestigation : CharlotteCardBase
 {
-    private const decimal BaseCost = 9m;
-
     private int _exhaustsAtLastCast;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new DamageVar(50m, ValueProp.Move) };
@@ -42,7 +40,8 @@ public sealed class TrackingInvestigation : CharlotteCardBase
         {
             return false;
         }
-        modifiedCost = Math.Max(0m, BaseCost - Discount);
+        // 增量式:基于链式 originalCost 扣减(2026-10-03 审阅 #52)。
+        modifiedCost = Math.Max(0m, originalCost - Discount);
         return true;
     }
 

@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
+using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.Mechanics;
 
 namespace CharlotteMod.Content.Cards;
@@ -23,6 +24,17 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class OneMoreShot : CharlotteCardBase
 {
+    // 卡面提及[留影纪念],挂 Snapshot 供悬停(剪贴相册同款,#63)。
+    public override IEnumerable<CardKeyword> CanonicalKeywords
+    {
+        get
+        {
+            var set = new HashSet<CardKeyword>();
+            CharlotteKeywords.AddTo(set, CharlotteKeywords.Snapshot);
+            return set;
+        }
+    }
+
     public override bool GainsBlock => true;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new BlockVar(6m, ValueProp.Move) };

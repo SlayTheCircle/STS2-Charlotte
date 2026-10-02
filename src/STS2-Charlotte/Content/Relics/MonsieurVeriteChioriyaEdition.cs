@@ -46,7 +46,7 @@ public sealed class MonsieurVeriteChioriyaEdition : CharlotteRelicBase, ISnapsho
 
     public override async Task BeforeCombatStart()
     {
-        // 战斗计数器宿主:初始遗物每局常驻(千织屋版换装后仍在),双变体幂等挂载。
+        // 消耗堆回归扫描宿主(唇枪舌剑):初始遗物每局常驻(千织屋版换装后仍在),双变体幂等挂载。
         if (base.Owner.Creature.GetPower<Powers.CombatTrackerPower>() == null)
         {
             await PowerCmd.Apply<Powers.CombatTrackerPower>(new ThrowingPlayerChoiceContext(), base.Owner.Creature, 0, base.Owner.Creature, null);

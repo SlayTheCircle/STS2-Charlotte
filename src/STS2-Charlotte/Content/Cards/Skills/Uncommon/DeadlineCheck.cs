@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
-using CharlotteMod.Content.Powers;
+using CharlotteMod.Content.Mechanics;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -27,7 +27,7 @@ public sealed class DeadlineCheck : CharlotteCardBase
         new CalculationBaseVar(4m),
         new CalculationExtraVar(2m),
         new CalculatedBlockVar(ValueProp.Move).WithMultiplier(
-            (CardModel card, Creature? _) => card.Owner.Creature.GetPower<CombatTrackerPower>()?.ExhaustsThisTurn ?? 0),
+            (CardModel card, Creature? _) => PlayCount.ExhaustsThisTurn(card.Owner)),
     };
 
     public DeadlineCheck()

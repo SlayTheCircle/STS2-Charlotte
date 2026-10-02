@@ -15,7 +15,6 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.Mechanics;
-using CharlotteMod.Content.Powers;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -49,7 +48,7 @@ public sealed class CoolToneShot : CharlotteCardBase
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        int maxSnaps = 1 + (base.Owner.Creature.GetPower<CombatTrackerPower>()?.AttacksThisTurn ?? 0);
+        int maxSnaps = 1 + PlayCount.AttacksThisTurn(base.Owner);
         var prompt = new LocString("cards", base.Id.Entry + ".selectionScreenPrompt");
         IEnumerable<CardModel> chosen = await CardSelectCmd.FromCombatPile(
             choiceContext, PileType.Discard.GetPile(base.Owner), base.Owner,

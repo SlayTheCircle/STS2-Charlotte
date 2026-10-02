@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
-using CharlotteMod.Content.Powers;
+using CharlotteMod.Content.Mechanics;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -33,7 +33,7 @@ public sealed class SolidEvidence : CharlotteCardBase
         new CalculationBaseVar(30m),
         new ExtraDamageVar(6m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(
-            (CardModel card, Creature? _) => -(card.Owner.Creature.GetPower<CombatTrackerPower>()?.CardsThisTurn ?? 0)),
+            (CardModel card, Creature? _) => -PlayCount.CardsThisTurn(card.Owner)),
     };
 
     public SolidEvidence()
@@ -48,7 +48,7 @@ public sealed class SolidEvidence : CharlotteCardBase
         {
             return false;
         }
-        int others = base.Owner.Creature.GetPower<CombatTrackerPower>()?.CardsThisTurn ?? 0;
+        int others = PlayCount.CardsThisTurn(base.Owner);
         modifiedCost = Math.Max(0m, BaseCost - others);
         return true;
     }

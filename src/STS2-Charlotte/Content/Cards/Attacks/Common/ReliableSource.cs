@@ -12,13 +12,13 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
-using CharlotteMod.Content.Powers;
+using CharlotteMod.Content.Mechanics;
 
 namespace CharlotteMod.Content.Cards;
 
 /// <summary>
 /// 可靠信源(普通,0 费攻击):造成 3 点伤害,抽 1 张牌。本回合每打出过 1 张其他攻击牌,
-/// 伤害提升 3 点(结算时自身尚未计入——AfterCardPlayed 在打完后才计数)。升级:每张 +4。
+/// 伤害提升 3 点(读 PlayCount/History 的 Finished 条目,结算时自身尚未计入)。升级:每张 +4。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class ReliableSource : CharlotteCardBase
@@ -29,7 +29,7 @@ public sealed class ReliableSource : CharlotteCardBase
         new CalculationBaseVar(3m),
         new ExtraDamageVar(3m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(
-            (CardModel card, Creature? _) => card.Owner.Creature.GetPower<CombatTrackerPower>()?.AttacksThisTurn ?? 0),
+            (CardModel card, Creature? _) => PlayCount.AttacksThisTurn(card.Owner)),
         new CardsVar(1),
     };
 

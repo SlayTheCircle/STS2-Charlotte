@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
-using CharlotteMod.Content.Powers;
+using CharlotteMod.Content.Mechanics;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -29,7 +29,7 @@ public sealed class SelfDefeating : CharlotteCardBase
         new CalculationBaseVar(3m),
         new CalculationExtraVar(3m),
         new CalculatedBlockVar(ValueProp.Move).WithMultiplier(
-            (CardModel card, Creature? _) => card.Owner.Creature.GetPower<CombatTrackerPower>()?.AttacksThisTurn ?? 0),
+            (CardModel card, Creature? _) => PlayCount.AttacksThisTurn(card.Owner)),
         new PowerVar<VulnerablePower>(1m),
     };
 

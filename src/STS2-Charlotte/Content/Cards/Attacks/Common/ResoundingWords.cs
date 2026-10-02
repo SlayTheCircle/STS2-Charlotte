@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
-using CharlotteMod.Content.Powers;
+using CharlotteMod.Content.Mechanics;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -34,7 +34,7 @@ public sealed class ResoundingWords : CharlotteCardBase
     {
     }
 
-    private bool IsFirstAttackThisTurn => (base.Owner.Creature.GetPower<CombatTrackerPower>()?.AttacksThisTurn ?? 0) == 0;
+    private bool IsFirstAttackThisTurn => PlayCount.AttacksThisTurn(base.Owner) == 0;
 
     protected override bool ShouldGlowGoldInternal => IsFirstAttackThisTurn;
 

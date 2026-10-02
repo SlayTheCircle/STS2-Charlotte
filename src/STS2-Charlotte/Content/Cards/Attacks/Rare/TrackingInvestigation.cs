@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
-using CharlotteMod.Content.Powers;
+using CharlotteMod.Content.Mechanics;
 
 namespace CharlotteMod.Content.Cards;
 
@@ -33,7 +33,7 @@ public sealed class TrackingInvestigation : CharlotteCardBase
     {
     }
 
-    private int Discount => Math.Max(0, (base.Owner.Creature.GetPower<CombatTrackerPower>()?.ExhaustsThisCombat ?? 0) - _exhaustsAtLastCast);
+    private int Discount => Math.Max(0, PlayCount.ExhaustsThisCombat(base.Owner) - _exhaustsAtLastCast);
 
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
@@ -48,7 +48,7 @@ public sealed class TrackingInvestigation : CharlotteCardBase
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        _exhaustsAtLastCast = base.Owner.Creature.GetPower<CombatTrackerPower>()?.ExhaustsThisCombat ?? 0;
+        _exhaustsAtLastCast = PlayCount.ExhaustsThisCombat(base.Owner);
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay)
             .TargetingAllOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_heavy_blunt")

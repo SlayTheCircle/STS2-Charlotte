@@ -26,7 +26,7 @@ public interface ISnapshotObserver
 /// <summary>
 /// [留影]机制内核:选择一张手牌,将其消耗,并在抽牌堆放入一张效果/类型/费用完全相同、
 /// 带有消耗的克隆([留影纪念],以 <see cref="SnapshotMemento"/> 标记)。
-/// 选择状态牌或诅咒牌时不生成克隆,改为抽 1 张牌(所选牌保留在手)。
+/// 选择状态牌或诅咒牌时同样将其消耗,但不生成克隆,改为抽 1 张牌。
 /// 单一收口:卡牌/遗物/药水的一切留影入口都经由本类;[聚焦]触发与「每回合首次留影」
 /// 计数后续在此挂接,不在各调用点散落。
 /// </summary>
@@ -56,6 +56,9 @@ public static class Snapshot
     {
         if (target.Type == CardType.Status || target.Type == CardType.Curse)
         {
+            // 设计语义:留影的「将其消耗」照常执行,只是不生成纪念,改为抽 1 张牌
+            // (2026-10-02 Mirror 反馈:此前误实现为「保留在手」)。
+            await CardCmd.Exhaust(ctx, target);
             await CardPileCmd.Draw(ctx, 1m, player);
             // 状态/诅咒的转化同样视为一次[留影]发生(聚焦照常结算;每回合首次留影计数亦然)。
             await TriggerFocus(target);

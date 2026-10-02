@@ -81,10 +81,11 @@ public static class Snapshot
         CardModel memento = target.CreateClone();
         await CardCmd.Afflict<SnapshotMemento>(memento, 1m);
         CardCmd.ApplyKeyword(memento, CardKeyword.Exhaust);
-        // 抽牌堆入堆走 Random 位,预览时长用默认 1.2s(CaptureSpirit/Reave 等原版「生成牌入抽牌堆」
-        // 同型惯例;2.2s 是原版弃牌循环卡的特例时长,留影高频触发下滞空观感偏长,2026-10-02 调整)。
+        // 抽牌堆入堆走 Random 位;预览滞空压到 0.6s(原版默认 1.2s):单次预览总时长
+        // = 0.25s 入场 + hold + 1.0~1.75s 引擎飞行拖尾,留影是本模组最高频动作,
+        // 默认预算下观感明显偏长(2026-10-02 两轮反馈:2.2s→1.2s→0.6s)。
         CardCmd.PreviewCardPileAdd(
-            await CardPileCmd.AddGeneratedCardToCombat(memento, PileType.Draw, player, CardPilePosition.Random));
+            await CardPileCmd.AddGeneratedCardToCombat(memento, PileType.Draw, player, CardPilePosition.Random), 0.6f);
         await TriggerFocus(target);
         await NotifyObservers(ctx, target, player);
     }

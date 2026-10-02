@@ -67,13 +67,15 @@ public sealed class BreathtakingView : CharlotteEventBase
         SetEventFinished(PageDescription("BIRDS"));
     }
 
-    /// <summary>拍摄晚霞:3 张卡牌奖励,全部为升级态(CreateForReward 后统一 Upgrade,不用升级概率 roll)。</summary>
+    /// <summary>拍摄晚霞:3 张卡牌奖励,全部为升级态(统一 Upgrade,不用升级概率 roll)。
+    /// CreateForReward 的 r.Card 已是可直接入奖励/入堆的实例,再 ToMutable() 会抛
+    /// MutableModelException 把选项卡死(2026-10-02 事故;EndlessConveyor/HeftyTablet 均直用 .Card)。</summary>
     private async Task ShootSunset()
     {
         CardCreationOptions options = CardCreationOptions.ForNonCombatWithDefaultOdds(
             new[] { base.Owner.Character.CardPool });
         List<CardModel> cards = CardFactory.CreateForReward(base.Owner, 3, options)
-            .Select(r => r.Card.ToMutable())
+            .Select(r => r.Card)
             .ToList();
         foreach (CardModel card in cards)
         {

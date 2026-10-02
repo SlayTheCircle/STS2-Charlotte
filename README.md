@@ -6,7 +6,7 @@
 
 ## 获取与安装
 
-当前仓库提供源码、双语本地化、文本资源配置及整理后的公开设计资料。推荐经 Steam 工坊订阅安装(物品链接待首发后补充),并一并订阅 [RitsuLib](https://steamcommunity.com/sharedfiles/filedetails/?id=3747602295)——工坊物品按当前游戏版本自动选择内容,切换分支无需换装;也可从 [GitHub Releases](https://github.com/SlayTheCircle/STS2-Charlotte/releases) 下载对应游戏目标的安装包,将其中 `STS2-Charlotte/` 目录放入游戏 `mods/`。安装或覆盖前关闭游戏(游戏会递归扫描 `mods/` 下一切含清单的目录,备份移出 `mods/`);保存原版本包便于回退。依赖最低版本以[模组清单](STS2-Charlotte.json)为准。源码检出中不包含多媒体,单独编译 DLL 不构成可安装的完整包。
+当前仓库提供源码、双语本地化、文本资源配置及整理后的公开设计资料。推荐经 [Steam 工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3812082715)订阅安装,并一并订阅 [RitsuLib](https://steamcommunity.com/sharedfiles/filedetails/?id=3747602295)——工坊物品按当前游戏版本自动选择内容,切换分支无需换装;也可从 [GitHub Releases](https://github.com/SlayTheCircle/STS2-Charlotte/releases) 下载对应游戏目标的安装包,将其中 `STS2-Charlotte/` 目录放入游戏 `mods/`。安装或覆盖前关闭游戏(游戏会递归扫描 `mods/` 下一切含清单的目录,备份移出 `mods/`);保存原版本包便于回退。依赖最低版本以[模组清单](STS2-Charlotte.json)为准。源码检出中不包含多媒体,单独编译 DLL 不构成可安装的完整包。
 
 ## 开发
 

@@ -109,7 +109,8 @@ declare -A POWERS=(
     ['时效原则']='TimelinessPower' ['复制胶卷']='ReplayRollPower' ['妙笔生花']='FloweryPenPower'
     ['切中要害']='SharpReportPower' ['摄影技巧']='PhotographySkillPower' ['摄影形态']='PhotographyFormPower'
     ['真实至上']='TruthAbovePower' ['三审三校']='TripleCheckPower' ['洛阳纸贵']='LuoyangPaperPower'
-    ['最佳记者']='BestJournalistPower' ['镜头清洁剂']='LensCleanerPower' ['职业素养']='ProfessionalismPower'
+    ['最佳记者']='BestJournalistPower' ['全勤奖金']='PerfectAttendancePower'
+    ['谨遵事实']='AdherencePower'
 )
 ok=0
 for zh in "${!POWERS[@]}"; do
@@ -124,5 +125,7 @@ convert "$SRC/图标/聚焦-图标.png" -resize 256x256 "$DST/powers/CombatTrack
 # 墨迹未干(OneTurnBlockPersistPower)暂复用妙笔生花母版(书法主题),正式图标已列入需求单
 convert "$SRC/图标/妙笔生花-图标.png" -resize 256x256 "$DST/powers/OneTurnBlockPersistPower.png" 2>/dev/null || true
 convert "$SRC/药水/枫丹洋葱汤.png" -resize 256x256 "$DST/powers/OnionSoupPower.png"
+# 镜头清洁剂 power 图标复用药水母版(无专属图标,图标目录无此条目)
+convert "$SRC/药水/镜头清洁剂.png" -resize 256x256 "$DST/powers/LensCleanerPower.png"
 echo "Power 图标: $ok+2 张就绪"
 echo "铺装完成 → $DST"

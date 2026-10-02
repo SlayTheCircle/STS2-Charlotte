@@ -15,9 +15,8 @@ namespace CharlotteMod.Content.Cards;
 
 /// <summary>
 /// 辟谣祛魅(稀有,0 费攻击):造成 4 点伤害。这张卡的耗能增加 1,且造成的伤害翻倍(每次打出后永久累计,本场战斗)。升级:变为三倍。
-/// 递增为逐实例状态:基础 4 × 倍率^次数;费用 +次数。
-/// 倍率为指数公式,引擎计算三件套(线性)表达不了,不入面板变量——升级差异由 loc 的
-/// {IfUpgraded:show:变为三倍|翻倍} 呈现(私有属性升级不给面板反馈,玩家会以为升了个寂寞)。
+/// 面板伤害随打出直接推进(BaseValue setter),数字始终预告下一打;费用 +次数(_casts)。
+/// 升级差异另由 loc 的 {IfUpgraded:show:变为三倍|翻倍} 呈现。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class DebunkAndDispel : CharlotteCardBase
@@ -36,12 +35,12 @@ public sealed class DebunkAndDispel : CharlotteCardBase
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
+        // 结算用当前面板值,随后把面板推进到下一次的期望值(4→8→16…/升级 4→12→36…)——
+        // 卡面数字始终预告下一打伤害(DynamicVar.BaseValue setter 自动重置预览;战斗实例重置自然回 4)。
+        // 倍率取「打出当时」的:升级只放大利好后续增长,不追溯放大已打出的次数。
         decimal total = base.DynamicVars.Damage.BaseValue;
-        for (int i = 0; i < _casts; i++)
-        {
-            total *= Multiplier;
-        }
         _casts++;
+        base.DynamicVars.Damage.BaseValue = total * Multiplier;
         await DamageCmd.Attack(total).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

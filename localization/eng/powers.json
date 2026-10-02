@@ -97,5 +97,8 @@
   "STS2_CHARLOTTE_POWER_TRIPLE_CHECK_POWER.smartDescription": "Turn start: pick 1 of 3 News.",
   "STS2_CHARLOTTE_POWER_LOOK_AT_CAMERA_POWER.title": "Look at the Camera",
   "STS2_CHARLOTTE_POWER_LOOK_AT_CAMERA_POWER.description": "At turn start, one of the snapshotted cards is upgraded and returned to your hand.",
-  "STS2_CHARLOTTE_POWER_LOOK_AT_CAMERA_POWER.smartDescription": "Turn start: snapshotted card upgraded to hand."
+  "STS2_CHARLOTTE_POWER_LOOK_AT_CAMERA_POWER.smartDescription": "Turn start: snapshotted card upgraded to hand.",
+  "STS2_CHARLOTTE_POWER_ONE_TURN_BLOCK_PERSIST_POWER.title": "Ink Still Wet",
+  "STS2_CHARLOTTE_POWER_ONE_TURN_BLOCK_PERSIST_POWER.description": "Your Block is not removed at the start of your turn. (Consumes 1 stack each time)",
+  "STS2_CHARLOTTE_POWER_ONE_TURN_BLOCK_PERSIST_POWER.smartDescription": "Block persists next turn."
 }

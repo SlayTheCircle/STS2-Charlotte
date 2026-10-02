@@ -97,5 +97,8 @@
   "STS2_CHARLOTTE_POWER_TRIPLE_CHECK_POWER.smartDescription": "回合开始：三选一[新闻]入手。",
   "STS2_CHARLOTTE_POWER_LOOK_AT_CAMERA_POWER.title": "看镜头",
   "STS2_CHARLOTTE_POWER_LOOK_AT_CAMERA_POWER.description": "接下来的回合开始时，被留影的牌升级并返回手牌。",
-  "STS2_CHARLOTTE_POWER_LOOK_AT_CAMERA_POWER.smartDescription": "回合开始：一张被留影的牌升级回手。"
+  "STS2_CHARLOTTE_POWER_LOOK_AT_CAMERA_POWER.smartDescription": "回合开始：一张被留影的牌升级回手。",
+  "STS2_CHARLOTTE_POWER_ONE_TURN_BLOCK_PERSIST_POWER.title": "墨迹未干",
+  "STS2_CHARLOTTE_POWER_ONE_TURN_BLOCK_PERSIST_POWER.description": "你的格挡不会在回合开始时消失。（每次生效后消耗 1 层）",
+  "STS2_CHARLOTTE_POWER_ONE_TURN_BLOCK_PERSIST_POWER.smartDescription": "下回合开始时格挡不消失。"
 }

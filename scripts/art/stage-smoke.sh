@@ -121,6 +121,8 @@ for zh in "${!POWERS[@]}"; do
 done
 # 无母版补位:战斗计数器(永不可见)与洋葱汤热气(药水母版复用)
 convert "$SRC/图标/聚焦-图标.png" -resize 256x256 "$DST/powers/CombatTrackerPower.png" 2>/dev/null || true
+# 墨迹未干(OneTurnBlockPersistPower)暂复用妙笔生花母版(书法主题),正式图标已列入需求单
+convert "$SRC/图标/妙笔生花-图标.png" -resize 256x256 "$DST/powers/OneTurnBlockPersistPower.png" 2>/dev/null || true
 convert "$SRC/药水/枫丹洋葱汤.png" -resize 256x256 "$DST/powers/OnionSoupPower.png"
 echo "Power 图标: $ok+2 张就绪"
 echo "铺装完成 → $DST"

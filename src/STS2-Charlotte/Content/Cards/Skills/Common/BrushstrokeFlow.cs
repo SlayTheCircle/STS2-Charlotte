@@ -14,7 +14,8 @@ namespace CharlotteMod.Content.Cards;
 
 /// <summary>
 /// 笔走龙蛇(普通,1 费技能):获得 9 点格挡。下个回合开始时,你的格挡不会消失
-/// (Prolong 同型:把当前格挡记入 BlockNextTurnPower,等效不消失)。升级:13 格挡。
+/// (壁垒型:OneTurnBlockPersistPower 跳过一次回合开始清除,后续打出的防御牌同样受保护;
+/// 此前误用 BlockNextTurnPower 快照,只保留打出时刻的格挡,后打的防御照常流失)。升级:13 格挡。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class BrushstrokeFlow : CharlotteCardBase
@@ -31,10 +32,7 @@ public sealed class BrushstrokeFlow : CharlotteCardBase
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
-        if (base.Owner.Creature.Block > 0)
-        {
-            await PowerCmd.Apply<BlockNextTurnPower>(choiceContext, base.Owner.Creature, base.Owner.Creature.Block, base.Owner.Creature, this);
-        }
+        await PowerCmd.Apply<Powers.OneTurnBlockPersistPower>(choiceContext, base.Owner.Creature, 1, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

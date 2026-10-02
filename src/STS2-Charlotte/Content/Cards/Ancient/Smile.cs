@@ -19,7 +19,8 @@ namespace CharlotteMod.Content.Cards;
 
 /// <summary>
 /// 笑一个！(先古,0 费技能):获得 5 点格挡。选择你最多 3 张手牌,将他们[留影]。升级:8 格挡。
-/// 奥罗巴斯给予的先古卡(CardRarity.Ancient 进池即修 Ancient 池崩溃,Navia CannonRoar 同注)。
+/// 奥洛巴斯古老牙齿给予:超越映射挂在 CharlotteKacha 上(其自身进池仅因 CardRarity.Ancient
+/// 需在池内,接牙后由 RitsuLib TranscendenceCardsPatch 自动从尘封魔典候选剔除)。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class Smile : CharlotteCardBase

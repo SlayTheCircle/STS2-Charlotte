@@ -19,6 +19,7 @@ namespace CharlotteMod.Content.Cards;
 /// 升级:格挡 5。选牌提示走本卡的 selectionScreenPrompt loc 键(Snapshot.FromHand 读取)。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
+[RegisterArchaicToothTranscendence(typeof(Smile))] // 古老牙齿:咔嚓!→笑一个!(0费5格挡留影至多3,vanilla Bash→Break 同型先古化)
 public sealed class CharlotteKacha : CharlotteCardBase
 {
     public override bool GainsBlock => true;

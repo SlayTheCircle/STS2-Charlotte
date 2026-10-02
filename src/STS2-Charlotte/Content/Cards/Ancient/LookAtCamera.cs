@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
+using CharlotteMod.Content.Characters;
 using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.Mechanics;
 using CharlotteMod.Content.Powers;
@@ -19,9 +20,11 @@ namespace CharlotteMod.Content.Cards;
 
 /// <summary>
 /// 看镜头！(先古,X 费能力):选择 X 张手牌[留影]。在接下来的 X 个回合内,将被消耗的手牌中
-/// 随机一张牌升级并返回你的手牌。升级:改为选择。达弗给予的先古卡。
+/// 随机一张牌升级并返回你的手牌。升级:改为选择。达弗给予的先古卡(尘封魔典确定性候选;
+/// 不注册则魔典在两张先古间随机,可能给出属于古老牙齿的笑一个!)。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
+[RegisterDustyTomeCard(typeof(Charlotte))]
 public sealed class LookAtCamera : CharlotteCardBase
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords

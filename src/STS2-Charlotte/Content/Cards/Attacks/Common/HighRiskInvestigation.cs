@@ -15,7 +15,7 @@ namespace CharlotteMod.Content.Cards;
 
 /// <summary>
 /// 高危调查(普通,0 费攻击):造成 4 点伤害。抽 1 张牌。这张卡的伤害下降 1 点
-/// (每次打出后永久-1,本场战斗内累计;升级无变化——设计待确认项#1,两表一致故照录)。
+/// (每次打出后永久-1,本场战斗内累计;升级:伤害 4→7,Mirror 2026-10-02 确认)。
 /// 战斗实例每场重建,惩罚字段天然随战斗清零。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
@@ -43,5 +43,10 @@ public sealed class HighRiskInvestigation : CharlotteCardBase
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
+    }
+
+    protected override void OnUpgrade()
+    {
+        base.DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

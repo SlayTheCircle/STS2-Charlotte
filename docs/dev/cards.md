@@ -70,3 +70,5 @@
 ## 5. 本地化
 
 卡牌键 `STS2_<MOD>_CARD_<类名蛇形大写>.{title,description}`；可见 Power 三键 `{title,description,smartDescription}`。描述里的动态数值用 `{VarName:diff()}`（audit-placeholders 校验变量存在）。**PowerVar 占位符用类名不经前缀**（`{LoadPower:diff()}` 形态）。中英两表键集必须一致（audit-assets 校验）。
+
+**升级后文本变化的正解是引擎内建 `IfUpgraded` 变量**（CardModel 描述解析时无条件注入，原版 DARKNESS 等实证）：`{IfUpgraded:show:升级后|升级前}`；单臂留空即可只在一侧显示（如升级后移除负面：`…{IfUpgraded:show:|本回合内你无法再获得格挡。}`）。数值差用 `diff()` 自动呈现，不要为升级另写键。`IfUpgraded` 已列入 audit-placeholders 的 ENGINE_VARS 白名单。

@@ -138,7 +138,7 @@
   "STS2_CHARLOTTE_CARD_TEMPORARY_EVADE.description": "Temporary Evade",
   "STS2_CHARLOTTE_CARD_OVERTIME.description": "Overtime",
   "STS2_CHARLOTTE_CARD_OVERTIME.selectionScreenPrompt": "Choose a card to Exhaust",
-  "STS2_CHARLOTTE_CARD_DEADLINE_RUSH.description": "Deadline Rush",
+  "STS2_CHARLOTTE_CARD_DEADLINE_RUSH.description": "Draw cards until your hand is full. {IfUpgraded:show:|You cannot gain Block for the rest of this turn.}",
   "STS2_CHARLOTTE_CARD_BACKLIT_SHOT.description": "Backlit Shot",
   "STS2_CHARLOTTE_CARD_BACKLIT_SHOT.selectionScreenPrompt": "Choose a card in your hand",
   "STS2_CHARLOTTE_CARD_CUT_TO_THE_CHASE.description": "Cut to the Chase",

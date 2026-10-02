@@ -70,7 +70,7 @@
 | 脑洞大开 | 罕见 | 1 | 技能 | 消耗你手中的一张[gold]新闻[/gold]。接下来的{BrainstormPower:diff()}个回合开始时，将这张新闻的0费、带有消耗的复制品加入你的手牌。 |
 | 占领头版 | 罕见 | 1 | 技能 | 在你的抽牌堆里生成随机{Cards:diff()}张[gold]新闻[/gold]，并随机抽取其中一张。 |
 | 时效核验 | 罕见 | 1 | 技能 | 获得{CalculatedBlock:diff()}点[gold]格挡[/gold]。本回合内你每消耗过1张牌，就再获得{CalculationExtra:diff()}点格挡。 |
-| 奋笔疾书 | 罕见 | 1 | 技能 | 抽满你的手牌。本回合内你无法再获得格挡。 |
+| 奋笔疾书 | 罕见 | 1 | 技能 | 抽满你的手牌。{IfUpgraded:show:\|本回合内你无法再获得格挡。} |
 | 吸引视线 | 罕见 | 1 | 技能 | 给予自身{LensFocusPower:diff()}层[gold]聚焦[/gold]，抽{Cards:diff()}张牌。 |
 | 勘正谬误 | 罕见 | 1 | 技能 | 丢弃至多{Cards:diff()}张[gold]新闻[/gold]，每丢弃1张就获得{Block:diff()}点[gold]格挡[/gold]。 |
 | 核实流程 | 罕见 | 1 | 技能 | 给予{LensFocusPower:diff()}层[gold]聚焦[/gold]。 |

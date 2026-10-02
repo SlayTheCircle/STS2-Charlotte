@@ -24,6 +24,10 @@ INTRINSIC = {  # 无显式名字参数的构造 → 内建键名
     'EnergyVar': 'Energy',
 }
 
+# 引擎在 CardModel.GetDescriptionForPile 无条件注入的变量,任何卡都可直接引用:
+# IfUpgraded 配 show 格式化器({IfUpgraded:show:升级后|升级前},原版 DARKNESS 等实证)。
+ENGINE_VARS = {'InCombat', 'IfUpgraded'}
+
 def card_vars(path):
     src = open(path).read()
     keys = set()
@@ -60,7 +64,7 @@ for lang in ('zhs', 'eng'):
         if cls not in varmap:
             bad.append(f'[{lang}] {cls}: 未找到对应卡牌类，无法检查占位符')
             continue
-        used = set(re.findall(r'\{(\w+)(?::[^}]*)?\}', v)) - {'InCombat'}
+        used = set(re.findall(r'\{(\w+)(?::[^}]*)?\}', v)) - ENGINE_VARS
         missing = used - varmap[cls]
         if missing:
             bad.append(f'[{lang}] {cls}: {sorted(missing)}')

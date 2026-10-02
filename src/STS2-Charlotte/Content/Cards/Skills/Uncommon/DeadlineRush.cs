@@ -13,7 +13,8 @@ using CharlotteMod.Content.CardPools;
 namespace CharlotteMod.Content.Cards;
 
 /// <summary>
-/// 奋笔疾书(罕见,1 费技能):抽满你的手牌。本回合内你无法再获得格挡(原版 NoBlockPower)。消耗。升级:无变化(设计待确认项#1)。
+/// 奋笔疾书(罕见,1 费技能):抽满你的手牌。本回合内你无法再获得格挡(原版 NoBlockPower)。消耗。
+/// 升级:移除无法获得格挡的负面(Mirror 2026-10-02 确认)。
 /// 手牌上限按 10 计(抽到手牌满 10 张为止)。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
@@ -36,6 +37,9 @@ public sealed class DeadlineRush : CharlotteCardBase
         {
             await CardPileCmd.Draw(choiceContext, toDraw, base.Owner);
         }
-        await PowerCmd.Apply<NoBlockPower>(choiceContext, base.Owner.Creature, 1, base.Owner.Creature, this);
+        if (!IsUpgraded)
+        {
+            await PowerCmd.Apply<NoBlockPower>(choiceContext, base.Owner.Creature, 1, base.Owner.Creature, this);
+        }
     }
 }

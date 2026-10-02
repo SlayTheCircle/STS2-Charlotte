@@ -38,13 +38,18 @@ public sealed class WideAngleLens : CharlotteCardBase
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        // 「这些牌」= 本次留影生成的纪念:以抽牌堆既有纪念为基线,只对新增纪念减费,
+        // 不波及此前回合/其他来源的旧纪念(2026-10-03 审阅 #20)。
+        var before = new HashSet<CardModel>(CardPile.GetCards(base.Owner, PileType.Draw).Where(Snapshot.IsMemento));
         List<CardModel> hand = PileType.Hand.GetPile(base.Owner).Cards.ToList();
         foreach (CardModel victim in hand)
         {
             await Snapshot.Card(choiceContext, victim, base.Owner);
         }
         // 广角折扣:本次生成的纪念克隆(抽牌堆新入的纪念)费用再 -1。
-        foreach (CardModel memento in CardPile.GetCards(base.Owner, PileType.Draw).Where(Snapshot.IsMemento))
+        foreach (CardModel memento in CardPile.GetCards(base.Owner, PileType.Draw)
+                     .Where(Snapshot.IsMemento)
+                     .Where(m => !before.Contains(m)))
         {
             if (memento.EnergyCost.GetResolved() > 0)
             {

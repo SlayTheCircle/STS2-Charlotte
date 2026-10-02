@@ -67,7 +67,9 @@ public sealed class LookAtCameraPower : CharlottePowerBase
         }
         pending.Remove(pick);
         CardCmd.Upgrade(pick);
-        await CardPileCmd.AddGeneratedCardsToCombat(new[] { pick }, PileType.Hand, player);
+        // pick 已在消耗堆(留影时被 Exhaust),在堆卡移动必须走 CardPileCmd.Add——
+        // AddGeneratedCardsToCombat 只收无堆新卡,对有堆卡必抛(2026-10-03 审阅 #2)。
+        await CardPileCmd.Add(pick, PileType.Hand);
         if (pending.Count == 0)
         {
             await PowerCmd.Remove(this);

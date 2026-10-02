@@ -98,12 +98,21 @@ public static class Snapshot
         }
     }
 
-    /// <summary>留影观察者分发(遗物面;能力面如温馨笔触后续同样在此查询)。在聚焦结算之后调用。</summary>
+    /// <summary>留影观察者分发(遗物面 + 留影者自身的能力面)。在聚焦结算之后调用。
+    /// 只分发留影玩家自己的遗物与其生物身上的能力——观察者收到的即必然是本人的留影。</summary>
     private static async Task NotifyObservers(PlayerChoiceContext ctx, CardModel snapped, Player player)
     {
         foreach (RelicModel relic in player.Relics)
         {
             if (relic is ISnapshotObserver observer)
+            {
+                await observer.OnSnapshot(ctx, snapped, player);
+            }
+        }
+        // 能力面(温馨笔触等):2026-10-03 审阅 #11——此前只查遗物,能力侧 OnSnapshot 无调用点。
+        foreach (PowerModel power in player.Creature.Powers)
+        {
+            if (power is ISnapshotObserver observer)
             {
                 await observer.OnSnapshot(ctx, snapped, player);
             }

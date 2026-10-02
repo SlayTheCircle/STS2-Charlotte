@@ -44,9 +44,10 @@ public sealed class OneMoreShot : CharlotteCardBase
             source: this)).FirstOrDefault();
         if (memento != null)
         {
+            // 0.6s:与 Snapshot 收口口径一致(2026-10-02 两轮反馈;此处是当时漏改的调用点)。
             CardCmd.PreviewCardPileAdd(
                 await CardPileCmd.AddGeneratedCardToCombat(memento.CreateClone(), PileType.Draw, base.Owner, CardPilePosition.Random),
-                2.2f);
+                0.6f);
         }
     }
 

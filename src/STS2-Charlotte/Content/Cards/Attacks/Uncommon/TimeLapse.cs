@@ -37,8 +37,9 @@ public sealed class TimeLapse : CharlotteCardBase
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         var prompt = new LocString("cards", base.Id.Entry + ".selectionScreenPrompt");
+        // 恰好 1 张(设计无「至多」);手牌无纪念时 FromHand 过滤后为空,自然跳过。
         CardModel? memento = (await CardSelectCmd.FromHand(
-            prefs: new CardSelectorPrefs(prompt, 0, 1),
+            prefs: new CardSelectorPrefs(prompt, 1),
             context: choiceContext,
             player: base.Owner,
             filter: Snapshot.IsMemento,

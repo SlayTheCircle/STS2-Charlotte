@@ -36,7 +36,9 @@ public sealed class IncisiveAnalysis : CharlotteCardBase
         }
         if (target.Block > 0)
         {
-            target.LoseBlockInternal(target.Block);
+            // 走 CreatureCmd 保留 AfterBlockBroken 钩子与碎甲音效(原版 Expose 同款;
+            // LoseBlockInternal 是引擎内部原语,2026-10-03 审阅 #22)。
+            await CreatureCmd.LoseBlock(choiceContext, target, target.Block, base.Owner.Creature);
         }
         if (target.GetPower<ArtifactPower>() is { } artifact)
         {

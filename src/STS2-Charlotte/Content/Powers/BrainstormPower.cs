@@ -16,7 +16,9 @@ using CharlotteMod.Content.Mechanics;
 
 namespace CharlotteMod.Content.Powers;
 
-/// <summary>脑洞大开效果:接下来的 Amount 个回合开始时,将存储新闻的 0 费带消耗复制品加入你的手牌(NightmarePower 同型)。</summary>
+/// <summary>脑洞大开效果:接下来的 Amount 个回合开始时,每回合将 1 张存储新闻的 0 费带消耗复制品加入你的手牌。
+/// 2026-10-03 审阅 #10:原实现一次爆发 Amount 张,与卡面「接下来的 N 个回合开始时」(每回合 1 张)不符,
+/// 改为逐回合发放 1 张、层数随发递减、发完移除(新克隆无堆,仍走 AddGeneratedCardsToCombat)。</summary>
 [RegisterPower]
 public sealed class BrainstormPower : CharlottePowerBase
 {
@@ -44,18 +46,18 @@ public sealed class BrainstormPower : CharlottePowerBase
 
     public override async Task BeforeHandDraw(MegaCrit.Sts2.Core.Entities.Players.Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
-        if (player.Creature != base.Owner)
+        if (player.Creature != base.Owner || GetInternalData<Data>().news is not { } news)
         {
             return;
         }
-        CardModel? news = GetInternalData<Data>().news;
-        for (int i = 0; i < base.Amount; i++)
+        CardModel copy = news.CreateClone();
+        copy.EnergyCost.UpgradeBy(-copy.EnergyCost.Canonical);
+        CardCmd.ApplyKeyword(copy, CardKeyword.Exhaust);
+        await CardPileCmd.AddGeneratedCardsToCombat(new[] { copy }, PileType.Hand, player);
+        await PowerCmd.Decrement(this);
+        if (base.Amount <= 0)
         {
-            CardModel copy = news!.CreateClone();
-            copy.EnergyCost.UpgradeBy(-copy.EnergyCost.Canonical);
-            CardCmd.ApplyKeyword(copy, CardKeyword.Exhaust);
-            await CardPileCmd.AddGeneratedCardsToCombat(new[] { copy }, PileType.Hand, player);
+            await PowerCmd.Remove(this);
         }
-        await PowerCmd.Remove(this);
     }
 }

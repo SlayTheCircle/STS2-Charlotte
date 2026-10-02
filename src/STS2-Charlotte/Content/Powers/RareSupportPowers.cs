@@ -201,11 +201,14 @@ public sealed class ProfessionalismPower : CharlottePowerBase
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    // 必须挂 AfterEnergyReset(vanilla EnergyNextTurnPower 同款):引擎在回合开始
+    // SetupPlayerTurn 里 ResetEnergy,BeforeSideTurnStart 阶段给的能量会被随后的
+    // 重置直接抹掉,能力实际零产出(2026-10-03 审阅 #12)。
+    public override async Task AfterEnergyReset(MegaCrit.Sts2.Core.Entities.Players.Player player)
     {
-        if (side == CombatSide.Player && participants.Contains(base.Owner))
+        if (player.Creature == base.Owner)
         {
-            await PlayerCmd.GainEnergy(base.Amount, base.Owner.Player);
+            await PlayerCmd.GainEnergy(base.Amount, player);
         }
     }
 }

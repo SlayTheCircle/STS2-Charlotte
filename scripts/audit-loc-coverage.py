@@ -71,6 +71,16 @@ for f in _glob.glob(f'{SRC_DIR}/**/*.cs', recursive=True):
     if m and '.selectionScreenPromptDiscard' in src:
         need(m.group(1), 'cards', ['selectionScreenPromptDiscard'])
 
+# 英文占位桩检测(2026-10-03 审阅 #15:35 张卡 eng description 退化成卡名未被发现):
+# eng description 与 eng title 完全相等 → 视为占位错误。zhs 为源语言不适用此查。
+_eng_cards = load('eng', 'cards')
+for k, v in sorted(_eng_cards.items()):
+    if not k.endswith('.description') or not isinstance(v, str):
+        continue
+    title = _eng_cards.get(k[:-len('.description')] + '.title')
+    if isinstance(title, str) and title.strip() and v.strip() == title.strip():
+        errors.append(f'[eng] description 是标题占位桩: {k}')
+
 for w in warns:
     print('警告:', w)
 for e in errors:

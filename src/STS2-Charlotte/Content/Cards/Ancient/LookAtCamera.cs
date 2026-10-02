@@ -27,6 +27,10 @@ namespace CharlotteMod.Content.Cards;
 [RegisterDustyTomeCard(typeof(Charlotte))]
 public sealed class LookAtCamera : CharlotteCardBase
 {
+    // X 费正确范式 = HasEnergyCostX 开关 + 构造费 0(vanilla Whirlwind/Navia 炮舰同型);
+    // 只传 -1 不但 CostsX 恒 false 令 ResolveEnergyXValue 必抛,还会被资源判定钳成 0 免费打出。
+    protected override bool HasEnergyCostX => true;
+
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
         get
@@ -38,7 +42,7 @@ public sealed class LookAtCamera : CharlotteCardBase
     }
 
     public LookAtCamera()
-        : base(-1, CardType.Power, CardRarity.Ancient, TargetType.Self)
+        : base(0, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
     }
 

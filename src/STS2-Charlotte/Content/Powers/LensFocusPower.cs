@@ -37,9 +37,17 @@ public sealed class LensFocusPower : CharlottePowerBase
         }
     }
 
-    public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
-        // 施加方联动(温馨笔触等):经 applier 的能力/遗物分发。
+        // 施加方联动(温馨笔触/切中要害等):正增量时经 applier 的能力/遗物分发。
+        // 挂在自身实例的 AfterPowerAmountChanged 而非 AfterApplied——引擎对已有 power
+        // 续层走 PowerCmd.ModifyAmount,不回调 AfterApplied,续层时的「每次给予聚焦」
+        // 联动此前整段丢失(2026-10-03 审阅 #13);两条路径都会分发本钩子,正数门控
+        // 排除回合末衰减的负增量。
+        if (power != this || amount <= 0m)
+        {
+            return;
+        }
         if (applier?.Player is { } player)
         {
             foreach (PowerModel? observer in applier.Powers)

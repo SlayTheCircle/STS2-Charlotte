@@ -13,7 +13,7 @@ using CharlotteMod.Content.Powers;
 namespace CharlotteMod.Content.Cards;
 
 /// <summary>
-/// 文思泉涌(罕见,1 费能力):每当你没有手牌时,抽 1 张牌。升级:费用 0。
+/// 文思泉涌(稀有,1 费能力):每当你没有手牌时,抽 1 张牌。升级:费用 0。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class FlowOfIdeas : CharlotteCardBase
@@ -21,7 +21,7 @@ public sealed class FlowOfIdeas : CharlotteCardBase
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new PowerVar<FlowOfIdeasPower>(1m) };
 
     public FlowOfIdeas()
-        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+        : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
     }
 

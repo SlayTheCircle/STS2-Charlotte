@@ -18,22 +18,22 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class TripleCheck : CharlotteCardBase
 {
+    // 设计案与升级参考均标虚无;不挂则回合结束进弃牌堆而非消耗(2026-10-03 审阅 #37)。
+    public override IEnumerable<CardKeyword> CanonicalKeywords
+    {
+        get
+        {
+            var set = new HashSet<CardKeyword> { CardKeyword.Ethereal };
+            CharlotteKeywords.AddTo(set, CharlotteKeywords.News);
+            return set;
+        }
+    }
+
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new PowerVar<TripleCheckPower>(1m) };
 
     public TripleCheck()
         : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-    }
-
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get
-        {
-            var set = new HashSet<CardKeyword>();
-            CharlotteKeywords.AddTo(set, CharlotteKeywords.News);
-            return set;
-        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

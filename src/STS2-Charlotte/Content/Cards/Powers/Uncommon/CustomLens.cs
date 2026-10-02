@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
+using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.Powers;
 
 namespace CharlotteMod.Content.Cards;
@@ -19,6 +20,17 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class CustomLens : CharlotteCardBase
 {
+    // 卡面提及[留影纪念],挂 Snapshot 关键词供悬停(剪贴相册/复制胶卷同款,2026-10-03 审阅 #35/#36)。
+    public override IEnumerable<CardKeyword> CanonicalKeywords
+    {
+        get
+        {
+            var set = new HashSet<CardKeyword>();
+            CharlotteKeywords.AddTo(set, CharlotteKeywords.Snapshot);
+            return set;
+        }
+    }
+
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new PowerVar<CustomLensPower>(3m) };
 
     public CustomLens()

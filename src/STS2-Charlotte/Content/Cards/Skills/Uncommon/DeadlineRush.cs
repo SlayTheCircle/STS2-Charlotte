@@ -15,13 +15,12 @@ namespace CharlotteMod.Content.Cards;
 /// <summary>
 /// 奋笔疾书(罕见,1 费技能):抽满你的手牌。本回合内你无法再获得格挡(原版 NoBlockPower)。消耗。
 /// 升级:移除无法获得格挡的负面(Mirror 2026-10-02 确认)。
-/// 手牌上限按 10 计(抽到手牌满 10 张为止)。
+/// 抽牌数 = 引擎手牌上限 - 当前手牌数(vanilla Scrawl 同款;结算中的本牌已在 Play 堆不占手位,
+/// 原实现的「再 -1」固定少抽一张,2026-10-03 审阅 #9)。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class DeadlineRush : CharlotteCardBase
 {
-    private const int HandSizeLimit = 10;
-
     public override IEnumerable<CardKeyword> CanonicalKeywords => new HashSet<CardKeyword> { CardKeyword.Exhaust };
 
     public DeadlineRush()
@@ -32,7 +31,7 @@ public sealed class DeadlineRush : CharlotteCardBase
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int current = PileType.Hand.GetPile(base.Owner).Cards.Count;
-        int toDraw = HandSizeLimit - current - 1; // 本牌打出后不占手位
+        int toDraw = CardPile.MaxCardsInHand - current;
         if (toDraw > 0)
         {
             await CardPileCmd.Draw(choiceContext, toDraw, base.Owner);

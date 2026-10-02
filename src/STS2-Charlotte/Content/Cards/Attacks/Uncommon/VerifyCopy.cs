@@ -47,7 +47,9 @@ public sealed class VerifyCopy : CharlotteCardBase
         List<CardModel> list = taken.ToList();
         if (list.Count > 0)
         {
-            await CardPileCmd.AddGeneratedCardsToCombat(list, PileType.Hand, base.Owner);
+            // 弃牌堆选出的牌仍在堆中,在堆卡移动必须走 CardPileCmd.Add
+            // (vanilla Dredge 同款;AddGeneratedCardsToCombat 对有堆卡必抛,2026-10-03 审阅 #4)。
+            await CardPileCmd.Add(list, PileType.Hand);
         }
     }
 

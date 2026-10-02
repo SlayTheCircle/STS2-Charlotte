@@ -26,10 +26,12 @@ public sealed class SecondWindPower : CharlottePowerBase
 
     public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer, DamageResult result, ValueProp props, Creature target, CardModel? cardSource)
     {
-        if (dealer == base.Owner && result.UnblockedDamage > 0)
+        // 「与伤害量等量」= 总伤害(被格挡部分同样计入);完全格挡(总伤 0)不消耗蓄势。
+        int total = result.BlockedDamage + result.UnblockedDamage;
+        if (dealer == base.Owner && total > 0)
         {
             await PowerCmd.Remove(this);
-            await CreatureCmd.GainBlock(base.Owner, result.UnblockedDamage, ValueProp.Unpowered, null);
+            await CreatureCmd.GainBlock(base.Owner, total, ValueProp.Unpowered, null);
         }
     }
 }

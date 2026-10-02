@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using CharlotteMod.Content.CardPools;
+using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.Mechanics;
 
 namespace CharlotteMod.Content.Cards;
@@ -22,6 +23,16 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class Masterstroke : CharlotteCardBase
 {
+    public override IEnumerable<CardKeyword> CanonicalKeywords
+    {
+        get
+        {
+            var set = new HashSet<CardKeyword>();
+            CharlotteKeywords.AddTo(set, CharlotteKeywords.News);
+            return set;
+        }
+    }
+
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new DamageVar(4m, ValueProp.Move) };
 
     public Masterstroke()

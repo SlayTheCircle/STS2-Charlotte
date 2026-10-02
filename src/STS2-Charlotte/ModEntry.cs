@@ -29,7 +29,7 @@ public static class ModEntry
         keywords.RegisterCardKeywordOwnedByLocNamespace("FOCUS");    // → 聚焦
         keywords.RegisterCardKeywordOwnedByLocNamespace("NEWS");     // → 新闻
 
-        // 角色资产档案(冒烟版:整套借原版铁甲的场景与 UI 贴图,官方 PCK 实测路径)。
+        // 角色资产档案(头像/地图标记/能量球已用自备素材;其余场景仍借原版铁甲,官方 PCK 实测路径)。
         // 自建场景/立绘接入(B10 美术管线)后逐项替换;两处留空会炸的推导路径已按模板注释处理。
         string charlotteEntry = ModContentRegistry.GetCompoundId(ModId, "character", nameof(Content.Characters.Charlotte)).ToLowerInvariant();
         ModContentRegistry.For(ModId).RegisterCharacterAssetReplacement(charlotteEntry, new CharacterAssetProfile(
@@ -39,15 +39,15 @@ public static class ModEntry
                 "res://scenes/merchant/characters/ironclad_merchant.tscn",
                 "res://scenes/rest_site/characters/ironclad_rest_site.tscn"),
             new CharacterUiAssetSet(
-                "res://images/ui/top_panel/character_icon_ironclad.png",
-                "res://images/ui/top_panel/character_icon_ironclad_outline.png",
-                "res://scenes/ui/character_icons/ironclad_icon.tscn",
+                "res://STS2-Charlotte/images/characters/charlotte_character_icon.png",
+                "res://STS2-Charlotte/images/characters/charlotte_character_icon_outline.png",
+                "res://STS2-Charlotte/scenes/characters/charlotte_icon.tscn",
                 "res://scenes/screens/char_select/char_select_bg_ironclad.tscn",
                 "res://images/packed/character_select/char_select_ironclad.png",
                 "res://images/packed/character_select/char_select_ironclad_locked.png",
                 // 转场材质留空会按条目名推导 mod 条目下不存在的 .tres → AssetLoadException 炸开局;先借通用淡入淡出。
                 "res://materials/transitions/fade_transition_mat.tres",
-                "res://images/packed/map/icons/map_marker_ironclad.png"),
+                "res://STS2-Charlotte/images/characters/charlotte_map_marker.png"),
             // 出牌轨迹留空会推导 vfx/card_trail_<entry> → NCardFlyVfx._Ready 空引用,牌堆动画卡死;先借铁甲轨迹。
             new CharacterVfxAssetSet("res://scenes/vfx/card_trail_ironclad.tscn"),
             null,

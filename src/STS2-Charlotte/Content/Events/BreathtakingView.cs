@@ -51,11 +51,14 @@ public sealed class BreathtakingView : CharlotteEventBase
         SetEventFinished(PageDescription("RIVER"));
     }
 
-    /// <summary>拍摄飞鸟:1 张原版[异鸟扑击]加入手牌。</summary>
+    /// <summary>拍摄飞鸟:1 张原版[异鸟扑击]入手。
+    /// 经 RunState.CreateCard 实例化为带 owner 的玩家卡(EventModel.SelectCardsToAddToDeckFromGrid 同款);
+    /// 裸 ToMutable() 无 owner,Add 会抛 "it has no owner"(2026-10-02 事故)。
+    /// 事件场景没有手牌,「加入手牌」按原版事件惯例落为进卡组+入堆预览。</summary>
     private async Task ShootBirds()
     {
-        CardModel swoop = ModelDb.Card<ByrdSwoop>().ToMutable();
-        await CardPileCmd.Add(swoop, PileType.Hand);
+        CardModel swoop = base.Owner.RunState.CreateCard(ModelDb.Card<ByrdSwoop>(), base.Owner);
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(swoop, PileType.Deck));
         SetEventFinished(PageDescription("BIRDS"));
     }
 

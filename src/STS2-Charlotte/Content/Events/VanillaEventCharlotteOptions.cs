@@ -145,14 +145,16 @@ internal static class VanillaEventCharlotteOptions
         FinishDelegate!.Invoke(evt, new LocString("events", "POTION_COURIER.pages.CHARLOTTE_WAKE_HIM.description"));
     }
 
-    /// <summary>抵押:移除卡组 1 张牌,1 张[疑虑]加入手牌,占卜 4 次(PaymentPlan 的水晶球范式)。</summary>
+    /// <summary>抵押:移除卡组 1 张牌,1 张[疑虑]入手,占卜 4 次(PaymentPlan 的水晶球范式)。
+    /// 疑虑经 AddCurseToDeck 一条龙(PaymentPlan 同款):裸 ToMutable() 实例无 owner,
+    /// CardPileCmd.Add 直接抛 "it has no owner" 炸断事件(2026-10-02 事故);事件场景没有手牌,
+    /// 「加入手牌」按原版事件惯例落为进卡组。</summary>
     private static async Task PawnAsync(EventModel evt)
     {
         Player player = evt.Owner!;
         await CardPileCmd.RemoveFromDeck(
             (await CardSelectCmd.FromDeckForRemoval(player, new CardSelectorPrefs(CardSelectorPrefs.RemoveSelectionPrompt, 1))).ToList());
-        CardModel doubt = ModelDb.Card<Doubt>().ToMutable();
-        await CardPileCmd.Add(doubt, PileType.Hand);
+        await CardPileCmd.AddCurseToDeck<Doubt>(player);
         CrystalSphereMinigame minigame = new CrystalSphereMinigame(player, evt.Rng, 4);
         await minigame.PlayMinigame();
         FinishDelegate!.Invoke(evt, new LocString("events", "CRYSTAL_SPHERE.pages.CHARLOTTE_PAWN.description"));

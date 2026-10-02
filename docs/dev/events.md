@@ -20,7 +20,7 @@
 | PotionCourier | 试着唤醒他 | 失去所有药水，获得原版会员卡 |
 | CrystalSphere | 抵押 | 移除一卡 + Doubt 入手牌 + 占卜 4 次（CrystalSphereMinigame(player, rng, 4)，PaymentPlan 范式） |
 
-三个新事件肖像待美术（素材库中的 事件1.png 画面主体为娜维娅，不可用于夏洛蒂，已退回）；AssetProfile 未覆写，走 RitsuLib 占位图与默认背景。
+三个新事件使用各自专属肖像，通过 AssetProfile.InitialPortraitPath 指向 Mod 的 images/events/ 资源；由 scripts/art/stories.sh 从母版派生。图片交付与资源存在性不代替游戏内图窗验收。
 
 ## 注册与门控
 

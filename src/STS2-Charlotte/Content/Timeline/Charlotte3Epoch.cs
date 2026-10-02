@@ -13,7 +13,7 @@ namespace CharlotteMod.Content.Timeline;
 /// 揭示条件=用夏洛蒂累计击败 3 个首领([UnlockEpochAfterBossVictories(3)] 挂 Charlotte 类);
 /// 池过滤见 CharlotteRelicPool.GetUnlockedRelics。
 /// 基类 RelicUnlockEpochTemplate 自动提供 UnlockText/QueueUnlocks。
-/// 世界线立绘待 Mirror 交付,AssetProfile 暂不覆盖。
+/// 大图使用纪元 ID 推导的全局路径，缩略图显式覆盖 Mod 资源槽。
 /// </summary>
 [RegisterEpoch]
 [RegisterStoryEpoch(typeof(CharlotteStory))]
@@ -29,6 +29,9 @@ public sealed class Charlotte3Epoch : RelicUnlockEpochTemplate
     public override string Id => "STS2_CHARLOTTE_EPOCH_3";
 
     public override string StoryId => "Charlotte";
+
+    public override EpochAssetProfile AssetProfile => new(
+        PackedPortraitPath: "res://STS2-Charlotte/images/timeline/sts2_charlotte_epoch_3_thumb.png");
 
     protected override IEnumerable<Type> RelicTypes => RelicUnlockTypes;
 }

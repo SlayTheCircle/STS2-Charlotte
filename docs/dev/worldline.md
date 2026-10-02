@@ -17,9 +17,9 @@
 
 变更章节奖励时同时更新对应纪元的 UnlockTypes 数组、池过滤、两语言文本及验收场景。
 
-## 纪元肖像（全局资源，待接入）
+## 纪元肖像（全局资源）
 
-世界线立绘待设计师交付；当前各纪元类**不覆写 AssetProfile**（缩略图走原版 epoch_atlas 图集回退显示 NOPE，不炸）。图到货后：大图放 `assets/global/`（全局 `res://images/timeline/epoch_portraits/sts2_charlotte_epoch_<序号>.png` 推导，打包器保留全局路径，不能套用普通 Mod 前缀）；缩略图经各纪元类 AssetProfile.PackedPortraitPath 覆写指向 `res://STS2-Charlotte/images/timeline/` 下的派生图（从大图裁切 272×174，参照 Navia scripts/art/stories.sh）。
+四章立绘由 scripts/art/stories.sh 从母版派生：1672×941 大图放 `assets/global/`（全局 `res://images/timeline/epoch_portraits/sts2_charlotte_epoch_<序号>.png` 推导，打包器保留全局路径，不能套用普通 Mod 前缀）；272×174 缩略图经各纪元类 AssetProfile.PackedPortraitPath 覆写指向 `res://STS2-Charlotte/images/timeline/`。派生和资源存在性检查不能代替游戏内时间线验收。
 
 ## 先古对话（B8 待接线）
 

@@ -13,7 +13,7 @@ namespace CharlotteMod.Content.Timeline;
 /// 揭示条件=用夏洛蒂通关进阶 1([UnlockEpochAfterAscensionOneWin] 挂 Charlotte 类,vanilla 第七章同型);
 /// 池过滤见 CharlottePotionPool.GetUnlockedPotions。
 /// 基类 PotionUnlockEpochTemplate 自动提供 UnlockText/QueueUnlocks。
-/// 世界线立绘待 Mirror 交付,AssetProfile 暂不覆盖。
+/// 大图使用纪元 ID 推导的全局路径，缩略图显式覆盖 Mod 资源槽。
 /// </summary>
 [RegisterEpoch]
 [RegisterStoryEpoch(typeof(CharlotteStory))]
@@ -29,6 +29,9 @@ public sealed class Charlotte4Epoch : PotionUnlockEpochTemplate
     public override string Id => "STS2_CHARLOTTE_EPOCH_4";
 
     public override string StoryId => "Charlotte";
+
+    public override EpochAssetProfile AssetProfile => new(
+        PackedPortraitPath: "res://STS2-Charlotte/images/timeline/sts2_charlotte_epoch_4_thumb.png");
 
     protected override IEnumerable<Type> PotionTypes => PotionUnlockTypes;
 }

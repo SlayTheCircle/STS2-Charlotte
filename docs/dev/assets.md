@@ -25,6 +25,8 @@
 
 普通资源挂在 `res://$MOD_ID/`；世界线立绘按引擎推导使用全局路径。源图先由 Godot 导入，PCK 包含侧车和 .godot/imported 编译纹理；有侧车的源 PNG 不重复入包。
 
+当前剧情母版由 `bash scripts/art/stories.sh` 生成事件肖像、纪元大图及缩略图。角色套图由 `bash scripts/art/characters.sh` 生成，选人半身使用专属透明 PNG 母版。能力图标由 `bash scripts/art/stage-smoke.sh` 铺装，「墨迹未干」使用独立母版；「摄影技巧」沿用既有相机图标。
+
 ## 接入与验收
 
 1. 对照母版、素材映射、代码和当前画面核对，不仅依赖旧需求单。

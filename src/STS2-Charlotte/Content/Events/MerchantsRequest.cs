@@ -23,10 +23,9 @@ namespace CharlotteMod.Content.Events;
 [RegisterActEvent(typeof(Hive))]
 public sealed class MerchantsRequest : CharlotteEventBase
 {
-    /// <summary>临时肖像:事件图待 Mirror;不覆写时游戏按条目名推导原版 images/events/
-    /// 路径,mod 无此文件直接 AssetLoadException 灰屏(2026-10-02 事故)——先借同规格选人背景顶替。</summary>
+    /// <summary>专属事件肖像由美术母版派生；显式覆盖 Mod 资源路径。</summary>
     public override EventAssetProfile AssetProfile => new(
-        InitialPortraitPath: "res://STS2-Charlotte/images/characters/charlotte_char_select_bg.png");
+        InitialPortraitPath: "res://STS2-Charlotte/images/events/MerchantsRequest.png");
 
     protected override IReadOnlyList<EventOption> GenerateInitialOptions()
     {

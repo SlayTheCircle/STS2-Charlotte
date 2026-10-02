@@ -12,7 +12,7 @@ namespace CharlotteMod.Content.Timeline;
 /// 第二章·全新视角(卡牌纪元,Navia4Epoch/Ironclad2Epoch 同款):解锁 追踪调查/摄影形态/广角镜头。
 /// 揭示条件=用夏洛蒂通关一次([UnlockEpochAfterWinAs] 挂 Charlotte 类);池过滤见 CharlotteCardPool.FilterThroughEpochs。
 /// 基类 CardUnlockEpochTemplate 自动提供 UnlockText/QueueUnlocks(解锁展示文案读前三项,故每章恰好 3 件)。
-/// 世界线立绘待 Mirror 交付,AssetProfile 暂不覆盖。
+/// 大图使用纪元 ID 推导的全局路径，缩略图显式覆盖 Mod 资源槽。
 /// </summary>
 [RegisterEpoch]
 [RegisterStoryEpoch(typeof(CharlotteStory))]
@@ -28,6 +28,9 @@ public sealed class Charlotte2Epoch : CardUnlockEpochTemplate
     public override string Id => "STS2_CHARLOTTE_EPOCH_2";
 
     public override string StoryId => "Charlotte";
+
+    public override EpochAssetProfile AssetProfile => new(
+        PackedPortraitPath: "res://STS2-Charlotte/images/timeline/sts2_charlotte_epoch_2_thumb.png");
 
     protected override IEnumerable<Type> CardTypes => CardUnlockTypes;
 }

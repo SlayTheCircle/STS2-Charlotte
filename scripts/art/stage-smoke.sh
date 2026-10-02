@@ -56,6 +56,7 @@ mkdir -p "$DST/cards" "$DST/relics" "$DST/potions" "$DST/powers"
 ok=0; miss=0
 for zh in "${!CARDS[@]}"; do
     cls="${CARDS[$zh]}"; src="$SRC/卡图/$zh.png"
+    [[ -f "$src" ]] || src="$SRC/卡图/$zh.jpg"
     if [[ ! -f "$src" ]]; then echo "缺卡图: $zh"; miss=$((miss+1)); continue; fi
     convert "$src" -resize 750x570^ -gravity center -extent 750x570 "$DST/cards/$cls.png"
     ok=$((ok+1))
@@ -122,8 +123,8 @@ for zh in "${!POWERS[@]}"; do
 done
 # 无母版补位:战斗计数器(永不可见)与洋葱汤热气(药水母版复用)
 convert "$SRC/图标/聚焦-图标.png" -resize 256x256 "$DST/powers/CombatTrackerPower.png" 2>/dev/null || true
-# 墨迹未干(OneTurnBlockPersistPower)暂复用妙笔生花母版(书法主题),正式图标已列入需求单
-convert "$SRC/图标/妙笔生花-图标.png" -resize 256x256 "$DST/powers/OneTurnBlockPersistPower.png" 2>/dev/null || true
+# 墨迹未干使用独立湿墨母版；缺失时明确失败，避免重铺装退回替代图。
+convert "$SRC/图标/墨迹未干-图标.png" -resize 256x256 "$DST/powers/OneTurnBlockPersistPower.png"
 convert "$SRC/药水/枫丹洋葱汤.png" -resize 256x256 "$DST/powers/OnionSoupPower.png"
 # 镜头清洁剂 power 图标复用药水母版(无专属图标,图标目录无此条目)
 convert "$SRC/药水/镜头清洁剂.png" -resize 256x256 "$DST/powers/LensCleanerPower.png"

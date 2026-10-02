@@ -14,7 +14,7 @@ namespace CharlotteMod.Content.Timeline;
 /// 揭示条件=完成一局夏洛蒂(Charlotte 类上的 [UnlockEpochAfterRunAs])。
 /// 基类须为 ModEpochTemplate:时间线槽位合并补丁按 `is ModEpochTemplate` 过滤,
 /// 且 Era/EraPosition 由布局注册表解析([AutoTimelineSlot] 注册,勿手工 override——模板已密封)。
-/// 世界线立绘待 Mirror 交付,AssetProfile 暂不覆盖(缩略图走原版图集回退显示 NOPE,不炸)。
+/// 大图使用纪元 ID 推导的全局路径，缩略图显式覆盖 Mod 资源槽。
 /// </summary>
 [RegisterEpoch]
 [RegisterStoryEpoch(typeof(CharlotteStory))]
@@ -24,6 +24,9 @@ public sealed class Charlotte1Epoch : ModEpochTemplate
     public override string Id => "STS2_CHARLOTTE_EPOCH_1";
 
     public override string StoryId => "Charlotte";
+
+    public override EpochAssetProfile AssetProfile => new(
+        PackedPortraitPath: "res://STS2-Charlotte/images/timeline/sts2_charlotte_epoch_1_thumb.png");
 
     public override void QueueUnlocks()
     {

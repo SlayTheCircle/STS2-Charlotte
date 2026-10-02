@@ -2,7 +2,7 @@
 # 角色本体资产(B10 正式管线):头像三件 + 立绘 7 姿势 + 选人套图,布局与 Navia scripts/art 同约定。
 # 母版:美术素材/图片/头像兼用地图指示.png(600²,Mirror 指定兼作地图标记)
 #       美术素材/立绘/立绘-*.png(1024×1536;倒下为横图 1774×887)
-#       美术素材/图片/背景大图.png(1672×941) ;选人半身图由站立立绘裁剪(裁框人工校准,勿改自动裁)。
+#       美术素材/图片/背景大图.png(1672×941) ;选人半身图.png(637×917,透明底)。
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 source scripts/dev-env.sh
@@ -30,9 +30,8 @@ convert "$SRC/立绘/立绘-倒下.png" "$DST/characters/charlotte_down.png"
 convert "$SRC/立绘/立绘-商店.png" "$DST/characters/charlotte_merchant.png"
 convert "$SRC/立绘/立绘-火堆.png" "$DST/characters/charlotte_rest_site.png"
 
-# ---- 选人套图:半身裁剪(裁框人工校准 2026-10-02,勿改回自动裁切)+ 灰阶锁定版 + 背景直入 ----
-convert "$SRC/立绘/立绘-站立.png" -crop 640x920+240+130 +repage -trim \
-    -bordercolor none -border 8 +repage -resize 264x "$DST/characters/charlotte_select.png"
+# ---- 选人套图:专属透明半身母版 + 灰阶锁定版 + 背景直入 ----
+convert "$SRC/图片/选人半身图.png" -resize 264x "$DST/characters/charlotte_select.png"
 convert "$DST/characters/charlotte_select.png" -modulate 60,0,100 "$DST/characters/charlotte_select_locked.png"
 convert "$SRC/图片/背景大图.png" "$DST/characters/charlotte_char_select_bg.png"
 

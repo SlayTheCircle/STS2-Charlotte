@@ -31,6 +31,18 @@ const SCENES := [
 
 # 关键纹理的尺寸断言(宽x高);0 高表示仅查可加载。
 const TEXTURES := {
+	"res://%s/images/events/BreathtakingView.png": Vector2i(1672, 941),
+	"res://%s/images/events/MerchantsRequest.png": Vector2i(1672, 941),
+	"res://%s/images/events/HeatedDebate.png": Vector2i(1672, 941),
+	"res://images/timeline/epoch_portraits/sts2_charlotte_epoch_1.png": Vector2i(1672, 941),
+	"res://%s/images/timeline/sts2_charlotte_epoch_1_thumb.png": Vector2i(272, 174),
+	"res://images/timeline/epoch_portraits/sts2_charlotte_epoch_2.png": Vector2i(1672, 941),
+	"res://%s/images/timeline/sts2_charlotte_epoch_2_thumb.png": Vector2i(272, 174),
+	"res://images/timeline/epoch_portraits/sts2_charlotte_epoch_3.png": Vector2i(1672, 941),
+	"res://%s/images/timeline/sts2_charlotte_epoch_3_thumb.png": Vector2i(272, 174),
+	"res://images/timeline/epoch_portraits/sts2_charlotte_epoch_4.png": Vector2i(1672, 941),
+	"res://%s/images/timeline/sts2_charlotte_epoch_4_thumb.png": Vector2i(272, 174),
+	"res://%s/images/powers/OneTurnBlockPersistPower.png": Vector2i(256, 256),
 	"res://%s/images/characters/charlotte_normal.png": Vector2i(1024, 1536),
 	"res://%s/images/characters/charlotte_merchant.png": Vector2i(1024, 1536),
 	"res://%s/images/characters/charlotte_rest_site.png": Vector2i(1024, 1536),
@@ -42,6 +54,7 @@ const TEXTURES := {
 
 # 必须带透明通道的纹理(实底图在透明槽会显示方框)。
 const TRANSPARENT_TEXTURES := [
+	"res://%s/images/powers/OneTurnBlockPersistPower.png",
 	"res://%s/images/characters/charlotte_select.png",
 	"res://%s/images/characters/charlotte_select_locked.png",
 	"res://%s/images/characters/charlotte_normal.png",
@@ -75,7 +88,7 @@ func _process(_delta: float) -> bool:
 			push_error("PCK 缺场景: " + p)
 			failures += 1
 	for tpl in TEXTURES:
-		var p: String = tpl % _mod_id
+		var p: String = tpl % _mod_id if "%s" in tpl else tpl
 		var tex := load(p) as Texture2D
 		if tex == null:
 			push_error("PCK 纹理不可加载: " + p)
@@ -90,7 +103,7 @@ func _process(_delta: float) -> bool:
 			push_error("PCK 纹理无透明通道: " + p)
 			failures += 1
 	if failures == 0:
-		print("PCK 本地化可解析;角色场景与关键纹理断言通过。")
+		print("PCK 本地化可解析;角色场景、剧情/角色/能力纹理尺寸及透明通道断言通过。")
 	quit(0 if failures == 0 else 1)
 	return true
 

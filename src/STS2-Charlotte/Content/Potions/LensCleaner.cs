@@ -15,12 +15,12 @@ namespace CharlotteMod.Content.Potions;
 
 /// <summary>
 /// 镜头清洁剂:你的下 1 张[留影纪念]可以免费打出(经 LensCleanerPower)。
-/// 世界线第四章解锁件——稀有度暂挂 Event,不进常规药水池(解锁接线随世界线批次)。
+/// 世界线第四章解锁件:揭示前由 CharlottePotionPool.GetUnlockedPotions 过滤,稀有度走常规档(Navia 解锁件同例)。
 /// </summary>
 [RegisterPotion(typeof(CharlottePotionPool))]
 public sealed class LensCleaner : CharlottePotionBase
 {
-    public override PotionRarity Rarity => PotionRarity.Event;
+    public override PotionRarity Rarity => PotionRarity.Common;
 
     public override PotionUsage Usage => PotionUsage.CombatOnly;
 

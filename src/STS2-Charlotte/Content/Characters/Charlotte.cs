@@ -11,15 +11,19 @@ using CharlotteMod.Content.Cards;
 using CharlotteMod.Content.PotionPools;
 using CharlotteMod.Content.RelicPools;
 using CharlotteMod.Content.Relics;
+using CharlotteMod.Content.Timeline;
 
 namespace CharlotteMod.Content.Characters;
 
 /// <summary>
 /// 夏洛蒂:来自枫丹的蒸汽鸟报社记者,带着留影机前来尖塔考察新闻的踪迹。初始生命 70。
 /// 核心机制:留影/聚焦/新闻(见 docs/history/design/card-roster.txt 与设计案)。
-/// 资产档案尚未注册(见 ModEntry 的接线说明),世界线等深层模块为可选代码(见 docs/dev/worldline.md)。
 /// </summary>
 [RegisterCharacter]
+[UnlockEpochAfterRunAs(typeof(Charlotte1Epoch))]        // 第一章·新的报道:完成一局夏洛蒂
+[UnlockEpochAfterWinAs(typeof(Charlotte2Epoch))]       // 第二章·全新视角:首次通关 → 解锁 追踪调查/摄影形态/广角镜头
+[UnlockEpochAfterBossVictories(typeof(Charlotte3Epoch), 3)] // 第三章·独家爆料:累计击败 3 首领 → 解锁三遗物
+[UnlockEpochAfterAscensionOneWin(typeof(Charlotte4Epoch))] // 第四章·独家专访:进阶 1 通关 → 解锁三药水
 public sealed class Charlotte : CharacterModel
 {
     // 主题色 #8CCEEA(Mirror 定稿);其余色值同相位派生,进游戏目视后微调。

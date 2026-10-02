@@ -1,4 +1,6 @@
+using System.Linq;
 using Godot;
+using CharlotteMod.Content.Timeline;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Utils;
 
@@ -6,7 +8,7 @@ namespace CharlotteMod.Content.CardPools;
 
 /// <summary>
 /// 夏洛蒂卡池(TypeList 模式):池成员由各卡类上的 [RegisterCard(typeof(CharlotteCardPool))] 特性自动聚合,
-/// 本类只负责主题属性。增删卡 = 增删卡类文件,无需改动本文件。
+/// 本类只负责主题属性与世界线门控。增删卡 = 增删卡类文件,无需改动本文件。
 /// </summary>
 public sealed class CharlotteCardPool : TypeListCardPoolModel
 {
@@ -31,4 +33,17 @@ public sealed class CharlotteCardPool : TypeListCardPoolModel
     public override Color EnergyOutlineColor => new Color("356D85");
 
     public override bool IsColorless => false;
+
+    // 世界线门控(NaviaCardPool/RegentCardPool 同款):第二章·全新视角揭示前,章内 3 卡不进奖励/商店池。
+    protected override System.Collections.Generic.IEnumerable<MegaCrit.Sts2.Core.Models.CardModel> FilterThroughEpochs(
+        MegaCrit.Sts2.Core.Unlocks.UnlockState unlockState,
+        System.Collections.Generic.IEnumerable<MegaCrit.Sts2.Core.Models.CardModel> cards)
+    {
+        var list = cards.ToList();
+        if (!unlockState.IsEpochRevealed<Charlotte2Epoch>())
+        {
+            list.RemoveAll(c => Charlotte2Epoch.CardUnlockTypes.Any(t => MegaCrit.Sts2.Core.Models.ModelDb.GetId(t) == c.Id));
+        }
+        return list;
+    }
 }

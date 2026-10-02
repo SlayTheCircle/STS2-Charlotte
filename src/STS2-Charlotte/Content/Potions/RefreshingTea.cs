@@ -15,14 +15,14 @@ namespace CharlotteMod.Content.Potions;
 
 /// <summary>
 /// 提神醒脑茶:给予敌人 9 层[聚焦]。
-/// 世界线第四章解锁件——稀有度暂挂 Event,不进常规药水池(解锁接线随世界线批次)。
+/// 世界线第四章解锁件:揭示前由 CharlottePotionPool.GetUnlockedPotions 过滤,稀有度走常规档(Navia 解锁件同例)。
 /// </summary>
 [RegisterPotion(typeof(CharlottePotionPool))]
 public sealed class RefreshingTea : CharlottePotionBase
 {
     private const int FocusAmount = 9;
 
-    public override PotionRarity Rarity => PotionRarity.Event;
+    public override PotionRarity Rarity => PotionRarity.Uncommon;
 
     public override PotionUsage Usage => PotionUsage.CombatOnly;
 

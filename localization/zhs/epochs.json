@@ -1,1 +1,21 @@
-{}
+{
+  "STORY_CHARLOTTE": "夏洛蒂",
+
+  "STS2_CHARLOTTE_EPOCH_1.title": "新的报道",
+  "STS2_CHARLOTTE_EPOCH_1.description": "在某位刺玫会老板的探索下，尖塔开放的消息很快就传遍了枫丹。\n身为蒸汽鸟报社的记者，夏洛蒂从这则新闻里嗅到了大事件的味道。\n“那么出发吧！我们要成为第一个成稿的报社！”",
+  "STS2_CHARLOTTE_EPOCH_1.unlockInfo": "使用夏洛蒂完成一次攀登。",
+  "STS2_CHARLOTTE_EPOCH_1.unlockText": "解锁：夏洛蒂成为一名可玩角色。",
+  "STS2_CHARLOTTE_EPOCH_1.unlock": "夏洛蒂来到了尖塔。",
+
+  "STS2_CHARLOTTE_EPOCH_2.title": "全新视角",
+  "STS2_CHARLOTTE_EPOCH_2.description": "夏洛蒂在高塔中发现了许多从未见过的奇珍异宝。当然，身为记者而非冒险家，她更在意的是尖塔背后的故事与新闻。\n当然，对先古之民们的“采访”也是其中不可或缺的一环。\n各种各样的采访稿填满了她的笔记本。“这次看来也找到了不少新闻呢！”",
+  "STS2_CHARLOTTE_EPOCH_2.unlockInfo": "使用夏洛蒂通关一次。",
+
+  "STS2_CHARLOTTE_EPOCH_3.title": "独家爆料",
+  "STS2_CHARLOTTE_EPOCH_3.description": "尖塔总是能带来更多的新闻，夏洛蒂有时要花费几天来整理一次冒险。\n尽管探索尖塔危机重重，但塔底那只叫做涅奥的大鲸鱼总是会把自己带回来。\n真是神奇！她不禁开始对尖塔的主人感到好奇。",
+  "STS2_CHARLOTTE_EPOCH_3.unlockInfo": "使用夏洛蒂累计击败 3 个首领。",
+
+  "STS2_CHARLOTTE_EPOCH_4.title": "独家专访",
+  "STS2_CHARLOTTE_EPOCH_4.description": "夏洛蒂来到尖塔的顶端，见到了高塔之主——建筑师。\n她迫不及待地拿出笔记与相机，打算好好采访这位神秘的大人物。不过建筑师似乎并不喜欢这样的采访，他将夏洛蒂送回了塔底。\n真是古怪的男人。不过如果能采访到这样的大人物，那获得的新闻也绝对是独家的！",
+  "STS2_CHARLOTTE_EPOCH_4.unlockInfo": "使用夏洛蒂通关进阶 1。"
+}

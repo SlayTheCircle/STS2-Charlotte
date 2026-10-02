@@ -1,1 +1,21 @@
-{}
+{
+  "STORY_CHARLOTTE": "Charlotte",
+
+  "STS2_CHARLOTTE_EPOCH_1.title": "A New Report",
+  "STS2_CHARLOTTE_EPOCH_1.description": "After a certain president of Spina di Rosula explored it, news of the open Spire quickly spread throughout Fontaine.\nAs a journalist of The Steambird, Charlotte smelled a headline in the making.\n“Then let's set off! We're going to be the first paper with a finished story!”",
+  "STS2_CHARLOTTE_EPOCH_1.unlockInfo": "Complete a run as Charlotte.",
+  "STS2_CHARLOTTE_EPOCH_1.unlockText": "Unlock: Charlotte becomes a playable character.",
+  "STS2_CHARLOTTE_EPOCH_1.unlock": "Charlotte has arrived at the Spire.",
+
+  "STS2_CHARLOTTE_EPOCH_2.title": "A Fresh Perspective",
+  "STS2_CHARLOTTE_EPOCH_2.description": "Charlotte discovered many rare treasures she had never seen before. But as a journalist rather than an adventurer, what she cared about were the stories behind the Spire.\nNaturally, “interviews” with the ancient ones were an indispensable part of that.\nAll kinds of interview notes filled her notebook. “Looks like I've found plenty of news this time too!”",
+  "STS2_CHARLOTTE_EPOCH_2.unlockInfo": "Win a run as Charlotte.",
+
+  "STS2_CHARLOTTE_EPOCH_3.title": "An Exclusive Scoop",
+  "STS2_CHARLOTTE_EPOCH_3.description": "The Spire always brings more stories — sometimes Charlotte needs days just to sort out a single expedition.\nThough the climb is perilous, that great whale called Neow at the foot of the tower always brings her back.\nHow curious! She couldn't help wondering about the Spire's master.",
+  "STS2_CHARLOTTE_EPOCH_3.unlockInfo": "Defeat 3 bosses as Charlotte.",
+
+  "STS2_CHARLOTTE_EPOCH_4.title": "An Exclusive Interview",
+  "STS2_CHARLOTTE_EPOCH_4.description": "At the very top of the Spire, Charlotte met the tower's master — the Architect.\nShe eagerly took out her notebook and camera, ready to interview the mysterious figure. But he seemed to dislike the idea, and sent her back to the bottom.\nWhat an odd man. Still, an interview with someone like that would be an absolute exclusive!",
+  "STS2_CHARLOTTE_EPOCH_4.unlockInfo": "Win an Ascension 1 run as Charlotte."
+}

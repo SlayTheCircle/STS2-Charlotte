@@ -18,12 +18,12 @@ namespace CharlotteMod.Content.Relics;
 
 /// <summary>
 /// 采访稿记录本:每当你[留影]时,消耗你抽牌堆中的 1 张随机状态牌或诅咒牌。
-/// 世界线第三章解锁件——稀有度暂挂 Special,不进常规掉落(解锁接线随世界线批次)。
+/// 世界线第三章解锁件:揭示前由 CharlotteRelicPool.GetUnlockedRelics 过滤,稀有度走常规 Common 档(Navia 解锁件同例)。
 /// </summary>
 [RegisterRelic(typeof(CharlotteRelicPool))]
 public sealed class InterviewNotebook : CharlotteRelicBase, ISnapshotObserver
 {
-    public override RelicRarity Rarity => RelicRarity.Event;
+    public override RelicRarity Rarity => RelicRarity.Common;
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => CharlotteKeywords.HoverTips(CharlotteKeywords.Snapshot);
 

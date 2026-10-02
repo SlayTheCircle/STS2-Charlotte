@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-# 从配置的美术母版生成资源；各类派生职责位于 scripts/art/。
-# 模板只保留确定性的 convert 包装与母版校验骨架；各类派生脚本（卡图横幅、遗物图标描边、
-# 立绘、能量计、事件/纪元图）由衍生仓按 Mod 重写——完整参考实现见源工程 STS2-Navia。
+# 从美术母版(ART_SOURCE_DIR)全量再生成 assets/ 派生素材;CI 的 release 构建入口。
+# 派生职责:stage-smoke(卡图/图标/能量) → characters(角色套图) → stories(事件/纪元)。
+# 映射表按本 Mod 惯例内嵌在各派生脚本(stage-smoke 的 CARDS/POWERS 等);mappings.sh 保持空表,
+# validate-sources.sh 的映射巡检因此空转,缺件硬失败由各派生脚本自行保证(2026-10-03 起为 CI 硬门)。
 set -euo pipefail
 source "$(dirname "$0")/dev-env.sh"
-SRC="${ART_SOURCE_DIR:-}"
-[[ -n "$SRC" && -d "$SRC" ]] || { echo '错误: 请配置存在的 ART_SOURCE_DIR。' >&2; exit 1; }
-source "$MOD_ROOT/scripts/art/common.sh"
-source "$MOD_ROOT/scripts/art/mappings.sh"
-source "$MOD_ROOT/scripts/art/validate-sources.sh"
-echo "母版校验通过（当前映射：卡 ${#CARDS[@]}、遗物 ${#RELICS[@]}、药水 ${#POTIONS[@]}、能力 ${#POWERS[@]}）。"
-echo "提示: 模板不含派生脚本——在 scripts/art/ 下按 Mod 实现后接入本文件。"
+: "${ART_SOURCE_DIR:?请配置 ART_SOURCE_DIR 指向美术母版(本地=美术素材/,CI=美术仓 checkout)}"
+[[ -d "$ART_SOURCE_DIR" ]] || { echo "错误: ART_SOURCE_DIR 不存在: $ART_SOURCE_DIR" >&2; exit 1; }
+
+bash "$MOD_ROOT/scripts/art/stage-smoke.sh"
+bash "$MOD_ROOT/scripts/art/characters.sh"
+bash "$MOD_ROOT/scripts/art/stories.sh"
+echo "prep-art: 全量派生完成(卡图/图标/能量/角色/事件/纪元)。"

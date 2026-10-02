@@ -74,6 +74,7 @@ for zh in "${!NEWS_ART[@]}"; do
     ok=$((ok+1))
 done
 echo "卡图: $ok 张就绪(缺 $miss)"
+[[ "$miss" -eq 0 ]] || { echo "错误: 卡图母版缺 $miss 张,中止(CI 全量再生成不允许缺件)。" >&2; exit 1; }
 
 # ---- 遗物/药水图标 256² + 描边 ----
 stage_icons() {  # $1=源目录 $2=目标目录 $3..=中文名:类名
@@ -82,7 +83,7 @@ stage_icons() {  # $1=源目录 $2=目标目录 $3..=中文名:类名
     for pair in "$@"; do
         local zh="${pair%%:*}" cls="${pair##*:}"
         local src="$SRC/$srcdir/$zh.png"
-        if [[ ! -f "$src" ]]; then echo "缺图标: $srcdir/$zh"; continue; fi
+        if [[ ! -f "$src" ]]; then echo "错误: 图标母版缺失: $srcdir/$zh" >&2; exit 1; fi
         convert "$src" -resize 256x256 "$DST/$dstdir/$cls.png"
         convert "$DST/$dstdir/$cls.png" -bordercolor none -border 6 -alpha extract \
             -morphology Dilate Disk:5 -gravity center -crop 256x256+0+0 +repage "$TMP/mask.png"
@@ -117,7 +118,7 @@ ok=0
 for zh in "${!POWERS[@]}"; do
     src="$SRC/图标/$zh-图标.png"
     [[ -f "$src" ]] || src="$SRC/图标/$zh.png"
-    if [[ ! -f "$src" ]]; then echo "缺 power 图标: $zh → ${POWERS[$zh]}"; continue; fi
+    if [[ ! -f "$src" ]]; then echo "错误: power 图标母版缺失: $zh → ${POWERS[$zh]}" >&2; exit 1; fi
     convert "$src" -resize 256x256 "$DST/powers/${POWERS[$zh]}.png"
     ok=$((ok+1))
 done

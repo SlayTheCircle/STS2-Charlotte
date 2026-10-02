@@ -24,6 +24,11 @@ public sealed class HeatedDebate : CharlotteEventBase
     private const decimal HealAmount = 22m;
     private const decimal GoldGain = 50m;
 
+    /// <summary>临时肖像:事件图待 Mirror;不覆写时游戏按条目名推导原版 images/events/
+    /// 路径,mod 无此文件直接 AssetLoadException 灰屏(2026-10-02 事故)——先借同规格选人背景顶替。</summary>
+    public override EventAssetProfile AssetProfile => new(
+        InitialPortraitPath: "res://STS2-Charlotte/images/characters/charlotte_char_select_bg.png");
+
     protected override IReadOnlyList<EventOption> GenerateInitialOptions()
     {
         List<EventOption> options = new()

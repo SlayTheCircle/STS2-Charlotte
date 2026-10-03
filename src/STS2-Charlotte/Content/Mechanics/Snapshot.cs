@@ -73,8 +73,9 @@ public static class Snapshot
 
     /// <summary>
     /// 只生成留影纪念并入抽牌堆,不消耗原牌——供「把自己留影」的卡(精彩纷呈)使用:
-    /// 打出中的牌在 Play 堆,立即 CardCmd.Exhaust 会与打出后的入堆路由打架,改由调用方
-    /// 设置 ExhaustOnNextPlay 让引擎自行送入消耗堆。
+    /// 打出中的牌在 Play 堆,立即 CardCmd.Exhaust 会与打出后的入堆路由打架,原牌去向由
+    /// 该卡覆写 GetResultLocationForCardPlay 路由进消耗堆(引擎在 OnPlay 之前预计算去向,
+    /// OnPlay 内补 ExhaustOnNextPlay 赶不上本次路由——2026-10-03 修正)。
     /// </summary>
     public static async Task Memento(PlayerChoiceContext ctx, CardModel target, Player player)
     {

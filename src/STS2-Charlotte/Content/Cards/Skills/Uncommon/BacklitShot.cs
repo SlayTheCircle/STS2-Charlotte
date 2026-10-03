@@ -10,6 +10,8 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
+using MegaCrit.Sts2.Core.HoverTips;
+using CharlotteMod.Content.Afflictions;
 using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.Mechanics;
@@ -32,6 +34,10 @@ public sealed class BacklitShot : CharlotteCardBase
             return set;
         }
     }
+
+    // 卡面提及[留影纪念]名词与[留影]动作各一条:动作走 Snapshot 词条(上),名词挂纪念标记(设计师 2026-10-03 D3)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        HoverTipFactory.FromAffliction<SnapshotMemento>();
 
     public BacklitShot()
         : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)

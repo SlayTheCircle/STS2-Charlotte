@@ -1,8 +1,8 @@
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -30,7 +30,7 @@ public interface IFocusApplyObserver
 /// </summary>
 public static class Focus
 {
-    public static async Task TriggerAll(ICombatState combatState, Player? acting = null)
+    public static async Task TriggerAll(ICombatState combatState)
     {
         foreach (Creature creature in combatState.Creatures)
         {
@@ -45,13 +45,15 @@ public static class Focus
             }
             await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), creature, amount,
                 ValueProp.Unblockable | ValueProp.Unpowered, null, null);
-            if (acting != null)
+            // 合作口径(设计师 2026-10-03 A5 裁决):场上任意玩家的聚焦伤害观察者都结算——
+            // 此前只通知触发者本人,搭档留影/打出新闻时己方谨遵事实不触发。单人语义不变。
+            foreach (Creature observer in combatState.Creatures.Where(c => c.IsAlive && c.Player != null))
             {
-                foreach (PowerModel power in acting.Creature.Powers)
+                foreach (PowerModel power in observer.Powers)
                 {
-                    if (power is IFocusDamageObserver observer)
+                    if (power is IFocusDamageObserver o)
                     {
-                        await observer.OnFocusDamage(new ThrowingPlayerChoiceContext(), amount);
+                        await o.OnFocusDamage(new ThrowingPlayerChoiceContext(), amount);
                     }
                 }
             }

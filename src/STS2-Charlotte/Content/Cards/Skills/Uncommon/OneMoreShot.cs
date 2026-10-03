@@ -12,6 +12,8 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
+using MegaCrit.Sts2.Core.HoverTips;
+using CharlotteMod.Content.Afflictions;
 using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.Mechanics;
@@ -34,6 +36,10 @@ public sealed class OneMoreShot : CharlotteCardBase
             return set;
         }
     }
+
+    // 卡面提及[留影纪念]名词,直挂纪念标记悬停(设计师 2026-10-03 D3)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        HoverTipFactory.FromAffliction<SnapshotMemento>();
 
     public override bool GainsBlock => true;
 

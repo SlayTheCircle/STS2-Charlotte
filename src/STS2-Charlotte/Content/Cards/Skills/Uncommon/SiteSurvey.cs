@@ -9,6 +9,8 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
+using MegaCrit.Sts2.Core.HoverTips;
+using CharlotteMod.Content.Afflictions;
 using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.Mechanics;
@@ -32,6 +34,10 @@ public sealed class SiteSurvey : CharlotteCardBase
             return set;
         }
     }
+
+    // [留影纪念]名词直挂纪念标记悬停(设计师 2026-10-03 D3)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        HoverTipFactory.FromAffliction<SnapshotMemento>();
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new PowerVar<LensFocusPower>(2m) };
 

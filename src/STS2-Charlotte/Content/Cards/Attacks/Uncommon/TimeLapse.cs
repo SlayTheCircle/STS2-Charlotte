@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
+using CharlotteMod.Content.Afflictions;
 using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Mechanics;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -32,8 +33,10 @@ public sealed class TimeLapse : CharlotteCardBase
     }
 
     // 「消耗」为文案中的动作/牌堆引用(非本卡自身关键词),挂词条悬停而非 CanonicalKeywords 横幅(BurningPact 同款,悬浮扫描 2026-10-03)。
+    // [留影纪念]名词直挂纪念标记悬停(设计师 2026-10-03 D3):与纪念牌本体同一份说明。
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-        new IHoverTip[] { HoverTipFactory.FromKeyword(CardKeyword.Exhaust) };
+        new IHoverTip[] { HoverTipFactory.FromKeyword(CardKeyword.Exhaust) }
+            .Concat(HoverTipFactory.FromAffliction<SnapshotMemento>());
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new DamageVar(12m, ValueProp.Move) };
 

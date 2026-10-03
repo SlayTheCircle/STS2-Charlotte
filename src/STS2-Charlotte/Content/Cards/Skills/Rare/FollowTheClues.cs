@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,10 +38,14 @@ public sealed class FollowTheClues : CharlotteCardBase
         int take = base.DynamicVars.Cards.IntValue;
         var drawPrompt = new LocString("cards", base.Id.Entry + ".selectionScreenPrompt");
         var discardPrompt = new LocString("cards", base.Id.Entry + ".selectionScreenPromptDiscard");
+        // 恰好 N 在堆内不足时会被引擎整体跳过,把够数的牌也漏掉——min 钳到现存张数,
+        // 有几张拿几张(设计师 2026-10-03 B 批复:「有消耗就消耗没消耗就跳过」同口径)。
         IEnumerable<CardModel> fromDraw = await CardSelectCmd.FromCombatPile(
-            choiceContext, PileType.Draw.GetPile(base.Owner), base.Owner, new CardSelectorPrefs(drawPrompt, take), null);
+            choiceContext, PileType.Draw.GetPile(base.Owner), base.Owner,
+            new CardSelectorPrefs(drawPrompt, Math.Min(take, PileType.Draw.GetPile(base.Owner).Cards.Count)), null);
         IEnumerable<CardModel> fromDiscard = await CardSelectCmd.FromCombatPile(
-            choiceContext, PileType.Discard.GetPile(base.Owner), base.Owner, new CardSelectorPrefs(discardPrompt, take), null);
+            choiceContext, PileType.Discard.GetPile(base.Owner), base.Owner,
+            new CardSelectorPrefs(discardPrompt, Math.Min(take, PileType.Discard.GetPile(base.Owner).Cards.Count)), null);
         List<CardModel> taken = fromDraw.Concat(fromDiscard).ToList();
         if (taken.Count > 0)
         {

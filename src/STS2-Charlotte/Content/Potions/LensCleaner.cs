@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
+using CharlotteMod.Content.Afflictions;
 using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.PotionPools;
 using CharlotteMod.Content.Powers;
@@ -26,7 +28,9 @@ public sealed class LensCleaner : CharlottePotionBase
 
     public override TargetType TargetType => TargetType.Self;
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips => CharlotteKeywords.HoverTips(CharlotteKeywords.Snapshot);
+    // [留影纪念]名词直挂纪念标记悬停(设计师 2026-10-03 D3)。
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => CharlotteKeywords.HoverTips(CharlotteKeywords.Snapshot)
+        .Concat(HoverTipFactory.FromAffliction<SnapshotMemento>());
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {

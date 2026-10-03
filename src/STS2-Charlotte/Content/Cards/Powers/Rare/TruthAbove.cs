@@ -17,10 +17,8 @@ namespace CharlotteMod.Content.Cards;
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class TruthAbove : CharlotteCardBase
 {
-    // 能力实际获得格挡,补 GainsBlock(业主 2026-10-03 裁决 A7):格挡悬停 +
-    // 原版灵巧附魔(CanEnchant 按 GainsBlock 判定)自此可作用于本卡。
-    public override bool GainsBlock => true;
-
+    // 不声明 GainsBlock(设计师 2026-10-03 A7 复批推翻 0.1.1 代决:「能力牌吃敏捷超模完了,
+    // 万万不能带」)——灵巧附魔回到无法附上本卡的状态,格挡悬停一并放弃。
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[] { new PowerVar<TruthAbovePower>(1m) };
 
     public TruthAbove()

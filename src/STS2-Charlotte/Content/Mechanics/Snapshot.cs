@@ -94,7 +94,7 @@ public static class Snapshot
     {
         if (target.CombatState is { } combatState)
         {
-            await Focus.TriggerAll(combatState, target.Owner);
+            await Focus.TriggerAll(combatState);
         }
     }
 

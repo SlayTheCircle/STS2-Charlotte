@@ -17,7 +17,9 @@ using CharlotteMod.Content.Mechanics;
 namespace CharlotteMod.Content.Cards;
 
 /// <summary>
-/// 连续抓拍(普通,2 费攻击):为随机 1 张手牌[留影],造成 13 点伤害。升级:17。
+/// 连续抓拍(普通,2 费攻击):造成 13 点伤害,那之后为随机 1 张手牌[留影]。升级:17。
+/// 结算序=先伤后影(设计师 2026-10-03 C1 复批推翻 0.1.1 代决:两个动作分立、文案改序,
+/// 「那之后」成句,避免与结算纠缠)。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class RapidSnaps : CharlotteCardBase
@@ -42,16 +44,16 @@ public sealed class RapidSnaps : CharlotteCardBase
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        // 先影后伤(设计案语序,业主 2026-10-03 裁决):留影结算在前,聚焦时点随之前移。
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(choiceContext);
+        // 先伤后影(设计师 C1 复批):留影结算在后,敌人死于伤害也不影响(留影只动手牌)。
         List<CardModel> hand = PileType.Hand.GetPile(base.Owner).Cards.ToList();
         if (hand.Count > 0)
         {
             CardModel victim = base.Owner.RunState.Rng.CombatCardSelection.NextItem(hand);
             await Snapshot.Card(choiceContext, victim, base.Owner);
         }
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
     }
 
     protected override void OnUpgrade()

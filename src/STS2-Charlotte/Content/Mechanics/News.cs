@@ -44,7 +44,7 @@ public static class News
         await effect();
         if (card.CombatState is { } combatState)
         {
-            await Focus.TriggerAll(combatState, card.Owner);
+            await Focus.TriggerAll(combatState);
         }
         foreach (PowerModel? observer in card.Owner?.Creature?.Powers)
         {

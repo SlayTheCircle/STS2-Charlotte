@@ -44,8 +44,10 @@ public sealed class Overtime : CharlotteCardBase
         if (victim != null)
         {
             await CardCmd.Exhaust(choiceContext, victim);
-            await PlayerCmd.GainEnergy(base.DynamicVars.Energy.BaseValue, base.Owner);
         }
+        // 能量无条件(vanilla BurningPact 同型;设计师 2026-10-03 B 批复:有消耗就消耗,
+        // 没消耗(空手自动跳过选牌)就跳过,效果照常白嫖)。此前能量被错误地闸在选中之后。
+        await PlayerCmd.GainEnergy(base.DynamicVars.Energy.BaseValue, base.Owner);
     }
 
     protected override void OnUpgrade()

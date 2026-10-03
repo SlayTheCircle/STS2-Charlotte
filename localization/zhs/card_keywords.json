@@ -1,6 +1,6 @@
 {
   "STS2_CHARLOTTE_KEYWORD_SNAPSHOT.title": "留影",
-  "STS2_CHARLOTTE_KEYWORD_SNAPSHOT.description": "选择一张手牌，将其消耗，并在你的抽牌堆中放入一张效果、类型与费用完全相同，但带有消耗的无色牌「留影纪念」。如果选择的是状态牌或诅咒牌，则不会生成「留影纪念」，而是抽1张牌。",
+  "STS2_CHARLOTTE_KEYWORD_SNAPSHOT.description": "选择一张手牌，将其消耗，并在你的抽牌堆中放入一张名为「留影纪念」的无色牌：效果、类型、费用与卡图与原牌相同，并带有消耗。如果选择的是状态牌或诅咒牌，则不会生成「留影纪念」，而是抽1张牌。",
   "STS2_CHARLOTTE_KEYWORD_FOCUS.title": "聚焦",
   "STS2_CHARLOTTE_KEYWORD_FOCUS.description": "负面效果。每当你「留影」或打出「新闻」牌时，持有「聚焦」的全部单位失去等同于聚焦层数的生命值。回合结束时，聚焦的层数减少1。",
   "STS2_CHARLOTTE_KEYWORD_NEWS.title": "新闻",

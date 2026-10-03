@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
+using CharlotteMod.Content.Afflictions;
 using CharlotteMod.Content.CardPools;
 using CharlotteMod.Content.Keywords;
 using CharlotteMod.Content.Powers;
@@ -20,7 +22,8 @@ public sealed class OnTheBeat : CharlotteCardBase
 {
     // 「消耗」为文案中的动作/牌堆引用(非本卡自身关键词),挂词条悬停而非 CanonicalKeywords 横幅(BurningPact 同款,悬浮扫描 2026-10-03)。
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-        new IHoverTip[] { HoverTipFactory.FromKeyword(CardKeyword.Exhaust) };
+        new IHoverTip[] { HoverTipFactory.FromKeyword(CardKeyword.Exhaust) }
+            .Concat(HoverTipFactory.FromAffliction<SnapshotMemento>());
 
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {

@@ -27,9 +27,9 @@
 | 正当防卫 | 普通 | 0 | 攻击 | 造成{Damage:diff()}点伤害，获得{Block:diff()}点[gold]格挡[/gold]。 |
 | 精彩纷呈 | 普通 | 0 | 攻击 | 造成{Damage:diff()}点伤害，然后将这张牌[gold]留影[/gold]。 |
 | 一针见血 | 普通 | 2 | 攻击 | 对所有敌人造成{Damage:diff()}点伤害。 |
-| 按下快门 | 普通 | 0 | 攻击 | 造成{Damage:diff()}点伤害。本回合内，该敌人每受到1次攻击牌的伤害，都会额外失去{ShutterPursuitPower:diff()}点生命。 |
+| 按下快门 | 普通 | 0 | 攻击 | 造成{Damage:diff()}点伤害。本回合内，该敌人每被攻击牌命中一次，都会额外失去{ShutterPursuitPower:diff()}点生命。 |
 | 羽笔打击 | 普通 | 1 | 攻击 | 造成{Damage:diff()}点伤害。生成1张[gold]新闻[/gold]。 |
-| 连续抓拍 | 普通 | 2 | 攻击 | 为随机1张手牌[gold]留影[/gold]，造成{Damage:diff()}点伤害。 |
+| 连续抓拍 | 普通 | 2 | 攻击 | 造成{Damage:diff()}点伤害。那之后，为随机1张手牌[gold]留影[/gold]。 |
 | 可靠信源 | 普通 | 0 | 攻击 | 造成{CalculatedDamage:diff()}点伤害，抽{Cards:diff()}张牌。本回合每打出过1张其他攻击牌，伤害提升{ExtraDamage:diff()}点。 |
 | 掷地有声 | 普通 | 0 | 攻击 | 造成{Damage:diff()}点伤害，如果这是你本回合打出的第一张攻击牌，则再造成{ExtraDamage:diff()}点伤害。 |
 | 针砭时弊 | 普通 | 1 | 攻击 | 造成{Damage:diff()}点伤害。抽{Cards:diff()}张牌，如果抽到的牌是0费的牌，则额外抽1张。 |

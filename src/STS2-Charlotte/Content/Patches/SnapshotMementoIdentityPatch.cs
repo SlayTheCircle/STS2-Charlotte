@@ -14,7 +14,7 @@ namespace CharlotteMod.Content.Patches;
 /// (Trash Heap 事件卡借角色卡框的同款机制),指向 CharlotteNewsPool(无色卡框,能量配色不变)。
 /// 补丁由 ModEntry.Init 的显式 PatchAll 挂载。
 /// </summary>
-[HarmonyPatch(typeof(CardModel), nameof(CardModel.VisualCardPool))]
+[HarmonyPatch(typeof(CardModel), nameof(CardModel.VisualCardPool), MethodType.Getter)]
 internal static class SnapshotMementoVisualPoolPatch
 {
     private static void Postfix(CardModel __instance, ref CardPoolModel __result)
@@ -31,7 +31,7 @@ internal static class SnapshotMementoVisualPoolPatch
 /// 悬停共用同一份文案),Title getter 的升级 +N 后缀逻辑照常生效。原牌名只在战斗记录等
 /// Title 渲染处出现,均走本属性,无第二事实源。
 /// </summary>
-[HarmonyPatch(typeof(CardModel), nameof(CardModel.TitleLocString))]
+[HarmonyPatch(typeof(CardModel), nameof(CardModel.TitleLocString), MethodType.Getter)]
 internal static class SnapshotMementoTitlePatch
 {
     private static readonly LocString MementoTitle =

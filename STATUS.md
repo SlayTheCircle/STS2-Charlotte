@@ -1,4 +1,4 @@
-# 当前状态（2026-10-05 · 0.1.3 启动致命热修已双端发版：GitHub Release + 工坊物品更新）
+# 当前状态（2026-10-05 · 0.1.4 海玻璃键名修复已双端发版；工坊改动说明管线待切换）
 
 本文件维护当前实现、证据边界、限制与待办。安装入口见 README，长期工程规则见 docs/dev/README.md。
 
@@ -18,6 +18,7 @@
 
 ## 验收证据
 
+- 2026-10-05 **0.1.4 双端发版**：海玻璃按角色分键修复（SEA_GLASS.STS2_CHARLOTTE_CHARACTER_CHARLOTTE.title = 镜头玻璃/Lens Glass，模板 issue#1 口径，Navia/Dehya 同款先例）。tag v0.1.4 → CI 全绿 → GitHub Release 发布（sha256 复核一致，verify-pck 对 CI 产物实地解析通过）；工坊物品同日更新，描述 Change Log 段补 0.1.4 条目。**changenote 管线测试结论：steamcmd 的 VDF changenote 键提交无报错但说明不落地**（0.1.4 真实内容更新的条目仍无说明；官方文档列该键但实测无效）。对照 RitsuLib 可工作路径为 MegaCrit 官方 sts2-mod-uploader（ISteamUGC 直传 changeNote，需运行中的 Steam 客户端；本机无 Linux 客户端，客户端在 Windows 侧）。0.1.3/0.1.4 的改动说明待网页端「编辑」补录或管线切换后重传。
 - 2026-10-05 **0.1.3 紧急热修发版**：0.1.2 留影纪念双贴片以两参形式指向 CardModel 属性，Harmony 不解析 getter → PatchAll 抛错 → Init 中断 → 启动 ModelNotFoundException（0.1.2 全体用户受影响；离线探针复现并验证修复，5586fc7 补 MethodType.Getter）。tag v0.1.3 → CI 全绿 → GitHub Release 发布（6 件资产，sha256 复核一致，包内清单 0.1.3，DLL 含补丁类）。同日工坊物品 3812082715 重发完成：描述与线上业主手订版逐字核对一致后补双语「更新日志 / Change Log」段（0.1.3 热修 + 0.1.2 摘要 + GitHub Releases 链接），首次上传遇断连（result 3 No Connection）重试即成功，API 复核 time_updated 与描述已生效，订阅侧自动更新。
 - 2026-10-03 **0.1.2 双端发版**：tag v0.1.2 → CI（Source checks/Compile/Release build 全绿）→ GitHub Release 发布（CHANGELOG 段落为发行说明，6 件资产；与本地包文件树逐项一致，DLL/PCK 差异为跨机构建不可复现项）；工坊物品 3812082715 经缓存凭据从 Release 工件更新成功，线上简介/署名为业主手订版（零 AI 字样，双 Credit 完整），订阅侧自动更新。同批收口精彩纷呈入堆路由 bug（引擎在 OnPlay 前预计算去向，OnPlay 内补标记赶不上路由；改走 GetResultLocationForCardPlay 覆写，双目标同缝异形垫片）。
 - 2026-10-03 设计裁决复批第二批（0.1.2）：Mirror 全部复批 14+3 题——A1 留影纪念真无色+统一卡名（VisualCardPool/TitleLocString 双贴片，原池不动）、A5 谨遵事实合作口径（观察者全场玩家）、C2 按下快门文案消歧（行为不动）、A2 附议力透纸背金光高亮、D3 纪念标记悬挂九处；**A7/C1 推翻 0.1.1 代决**（真实至上撤 GainsBlock、连续抓拍回先伤后影）；B 组按原版「有消耗就消耗」口径复核未回退，修两处偏差（加班加点能量无条件、不足 N 按现存张数）+ C4 实装缺口（动作捕捉只耗 1 张→全部消耗）。双目标编译绿；游戏内验收通过（业主 2026-10-03）。

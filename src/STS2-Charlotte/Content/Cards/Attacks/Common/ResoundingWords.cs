@@ -17,7 +17,7 @@ namespace CharlotteMod.Content.Cards;
 
 /// <summary>
 /// 掷地有声(普通,0 费攻击):造成 4 点伤害,如果这是你本回合打出的第一张攻击牌,则再造成 6 点伤害。
-/// 升级:追加 9 点。「第一张」以 CombatTracker 结算时计数为准(自身尚未计入)。
+/// 升级:追加 9 点。「第一张」以战斗 History 在结算时的计数为准(自身尚未计入)。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class ResoundingWords : CharlotteCardBase

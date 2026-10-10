@@ -1,4 +1,4 @@
-# 当前状态（2026-10-05 · 0.1.4 海玻璃键名修复已双端发版；工坊改动说明管线待切换）
+# 当前状态（2026-10-10 · 0.1.5 报告五项修复候选，双端发布待执行）
 
 本文件维护当前实现、证据边界、限制与待办。安装入口见 README，长期工程规则见 docs/dev/README.md。
 
@@ -9,7 +9,7 @@
 | 类别 | 实现情况 |
 |---|---|
 | 机制 | [留影]（Snapshot 收口 + SnapshotMemento 标记，随存档序列化）、[聚焦]（LensFocusPower + Focus.TriggerAll，Unblockable 掉血、持有者回合末 -1；类名避原版宝珠 FocusPower 撞名）、[新闻]（News.Play 收口：效果→聚焦→观察者） |
-| 观察者分发 | ISnapshotObserver / INewsObserver / IFocusApplyObserver / IFocusDamageObserver / IExileReturner（消耗堆回归） |
+| 观察者分发 | ISnapshotObserver / INewsObserver / IFocusApplyObserver / IFocusDamageObserver；唇枪舌剑直接用原生回合钩子回归 |
 | 卡牌 | 花名册 95/95/0 全实装；新闻牌 Token 稀有度无色池不进奖励；计算三件套契约全守齐（四张残缺已修） |
 | 遗物 | 7 件全实装：温亨廷先生（初始）/ 千织屋纪念版（Refinement）/ 特殊分析变焦镜头 / 镜头盖 / 采访稿记录本（世界线解锁件暂挂 Event 稀有度）/ 大份的炸鱼薯条 / 维修工具（Harmony 花费追踪 + SavedProperty 计数） |
 | 药水 | 4 件全实装：热咖啡 / 镜头清洁剂 / 枫丹洋葱汤（普通池）/ 提神醒脑茶（解锁件暂挂 Event） |
@@ -17,6 +17,9 @@
 | 关键词 | 留影/聚焦/新闻双语悬停注册 |
 
 ## 验收证据
+
+- 2026-10-10 **0.1.5 报告五项修复**：动作捕捉升级新增固有＋保留；神来之笔扩至抽牌堆＋弃牌堆；鞭辟入里／跟进调查升级增加保留，原有数值升级保留；唇枪舌剑回归改由卡牌原生 BeforeSideTurnStart 处理，删除 0 层施加导致从未挂载的隐藏扫描能力及遗物接线。源码检查、双目标完整构建、完整素材与 PCK 561 文件验证通过。0.107.1／0.111.0 隔离 Godot 宿主（真实 CardPlay／回合流，RitsuLib 0.6.6）逐项通过：两堆 5 张新闻→5 次 4／6 伤害；升级三牌实际保留而基础牌弃置；无初始遗物时基础／升级唇枪舌剑两轮回手增伤为 5→7／6→9，非消耗堆卡不增伤；跟进调查抽 1／2，动作捕捉抽 1 耗 1。双端发布待完成。隔离重建宿主不能替代发行游戏像素、多人和长流程验收。
+
 
 - 2026-10-05 **0.1.4 双端发版**：海玻璃按角色分键修复（SEA_GLASS.STS2_CHARLOTTE_CHARACTER_CHARLOTTE.title = 镜头玻璃/Lens Glass，模板 issue#1 口径，Navia/Dehya 同款先例）。tag v0.1.4 → CI 全绿 → GitHub Release 发布（sha256 复核一致，verify-pck 对 CI 产物实地解析通过）；工坊物品同日更新，描述 Change Log 段补 0.1.4 条目。**changenote 管线定论**：steamcmd VDF 本身支持 changenote——真正的原因是模板脚手架的 VDF 多带 title/visibility/previewfile 三键导致 changenote 被静默丢弃（0.1.4 全键 VDF 上传成功但条目空白；Navia 0.3.0/0.4.0/0.4.1 用 5 键最小形式说明全部正常，含多行中文）。publish.sh 已对齐 Navia 最小键形式（代价：标题/可见性/封面转网页端维护）。0.1.3/0.1.4 两次更新的说明已随旧形式丢失，网页端「编辑」补录或随下版自然覆盖；MegaCrit 官方 sts2-mod-uploader 已备在 local_dev/tools 作为备选（需运行中的 Steam 客户端，本机 Linux 无客户端）。
 - 2026-10-05 **0.1.3 紧急热修发版**：0.1.2 留影纪念双贴片以两参形式指向 CardModel 属性，Harmony 不解析 getter → PatchAll 抛错 → Init 中断 → 启动 ModelNotFoundException（0.1.2 全体用户受影响；离线探针复现并验证修复，5586fc7 补 MethodType.Getter）。tag v0.1.3 → CI 全绿 → GitHub Release 发布（6 件资产，sha256 复核一致，包内清单 0.1.3，DLL 含补丁类）。同日工坊物品 3812082715 重发完成：描述与线上业主手订版逐字核对一致后补双语「更新日志 / Change Log」段（0.1.3 热修 + 0.1.2 摘要 + GitHub Releases 链接），首次上传遇断连（result 3 No Connection）重试即成功，API 复核 time_updated 与描述已生效，订阅侧自动更新。
@@ -36,4 +39,4 @@
 - 设计语义 12 问已全部经 Mirror 确认闭环（2026-10-02，含高危调查/奋笔疾书升级补正、透镜高塔/药水快递员奖励=原版遗物）；决议记录见 `local_dev/杀戮尖塔2——夏洛蒂角色mod/待确认问题与素材缺口（转Mirror）.md`。
 - 三个事件肖像、四章世界线立绘与缩略图、「墨迹未干」专属图标及透明选人半身已补齐并接线（2026-10-03，ee49b44）；「摄影技巧」保留已有正式相机图标。新增画面尚未游戏内验收。
 - 未做过游戏内长流程回归（多层推进/多场战斗/存档中断恢复），首版验收为冒烟深度。
-- 14 题设计裁决（留影纪念颜色/选牌空过/结算顺序等）待 Mirror 回复后批量实装；测试分发通道为 local_dev 测试分发（当前 d 包）。
+- 14 题设计裁决已于 0.1.2 复批落地；历史测试分发包不代表当前发行物。

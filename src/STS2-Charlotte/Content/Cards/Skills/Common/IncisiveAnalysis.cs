@@ -15,7 +15,7 @@ namespace CharlotteMod.Content.Cards;
 
 /// <summary>
 /// 鞭辟入里(普通,0 费技能):去除敌人所有的格挡与人工制品,并给予 1 层虚弱。消耗。
-/// 升级:2 层虚弱。
+/// 升级:2 层虚弱、保留。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class IncisiveAnalysis : CharlotteCardBase
@@ -64,5 +64,6 @@ public sealed class IncisiveAnalysis : CharlotteCardBase
     protected override void OnUpgrade()
     {
         base.DynamicVars["WeakPower"].UpgradeValueBy(1m);
+        AddKeyword(CardKeyword.Retain);
     }
 }

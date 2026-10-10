@@ -158,7 +158,7 @@
   "STS2_CHARLOTTE_CARD_SOLO_THRUST.title": "单刀直入",
   "STS2_CHARLOTTE_CARD_SOLO_THRUST.description": "本场战斗中，你每打出过1张攻击牌，此卡就造成{ExtraDamage:diff()}点伤害。",
   "STS2_CHARLOTTE_CARD_MASTERSTROKE.title": "神来之笔",
-  "STS2_CHARLOTTE_CARD_MASTERSTROKE.description": "消耗你抽牌堆中所有的[gold]新闻[/gold]。每消耗1张，就对随机敌人造成{Damage:diff()}点伤害1次。",
+  "STS2_CHARLOTTE_CARD_MASTERSTROKE.description": "消耗你抽牌堆与弃牌堆中所有的[gold]新闻[/gold]。每消耗1张，就对随机敌人造成{Damage:diff()}点伤害1次。",
   "STS2_CHARLOTTE_CARD_DEBUNK_AND_DISPEL.title": "辟谣祛魅",
   "STS2_CHARLOTTE_CARD_DEBUNK_AND_DISPEL.description": "造成{Damage:diff()}点伤害。这张卡的耗能增加1，且造成的伤害{IfUpgraded:show:变为三倍|翻倍}。",
   "STS2_CHARLOTTE_CARD_TRACKING_INVESTIGATION.title": "追踪调查",

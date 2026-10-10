@@ -17,7 +17,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 namespace CharlotteMod.Content.Cards;
 
 /// <summary>
-/// 动作捕捉(罕见,1 费能力):每当你打出 1 张[留影纪念],抽 1 张牌,消耗 1 张手牌。升级:无变化(两表一致,无升级路径)。
+/// 动作捕捉(罕见,1 费能力):每当你打出 1 张[留影纪念],抽 1 张牌,消耗 1 张手牌。升级:固有、保留。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class MotionCapture : CharlotteCardBase
@@ -48,5 +48,11 @@ public sealed class MotionCapture : CharlotteCardBase
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<MotionCapturePower>(choiceContext, base.Owner.Creature, 1, base.Owner.Creature, this);
+    }
+
+    protected override void OnUpgrade()
+    {
+        AddKeyword(CardKeyword.Innate);
+        AddKeyword(CardKeyword.Retain);
     }
 }

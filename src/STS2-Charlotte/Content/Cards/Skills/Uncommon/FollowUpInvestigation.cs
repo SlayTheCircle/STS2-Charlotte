@@ -14,7 +14,7 @@ using CharlotteMod.Content.Powers;
 namespace CharlotteMod.Content.Cards;
 
 /// <summary>
-/// 跟进调查(罕见,1 费技能):本回合内,当你打出[新闻]时,抽 1 张牌。升级:抽 2 张。
+/// 跟进调查(罕见,1 费技能):本回合内,当你打出[新闻]时,抽 1 张牌。升级:抽 2 张、保留。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class FollowUpInvestigation : CharlotteCardBase
@@ -47,5 +47,6 @@ public sealed class FollowUpInvestigation : CharlotteCardBase
     protected override void OnUpgrade()
     {
         base.DynamicVars["FollowUpPower"].UpgradeValueBy(1m);
+        AddKeyword(CardKeyword.Retain);
     }
 }

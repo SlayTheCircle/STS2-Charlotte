@@ -19,7 +19,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 namespace CharlotteMod.Content.Cards;
 
 /// <summary>
-/// 神来之笔(稀有,0 费攻击):消耗你抽牌堆中所有的[新闻]。每消耗 1 张,就对随机敌人造成 4 点伤害 1 次。升级:6 点。
+/// 神来之笔(稀有,0 费攻击):消耗你抽牌堆与弃牌堆中所有的[新闻]。每消耗 1 张,就对随机敌人造成 4 点伤害 1 次。升级:6 点。
 /// </summary>
 [RegisterCard(typeof(CharlotteCardPool))]
 public sealed class Masterstroke : CharlotteCardBase
@@ -47,7 +47,8 @@ public sealed class Masterstroke : CharlotteCardBase
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        List<CardModel> news = CardPile.GetCards(base.Owner, PileType.Draw).Where(News.IsNews).ToList();
+        List<CardModel> news = CardPile.GetCards(base.Owner, PileType.Draw)
+            .Concat(CardPile.GetCards(base.Owner, PileType.Discard)).Where(News.IsNews).ToList();
         foreach (CardModel card in news)
         {
             await CardCmd.Exhaust(choiceContext, card);

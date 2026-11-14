@@ -24,9 +24,9 @@ unset mod_env_names mod_env_values mod_name mod_i
 
 DOTNET_EXE="${DOTNET_EXE:-dotnet}"
 GODOT_EXE="${GODOT_EXE:-$MOD_ROOT/.tools/godot/$MOD_GODOT_VERSION/Godot_v${MOD_GODOT_VERSION}-stable_linux.x86_64}"
-GAME_REFS_DIR="${GAME_REFS_DIR:-$MOD_ROOT/libs/game}"
+GAME_REFS_DIR="${GAME_REFS_DIR:-$MOD_ROOT/libs/game-0.113.0}"
 RITSULIB_DIR="${RITSULIB_DIR:-$MOD_ROOT/libs/RitsuLib}"
-RITSULIB_TARGET="${RITSULIB_TARGET:-0.111.0}"
+RITSULIB_TARGET="${RITSULIB_TARGET:-0.113.0}"
 TASKLIST_EXE="${TASKLIST_EXE:-tasklist.exe}"
 ROSTER_DESIGN_FILE="${ROSTER_DESIGN_FILE:-$MOD_ROOT/docs/history/design/card-roster.txt}"
 

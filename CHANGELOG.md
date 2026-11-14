@@ -4,7 +4,30 @@
 
 ## [Unreleased]
 
-（空——下批变更从这里起步。）
+## [0.2.0] - 2026-11-14
+
+### Compatibility
+
+- 将活跃游戏目标调整为 0.107.1／0.113.0，升级 RitsuLib 最低依赖至 0.6.12，并更新变体打包与构建配置。
+- Target game versions 0.107.1 / 0.113.0, require RitsuLib 0.6.12 or newer, and update variant packaging and build configuration.
+- 测试分支以 0.113.0 替代 0.111.0；保留 0.107.1 稳定分支支持。更新前请关闭游戏，并先更新 RitsuLib。
+- The beta target moves from 0.111.0 to 0.113.0 while stable 0.107.1 remains supported. Close the game and update RitsuLib before installing.
+
+
+### 新增
+
+- 五张联机限定卡：合影留念、众目睽睽、随行采访、同行特刊、此刻长存。包含跨玩家抽牌／格挡、逐玩家攻击触发、双方消耗联动与全体留影；支持简体中文和英文。
+- 「此刻长存」升级将每张成功留影提供的全体格挡由 4 提升至 6。
+
+### 移除
+
+- 按最新 Mirror 设计移除「精力充沛」和「真实至上」及其能力。包含这些卡牌或能力的旧战斗存档不保证恢复；更新前请结束或放弃相关旧局。
+
+### English summary
+
+- Adds five multiplayer-only cards: Group Photo, Public Scrutiny, Embedded Interview, Joint Special Issue and Everlasting Moment, with Chinese/English text and matching artwork.
+- Retires Second Wind and Truth Above and their powers. Finish or abandon old runs containing the removed content before updating.
+- Includes the 0.113.0 compatibility update and requires RitsuLib 0.6.12 or newer.
 
 ## [0.1.5] - 2026-10-10
 

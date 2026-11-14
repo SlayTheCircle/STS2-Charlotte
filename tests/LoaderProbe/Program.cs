@@ -4,13 +4,13 @@ using System.Text.Json;
 
 if (args.Length != 6)
 {
-    Console.Error.WriteLine("Usage: LoaderProbe <game-refs> <game-runtime-dll-dir> <RitsuLib> <loader-dll> <content-0.107.1-dll> <content-0.111.0-dll>");
+    Console.Error.WriteLine("Usage: LoaderProbe <game-refs> <game-runtime-dll-dir> <RitsuLib> <loader-dll> <content-0.107.1-dll> <content-0.113.0-dll>");
     return 2;
 }
 string[] inputs = args.Select(Path.GetFullPath).ToArray();
 string target = JsonDocument.Parse(File.ReadAllText(Path.Combine(inputs[0], "release_info.json")))
     .RootElement.GetProperty("version").GetString()!.TrimStart('v');
-Require(target is "0.107.1" or "0.111.0", "Probe only supports the two declared game targets");
+Require(target is "0.107.1" or "0.113.0", "Probe only supports the two declared game targets");
 string[] dependencyDirs = [inputs[0], Path.Combine(inputs[2], "compat", target), Path.Combine(inputs[2], "shared"), inputs[1]];
 AssemblyLoadContext.Default.Resolving += (_, name) =>
 {
@@ -23,7 +23,7 @@ Directory.CreateDirectory(bundle);
 try
 {
     File.Copy(inputs[3], Path.Combine(bundle, "STS2-Charlotte.dll"));
-    string[] targets = ["0.107.1", "0.111.0"];
+    string[] targets = ["0.107.1", "0.113.0"];
     for (int i = 0; i < targets.Length; i++)
     {
         string directory = Path.Combine(bundle, "lib", "game-" + targets[i]);
@@ -35,8 +35,8 @@ try
         schema = 1,
         variants = targets.Select(branch => new
         {
-            modVersion = "0.1.5", minGameVersion = branch, directory = "lib/game-" + branch,
-            dependencies = new[] { new { id = "STS2-RitsuLib", min_version = "0.6.2" } }
+            modVersion = "0.2.0", minGameVersion = branch, directory = "lib/game-" + branch,
+            dependencies = new[] { new { id = "STS2-RitsuLib", min_version = "0.6.12" } }
         })
     }));
     Assembly game = Assembly.LoadFrom(Path.Combine(inputs[0], "sts2.dll"));
@@ -46,8 +46,8 @@ try
     var host = new GameProbeHost(game, target);
     MethodInfo initialize = loader.GetType("CharlotteMod.Loader.WorkshopBootstrap")!.GetMethod("Initialize")!;
 
-    object owner = host.NewMod("STS2-Charlotte", bundle, "0.1.5", "None");
-    host.NewMod("STS2-RitsuLib", bundle, "0.6.2", "Loaded");
+    object owner = host.NewMod("STS2-Charlotte", bundle, "0.2.0", "None");
+    host.NewMod("STS2-RitsuLib", bundle, "0.6.12", "Loaded");
     initialize.Invoke(null, null);
     Assembly content = ProbeBoundaries.DispatchedAssembly
         ?? throw new InvalidOperationException("Loader did not dispatch a content initializer");
@@ -55,7 +55,7 @@ try
         "Loader selected the wrong game target");
     host.CompleteLoad(owner, loader);
     Type[] discovered = host.ScanModels();
-    foreach (string model in new[] { "CharlotteMod.Content.Characters.Charlotte", "CharlotteMod.Content.Cards.StrikeTemplate", "CharlotteMod.Content.CardPools.CharlotteCardPool" })
+    foreach (string model in new[] { "CharlotteMod.Content.Characters.Charlotte", "CharlotteMod.Content.Cards.CharlotteStrike", "CharlotteMod.Content.CardPools.CharlotteCardPool" })
     {
         Require(discovered.Any(type => type.FullName == model), "Game model scanner missing " + model);
     }
@@ -63,14 +63,14 @@ try
 
     // 对照：程序集存在于进程但游戏只登记壳时，ModelDb 仍完全看不到内容。
     host.Reset();
-    object baseline = host.NewMod("STS2-Charlotte", bundle, "0.1.5", "None");
+    object baseline = host.NewMod("STS2-Charlotte", bundle, "0.2.0", "None");
     host.CompleteLoad(baseline, loader);
     Require(!host.ScanModels().Any(type => type.Assembly == content), "Loader-only baseline unexpectedly discovers content");
     Console.WriteLine($"PASS {target}: loader-only control reproduces missing content models");
 
     host.Reset();
-    object rejected = host.NewMod("STS2-Charlotte", bundle, "0.1.5", "None");
-    host.NewMod("STS2-RitsuLib", bundle, "0.6.1", "Loaded");
+    object rejected = host.NewMod("STS2-Charlotte", bundle, "0.2.0", "None");
+    host.NewMod("STS2-RitsuLib", bundle, "0.6.11", "Loaded");
     initialize.Invoke(null, null);
     Require(ProbeBoundaries.DispatchedAssembly is null, "Loader invoked content despite an unsupported dependency version");
     host.CompleteLoad(rejected, loader);

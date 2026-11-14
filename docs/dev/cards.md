@@ -51,7 +51,8 @@
 - 稀有度：**普通=Common，罕见=Uncommon，稀有=Rare**（白卡／蓝卡／金卡）
 - 关键词（加进 `CanonicalKeywords`）：消耗=Exhaust 虚无=Ethereal 固有=Innate 保留=Retain
 - 打击类卡必须显式声明 `protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CardTag.Strike };`。原版打击木偶等联动读取 `Tags`，不按本地化名称或 C# 类名判断。新增或改名时按设计确认归属，不能按某种语言的标题自动推断。
-- 目标：自身=Self 单体敌人=AnyEnemy
+- 目标：自身=Self 单体敌人=AnyEnemy；另一名玩家=AnyAlly。AnyAlly 的 UI 已排除自己，模型／非 UI 调用仍需拒绝空目标、自己与死亡目标。
+- 联机限定卡覆写 `CardMultiplayerConstraint.MultiplayerOnly`，复用原生卡池过滤，不在角色池另建门控。
 - 获得格挡的卡：`public override bool GainsBlock => true;`
 - 多段攻击：`DamageCmd.Attack(...).WithHitCount(n)`；全体敌人参考 vanilla Shiv 的 `TargetingAllOpponents(combatState)`
 - 能力卡施加 Power：`PowerVar<T>` 声明数值（loc 用 `{T类名:diff()}` 引用）；升级抬数值 `UpgradeValueBy`，降费用 `base.EnergyCost.UpgradeBy(-1)`
@@ -67,6 +68,7 @@
 3. `PowerCmd.Apply<T>(...)` 返回 `Task<T?>`，战斗结束等时点会返回 null，接返回值必须判空。
 4. **0.107.1 API 垫片**：跨版本调用差异（FromCard 双参、CardPlay.GetPlayer、LoseBlock 等）一律走 `Content/Compat/` 下注入游戏命名空间的扩展方法垫片，调用点零感知；新增跨版本差异时在这里吸收，不要散在内容代码里 `#if`。
 5. **选卡器分档**：`CardSelectCmd.FromChooseACardScreen`（大卡三选一屏）**硬上限 3 张**（>3 直接 ArgumentException 炸断出牌流程，2026-10-02 升级版早间特报 7 张事故）；4 张及以上必须走 `FromSimpleGrid`（网格选择器，配 `CardSelectorPrefs(LocString, count)`）。
+6. **跨玩家抽牌**：0.111.0 使用 `DrawWithoutBlockingOnOtherPlayers`，0.107.1 回退 `Draw`，差异只放 `Content/Compat/CardPileCommandShim.cs`。队友身上的联机 Power 用 `Applier` 记录效果来源，并按需要声明 `InstancedPerApplier`；逐玩家可变集合放 `InitInternalData`，不能共享给 canonical 模型。虚无消耗的抽牌参照原版 `DarkEmbracePower` 延后到回合末冲刷后。
 
 ## 5. 本地化
 

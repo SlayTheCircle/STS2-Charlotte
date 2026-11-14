@@ -43,6 +43,14 @@ const TEXTURES := {
 	"res://images/timeline/epoch_portraits/sts2_charlotte_epoch_4.png": Vector2i(1672, 941),
 	"res://%s/images/timeline/sts2_charlotte_epoch_4_thumb.png": Vector2i(272, 174),
 	"res://%s/images/powers/OneTurnBlockPersistPower.png": Vector2i(256, 256),
+	"res://%s/images/cards/GroupPhoto.png": Vector2i(750, 570),
+	"res://%s/images/cards/PublicScrutiny.png": Vector2i(750, 570),
+	"res://%s/images/cards/EmbeddedInterview.png": Vector2i(750, 570),
+	"res://%s/images/cards/JointSpecialIssue.png": Vector2i(750, 570),
+	"res://%s/images/cards/MomentEternal.png": Vector2i(750, 570),
+	"res://%s/images/powers/PublicScrutinyPower.png": Vector2i(256, 256),
+	"res://%s/images/powers/EmbeddedInterviewPower.png": Vector2i(256, 256),
+	"res://%s/images/powers/JointSpecialIssuePower.png": Vector2i(256, 256),
 	"res://%s/images/characters/charlotte_normal.png": Vector2i(1024, 1536),
 	"res://%s/images/characters/charlotte_merchant.png": Vector2i(1024, 1536),
 	"res://%s/images/characters/charlotte_rest_site.png": Vector2i(1024, 1536),
@@ -55,10 +63,20 @@ const TEXTURES := {
 # 必须带透明通道的纹理(实底图在透明槽会显示方框)。
 const TRANSPARENT_TEXTURES := [
 	"res://%s/images/powers/OneTurnBlockPersistPower.png",
+	"res://%s/images/powers/PublicScrutinyPower.png",
+	"res://%s/images/powers/EmbeddedInterviewPower.png",
+	"res://%s/images/powers/JointSpecialIssuePower.png",
 	"res://%s/images/characters/charlotte_select.png",
 	"res://%s/images/characters/charlotte_select_locked.png",
 	"res://%s/images/characters/charlotte_normal.png",
 	"res://%s/images/energy/charlotte_energy_big.png",
+]
+
+const RETIRED_TEXTURES := [
+	"res://%s/images/cards/SecondWind.png",
+	"res://%s/images/cards/TruthAbove.png",
+	"res://%s/images/powers/SecondWindPower.png",
+	"res://%s/images/powers/TruthAbovePower.png",
 ]
 
 var _frame := 0
@@ -101,6 +119,11 @@ func _process(_delta: float) -> bool:
 		var img := (load(p) as Texture2D).get_image() if load(p) is Texture2D else null
 		if img == null or not img.detect_alpha():
 			push_error("PCK 纹理无透明通道: " + p)
+			failures += 1
+	for tpl in RETIRED_TEXTURES:
+		var p: String = tpl % _mod_id
+		if FileAccess.file_exists(p) or ResourceLoader.exists(p):
+			push_error("PCK 含退休纹理: " + p)
 			failures += 1
 	if failures == 0:
 		print("PCK 本地化可解析;角色场景、剧情/角色/能力纹理尺寸及透明通道断言通过。")

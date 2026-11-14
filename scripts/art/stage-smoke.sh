@@ -11,7 +11,7 @@ DST="assets/$MOD_ID/images"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
-# ---- 卡图(95 = 88 常规 + 7 新闻;先古两张开竖窗) ----
+# ---- 卡图(98 = 91 常规 + 7 新闻;先古两张开竖窗) ----
 declare -A CARDS=(
     ['打击']='CharlotteStrike' ['防御']='CharlotteDefend'
     ['咔嚓！']='CharlotteKacha' ['茄子！']='CharlotteSayCheese'
@@ -24,7 +24,7 @@ declare -A CARDS=(
     ['高危调查']='HighRiskInvestigation' ['笔走龙蛇']='BrushstrokeFlow'
     ['走街串巷']='DoorToDoor' ['核实流程']='FactCheck' ['时效核验']='DeadlineCheck'
     ['吸引视线']='DrawAttention' ['线索收集']='GatherLeads' ['临场发挥']='Improvisation'
-    ['占领头版']='ClaimTheHeadline' ['精力充沛']='SecondWind' ['左右逢源']='WellConnected'
+    ['占领头版']='ClaimTheHeadline' ['左右逢源']='WellConnected'
     ['有力物证']='SolidEvidence' ['忠实记录']='FaithfulRecord' ['检索信息']='InfoRetrieval'
     ['脑洞大开']='Brainstorm' ['延时摄影']='TimeLapse' ['深入调查']='InDepthInvestigation'
     ['加班加点']='Overtime' ['奋笔疾书']='DeadlineRush' ['背光拍摄']='BacklitShot'
@@ -33,7 +33,7 @@ declare -A CARDS=(
     ['广角镜头']='WideAngleLens' ['曝光录像']='ExposureFootage' ['争分夺秒']='RaceTheClock'
     ['最佳记者']='BestJournalist' ['切中要害']='SharpReport' ['多重取证']='MultipleExhibits'
     ['唇枪舌剑']='WarOfWords' ['单刀直入']='SoloThrust' ['摄影技巧']='PhotographySkill'
-    ['摄影形态']='PhotographyForm' ['真实至上']='TruthAbove' ['职业素养']='Professionalism'
+    ['摄影形态']='PhotographyForm' ['职业素养']='Professionalism'
     ['爆炸新闻']='BreakingNews' ['神来之笔']='Masterstroke' ['辟谣祛魅']='DebunkAndDispel'
     ['三审三校']='TripleCheck' ['洛阳纸贵']='LuoyangPaper' ['追踪调查']='TrackingInvestigation'
     ['按图索骥']='FollowTheClues' ['现场报道']='LiveReport' ['冷色摄影']='CoolToneShot'
@@ -43,6 +43,8 @@ declare -A CARDS=(
     ['全勤奖金']='PerfectAttendance' ['动作捕捉']='MotionCapture' ['特制镜头']='CustomLens'
     ['跟进调查']='FollowUpInvestigation' ['风雨满楼']='StormBrewing' ['大字通告']='FrontPageNotice'
     ['力透纸背']='PenetratingProse' ['开门见山']='CutToTheChase'
+    ['合影留念']='GroupPhoto' ['众目睽睽']='PublicScrutiny' ['随行采访']='EmbeddedInterview'
+    ['同行特刊']='JointSpecialIssue' ['此刻长存']='MomentEternal'
 )
 declare -A ANCIENT_ART=( ['笑一个！']='Smile' ['看镜头！']='LookAtCamera' )
 declare -A NEWS_ART=(
@@ -103,16 +105,18 @@ stage_icons 药水 potions \
 # ---- Power 图标 256²(无描边;临时 power 图标与能力卡图标共用母版) ----
 declare -A POWERS=(
     ['聚焦']='LensFocusPower' ['下回合聚焦']='DelayedFocusPower' ['跟进调查']='FollowUpPower'
-    ['临场发挥']='FocusShieldPower' ['精力充沛']='SecondWindPower' ['左右逢源']='PressMomentumPower'
+    ['临场发挥']='FocusShieldPower' ['左右逢源']='PressMomentumPower'
     ['忠实记录']='FaithfulRecordPower' ['脑洞大开']='BrainstormPower' ['看镜头！']='LookAtCameraPower'
     ['紧跟时事']='TopicalLinkPower' ['文思泉涌']='FlowOfIdeasPower' ['特制镜头']='CustomLensPower'
     ['动作捕捉']='MotionCapturePower' ['职业素养']='ProfessionalismPower' ['温馨笔触']='WarmBrushstrokePower'
     ['风雨满楼']='StormBrewingPower' ['按下快门']='ShutterPursuitPower' ['剪贴相册']='ScrapbookPower'
     ['时效原则']='TimelinessPower' ['复制胶卷']='ReplayRollPower' ['妙笔生花']='FloweryPenPower'
     ['切中要害']='SharpReportPower' ['摄影技巧']='PhotographySkillPower' ['摄影形态']='PhotographyFormPower'
-    ['真实至上']='TruthAbovePower' ['三审三校']='TripleCheckPower' ['洛阳纸贵']='LuoyangPaperPower'
+    ['三审三校']='TripleCheckPower' ['洛阳纸贵']='LuoyangPaperPower'
     ['最佳记者']='BestJournalistPower' ['全勤奖金']='PerfectAttendancePower'
     ['谨遵事实']='AdherencePower'
+    ['众目睽睽']='PublicScrutinyPower' ['随行采访']='EmbeddedInterviewPower'
+    ['同行特刊']='JointSpecialIssuePower'
 )
 ok=0
 for zh in "${!POWERS[@]}"; do

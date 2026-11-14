@@ -18,7 +18,8 @@ if not os.path.isfile(DOC):
 # 衍生仓按需登记:原案外已确认新增(ADDITIONS)、衍生 token(TOKENS)、明确延后(DEFERRED);模板默认全空。
 DEFERRED = set()
 TOKENS = set()
-ADDITIONS = set()
+RETIRED = {'精力充沛', '真实至上'}
+ADDITIONS = {'合影留念', '众目睽睽', '随行采访', '同行特刊', '此刻长存'}
 
 names = []
 for line in open(DOC, encoding='utf-8'):
@@ -45,10 +46,13 @@ if len(titles) != cls_n:
 ghost = titles - design - TOKENS - ADDITIONS
 if ghost:
     errors.append(f'实装了但不在设计表/白名单: {sorted(ghost)}')
-pending = design - titles
+pending = design - titles - RETIRED
 unexpected = pending - DEFERRED
 if unexpected:
     errors.append(f'未实装且不在缓做清单(在途批次落地后应清零): {sorted(unexpected)}')
+revived = titles & RETIRED
+if revived:
+    errors.append(f'退休卡被误重新加入: {sorted(revived)}')
 
 for e in errors:
     print('错误:', e)

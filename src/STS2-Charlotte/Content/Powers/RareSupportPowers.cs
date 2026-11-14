@@ -176,23 +176,6 @@ public sealed class PhotographyFormPower : CharlottePowerBase
     }
 }
 
-/// <summary>真实至上效果:你每打出 1 张牌,获得 Amount 点格挡。</summary>
-[RegisterPower]
-public sealed class TruthAbovePower : CharlottePowerBase
-{
-    public override PowerType Type => PowerType.Buff;
-
-    public override PowerStackType StackType => PowerStackType.Counter;
-
-    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        if (cardPlay.Card.Owner.Creature == base.Owner)
-        {
-            await CreatureCmd.GainBlock(base.Owner, base.Amount, ValueProp.Unpowered, null);
-        }
-    }
-}
-
 /// <summary>职业素养效果:每个回合开始时,获得 Amount 点能量。</summary>
 [RegisterPower]
 public sealed class ProfessionalismPower : CharlottePowerBase

@@ -27,13 +27,8 @@ fi
 mkdir -p "$MOD_ROOT/mods-dist"
 stage="$(mktemp -d "$MOD_ROOT/mods-dist/.build.XXXXXX")"
 trap 'rm -rf "$stage"' EXIT
-python3 - "$MOD_ROOT/$MOD_ID.json" "$stage/$MOD_ID.json" "$RITSULIB_TARGET" <<'PYCODE'
-import json, sys
-from pathlib import Path
-manifest = json.loads(Path(sys.argv[1]).read_text())
-manifest["min_game_version"] = sys.argv[3]
-Path(sys.argv[2]).write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
-PYCODE
+GAME_VERSION="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["version"].removeprefix("v"))' "$GAME_REFS_DIR/release_info.json")"
+python3 "$MOD_ROOT/scripts/distribution/manifest.py" "$MOD_ROOT/$MOD_ID.json" "$stage/$MOD_ID.json" "$GAME_VERSION"
 cp "$DLL" "$stage/"
 MOD_PCK="$stage/$MOD_ID.pck" "$MOD_ROOT/scripts/build-pck.sh"
 MOD_PCK="$stage/$MOD_ID.pck" "$MOD_ROOT/scripts/verify-pck.sh"

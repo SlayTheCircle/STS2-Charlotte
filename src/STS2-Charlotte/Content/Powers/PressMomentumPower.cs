@@ -25,11 +25,7 @@ public sealed class PressMomentumPower : CharlottePowerBase
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-#if MOD_GAME_0107_1
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
-#else
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
-#endif
     {
         if (base.Owner != dealer || !props.IsPoweredAttack() || cardSource is Cards.WellConnected)
         {

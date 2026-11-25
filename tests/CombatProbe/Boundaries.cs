@@ -26,9 +26,7 @@ internal static class Boundaries
         Patch(typeof(Godot.OS).GetMethod("HasFeature")!, nameof(Feature));
         Patch(typeof(MegaCrit.Sts2.Core.Logging.ConsoleLogPrinter).GetMethod("Print")!, nameof(Skip));
         Patch(typeof(CardPileCmd).GetMethod("Draw", [typeof(PlayerChoiceContext), typeof(decimal), typeof(Player), typeof(bool)])!, nameof(Draw));
-#if !MOD_GAME_0107_1
         Patch(typeof(CardPileCmd).GetMethod("DrawWithoutBlockingOnOtherPlayers")!, nameof(DrawWithoutBlocking));
-#endif
         Patch(typeof(CardPileCmd).GetMethod("AddGeneratedCardToCombat")!, nameof(AddGenerated));
         Patch(typeof(CreatureCmd).GetMethod("GainBlock", [typeof(Creature), typeof(decimal), typeof(ValueProp), typeof(CardPlay), typeof(bool)])!, nameof(GainBlock));
         Patch(typeof(CardCmd).GetMethod("Exhaust")!, nameof(Exhaust));
@@ -65,7 +63,6 @@ internal static class Boundaries
         __result = Task.FromResult(Enumerable.Empty<CardModel>());
         return false;
     }
-#if !MOD_GAME_0107_1
     public static bool DrawWithoutBlocking(decimal count, Player player, ref Task __result)
     {
         Draws.Add(player);
@@ -73,7 +70,6 @@ internal static class Boundaries
         __result = Task.CompletedTask;
         return false;
     }
-#endif
     public static bool AddGenerated(CardModel card, PileType newPileType, Player? creator,
         ref Task<CardPileAddResult> __result)
     {
@@ -88,21 +84,12 @@ internal static class Boundaries
         __result = Task.FromResult(amount);
         return false;
     }
-#if MOD_GAME_0107_1
-    public static bool Exhaust(CardModel card, ref Task __result)
-    {
-        ExhaustedCards.Add(card);
-        __result = Task.CompletedTask;
-        return false;
-    }
-#else
     public static bool Exhaust(CardModel card, ref Task<CardPileAddResult?> __result)
     {
         ExhaustedCards.Add(card);
         __result = Task.FromResult<CardPileAddResult?>(null);
         return false;
     }
-#endif
     public static bool Afflict(AfflictionModel affliction, CardModel card, decimal amount,
         ref Task<AfflictionModel?> __result)
     {

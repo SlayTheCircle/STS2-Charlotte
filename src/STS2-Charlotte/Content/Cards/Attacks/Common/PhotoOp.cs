@@ -49,7 +49,6 @@ public sealed class PhotoOp : CharlotteCardBase
     // 纪念版自带消耗关键词,base 路由天然进消耗堆,不劫持。两个游戏目标同缝异形:
     // 0.111.0 返回 CardLocation 记录,0.107.1 只有 PileType 版本(与 CharlottePowerBase
     // 的 ModifyDamageAdditive 垫片同一对差异)。
-#if !MOD_GAME_0107_1
     protected override CardLocation GetResultLocationForCardPlay()
     {
         CardLocation result = base.GetResultLocationForCardPlay();
@@ -60,12 +59,6 @@ public sealed class PhotoOp : CharlotteCardBase
         }
         return result;
     }
-#else
-    protected override PileType GetResultPileTypeForCardPlay()
-    {
-        return Snapshot.IsMemento(this) ? base.GetResultPileTypeForCardPlay() : PileType.Exhaust;
-    }
-#endif
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

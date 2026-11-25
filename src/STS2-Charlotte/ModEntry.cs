@@ -21,6 +21,7 @@ public static class ModEntry
         // 归属声明:让本程序集内的 RitsuLib 自动注册特性([RegisterCard]/[RegisterCharacter]/…)正确归属到本 mod。
         // 必须第一条;内容注册全部由各模型类上的特性完成,本入口不再手工登记内容清单。
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, typeof(ModEntry).Assembly);
+        Sts2Mod.Foreseer.CharlotteForecasts.Subscribe(ModId);
 
         // 机制关键词注册(stem 必须与 CharlotteKeywords 常量的 KEYWORD_ 后缀一致;
         // 文本在 localization/{lang}/card_keywords.json)。

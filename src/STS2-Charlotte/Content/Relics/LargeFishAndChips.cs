@@ -24,7 +24,7 @@ public sealed class LargeFishAndChips : CharlotteRelicBase
     public override async Task AfterObtained()
     {
         Flash();
-#if MOD_GAME_0113_0
+#if MOD_GAME_0114_0
         await CreatureCmd.LoseMaxHp(new ThrowingPlayerChoiceContext(), base.Owner.Creature, MaxHpLostOnPickup, cardSource: null);
 #else
         await CreatureCmd.LoseMaxHp(new ThrowingPlayerChoiceContext(), base.Owner.Creature, MaxHpLostOnPickup, false);

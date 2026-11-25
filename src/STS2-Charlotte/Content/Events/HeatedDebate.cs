@@ -48,7 +48,7 @@ public sealed class HeatedDebate : CharlotteEventBase
     /// <summary>煎制:失 3 最大生命,回 22 生命。</summary>
     private async Task Fry()
     {
-#if MOD_GAME_0113_0
+#if MOD_GAME_0114_0
         await CreatureCmd.LoseMaxHp(new ThrowingPlayerChoiceContext(), base.Owner.Creature, MaxHpLoss, cardSource: null);
 #else
         await CreatureCmd.LoseMaxHp(new ThrowingPlayerChoiceContext(), base.Owner.Creature, MaxHpLoss, isFromCard: false);

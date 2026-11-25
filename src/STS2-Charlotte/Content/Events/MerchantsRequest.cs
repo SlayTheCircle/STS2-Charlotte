@@ -39,7 +39,7 @@ public sealed class MerchantsRequest : CharlotteEventBase
     /// <summary>欣然应允:随机稀有度遗物。</summary>
     private async Task Agree()
     {
-#if MOD_GAME_0113_0
+#if MOD_GAME_0114_0
         RelicModel relic = RelicFactory.PullNextRelicFromFront(base.Owner, base.Rng).ToMutable();
 #else
         RelicModel relic = RelicFactory.PullNextRelicFromFront(base.Owner).ToMutable();

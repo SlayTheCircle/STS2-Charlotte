@@ -81,9 +81,7 @@ internal static class Fixture
     public static CardPlay Play(CardModel card, bool auto = false, Creature? target = null) => new()
     {
         Card = card,
-#if !MOD_GAME_0107_1
         Player = card.Owner,
-#endif
         Target = target, ResultPile = PileType.Exhaust, Resources = default!, IsAutoPlay = auto,
         PlayIndex = 0, PlayCount = 1,
     };

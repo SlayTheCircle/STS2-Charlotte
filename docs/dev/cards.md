@@ -66,9 +66,9 @@
    - 通用 `CalculatedVar` 的面板**不含**力量/虚弱/敏捷修正，只用于非伤害格挡的自定义数值。
 2. **先算后耗**：凡「消耗资源结算效果」的卡，必须在消耗**之前**读取/计算数值（后算会把面板值算成基准值）。
 3. `PowerCmd.Apply<T>(...)` 返回 `Task<T?>`，战斗结束等时点会返回 null，接返回值必须判空。
-4. **0.107.1 API 垫片**：跨版本调用差异（FromCard 双参、CardPlay.GetPlayer、LoseBlock 等）一律走 `Content/Compat/` 下注入游戏命名空间的扩展方法垫片，调用点零感知；新增跨版本差异时在这里吸收，不要散在内容代码里 `#if`。
+4. **跨版本 API**：两版使用原生的双参 `FromCard` 和 `CardPlay.Player`。新增调用时核对两版签名，确有差异时将适配集中在兼容模块。
 5. **选卡器分档**：`CardSelectCmd.FromChooseACardScreen`（大卡三选一屏）**硬上限 3 张**（>3 直接 ArgumentException 炸断出牌流程，2026-10-02 升级版早间特报 7 张事故）；4 张及以上必须走 `FromSimpleGrid`（网格选择器，配 `CardSelectorPrefs(LocString, count)`）。
-6. **跨玩家抽牌**：0.111.0 使用 `DrawWithoutBlockingOnOtherPlayers`，0.107.1 回退 `Draw`，差异只放 `Content/Compat/CardPileCommandShim.cs`。队友身上的联机 Power 用 `Applier` 记录效果来源，并按需要声明 `InstancedPerApplier`；逐玩家可变集合放 `InitInternalData`，不能共享给 canonical 模型。虚无消耗的抽牌参照原版 `DarkEmbracePower` 延后到回合末冲刷后。
+6. **跨玩家抽牌**：Stable 和 Beta 均经 `Content/Compat/CardPileCommandShim.cs` 调用 `DrawWithoutBlockingOnOtherPlayers`。队友身上的联机 Power 用 `Applier` 记录效果来源，并按需要声明 `InstancedPerApplier`；逐玩家可变集合放 `InitInternalData`，不能共享给 canonical 模型。虚无消耗的抽牌参照原版 `DarkEmbracePower` 延后到回合末冲刷后。
 
 ## 5. 本地化
 

@@ -11,10 +11,6 @@ internal static class CharlotteCardPileCommandShim
 {
     public static async Task DrawForPlayer(PlayerChoiceContext choiceContext, decimal count, Player player, CardModel source)
     {
-#if MOD_GAME_0107_1
-        await CardPileCmd.Draw(choiceContext, count, player);
-#else
         await CardPileCmd.DrawWithoutBlockingOnOtherPlayers(choiceContext, count, player, source);
-#endif
     }
 }

@@ -6,7 +6,6 @@
     <GameRefsDir Condition="'$(GameRefsDir)' == ''">$(MSBuildThisFileDirectory)../../libs/game</GameRefsDir>
     <RitsuLibDir>$(RITSULIB_DIR)</RitsuLibDir>
     <RitsuLibReferenceTarget>$(RITSULIB_TARGET)</RitsuLibReferenceTarget>
-    <DefineConstants Condition="'$(RITSULIB_TARGET)' == '0.107.1'">$(DefineConstants);MOD_GAME_0107_1</DefineConstants>
   </PropertyGroup>
   <Import Project="$(RitsuLibDir)/RitsuLib.References.props" />
   <ItemGroup>
